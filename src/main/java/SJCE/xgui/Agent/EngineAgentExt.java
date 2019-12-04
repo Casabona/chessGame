@@ -200,6 +200,86 @@ public class EngineAgentExt extends EngineAgent {
    }*/
  }
  
+ private void commandStart(Move move) {
+	 
+	  if ((move.getPiece()==6)&(aktion.Prohod_White_Event==1)&(Math.abs(move.getSource() - aktion.Prohod_White_Destination)==1)&(Math.abs(move.getDestination() - aktion.Prohod_White_Destination)==8)) {
+          System.out.println("Black Pawn En-Passant !");            
+          boardUI.setPiece(PiecesUI.NO_PIECE,aktion.Prohod_White_Destination);
+          boardUI.update(aktion.Prohod_White_Destination);
+          aktion.Prohod_White_Event=0;
+          aktion.Prohod_White_Destination=-1;
+     }  
+     if ((move.getPiece()==0)&(aktion.Prohod_Black_Event==1)&(Math.abs(move.getSource() - aktion.Prohod_Black_Destination)==1)&(Math.abs(move.getDestination() - aktion.Prohod_Black_Destination)==8)) {
+          System.out.println("White Pawn En-Passant !");            
+          boardUI.setPiece(PiecesUI.NO_PIECE,aktion.Prohod_Black_Destination);
+          boardUI.update(aktion.Prohod_Black_Destination);
+          aktion.Prohod_Black_Event=0;
+          aktion.Prohod_Black_Destination=-1;
+     }         
+ }
+ 
+ private void selectedWhitePiece(Move move) {
+	 if ((move.getPiece()==6)&(move.getSource()>=8)&(move.getSource()<=15)) {
+         System.out.println("Black Pawn Promotion !!!!");
+         switch (aktion.enginePromotionFig) {
+             case "n": 
+                 move.setPiece(PiecesUI.BLACK_KNIGHT);
+                 boardUI.setPiece(PiecesUI.BLACK_KNIGHT, move.getDestination());
+                 break;
+             case "b":
+                 move.setPiece(PiecesUI.BLACK_BISHOP);
+                 boardUI.setPiece(PiecesUI.BLACK_BISHOP, move.getDestination()); 
+                 break;
+             case "r":
+                 move.setPiece(PiecesUI.BLACK_ROOK);
+                 boardUI.setPiece(PiecesUI.BLACK_ROOK, move.getDestination());
+                 break;
+             case "q":
+                 move.setPiece(PiecesUI.BLACK_QUEEN);
+                 boardUI.setPiece(PiecesUI.BLACK_QUEEN, move.getDestination());
+                 break;
+             default:
+                 move.setPiece(PiecesUI.BLACK_QUEEN);
+                 boardUI.setPiece(PiecesUI.BLACK_QUEEN, move.getDestination());
+                 break;                    
+         }
+         boardUI.update(move.getDestination());
+         //aktion.enginePromotionFig="";
+    }  
+ }
+ 
+ private void selectedBlackPiece(Move move) {
+	 
+     if ((move.getPiece()==0)&(move.getSource()>=48)&(move.getSource()<=55)) {
+         System.out.println("White Pawn Promotion !!!!");            
+         switch (aktion.enginePromotionFig) {
+             case "n": 
+                 move.setPiece(PiecesUI.WHITE_KNIGHT);
+                 boardUI.setPiece(PiecesUI.WHITE_KNIGHT, move.getDestination());
+                 break;
+             case "b":
+                 move.setPiece(PiecesUI.WHITE_BISHOP);
+                 boardUI.setPiece(PiecesUI.WHITE_BISHOP, move.getDestination()); 
+                 break;
+             case "r":
+                 move.setPiece(PiecesUI.WHITE_ROOK);
+                 boardUI.setPiece(PiecesUI.WHITE_ROOK, move.getDestination());
+                 break;
+             case "q":
+                 move.setPiece(PiecesUI.WHITE_QUEEN);
+                 boardUI.setPiece(PiecesUI.WHITE_QUEEN, move.getDestination());
+                 break;
+             default:
+                 move.setPiece(PiecesUI.WHITE_QUEEN);
+                 boardUI.setPiece(PiecesUI.WHITE_QUEEN, move.getDestination());
+                 break;                    
+         }
+         boardUI.update(move.getDestination());
+         //aktion.enginePromotionFig="";
+    }         
+	 
+	 
+ }
  @Override
  protected void parseCommand() throws IOException {
    //final 
@@ -210,74 +290,11 @@ public class EngineAgentExt extends EngineAgent {
    if(matcher.matches()) {
        Move move = Notation.toMove(matcher.group(3).substring(0, 4));
                         updateContext(move); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-       if ((move.getPiece()==6)&(aktion.Prohod_White_Event==1)&(Math.abs(move.getSource() - aktion.Prohod_White_Destination)==1)&(Math.abs(move.getDestination() - aktion.Prohod_White_Destination)==8)) {
-            System.out.println("Black Pawn En-Passant !");            
-            boardUI.setPiece(PiecesUI.NO_PIECE,aktion.Prohod_White_Destination);
-            boardUI.update(aktion.Prohod_White_Destination);
-            aktion.Prohod_White_Event=0;
-            aktion.Prohod_White_Destination=-1;
-       }  
-       if ((move.getPiece()==0)&(aktion.Prohod_Black_Event==1)&(Math.abs(move.getSource() - aktion.Prohod_Black_Destination)==1)&(Math.abs(move.getDestination() - aktion.Prohod_Black_Destination)==8)) {
-            System.out.println("White Pawn En-Passant !");            
-            boardUI.setPiece(PiecesUI.NO_PIECE,aktion.Prohod_Black_Destination);
-            boardUI.update(aktion.Prohod_Black_Destination);
-            aktion.Prohod_Black_Event=0;
-            aktion.Prohod_Black_Destination=-1;
-       }         
-       if ((move.getPiece()==6)&(move.getSource()>=8)&(move.getSource()<=15)) {
-            System.out.println("Black Pawn Promotion !!!!");
-            switch (aktion.enginePromotionFig) {
-                case "n": 
-                    move.setPiece(PiecesUI.BLACK_KNIGHT);
-                    boardUI.setPiece(PiecesUI.BLACK_KNIGHT, move.getDestination());
-                    break;
-                case "b":
-                    move.setPiece(PiecesUI.BLACK_BISHOP);
-                    boardUI.setPiece(PiecesUI.BLACK_BISHOP, move.getDestination()); 
-                    break;
-                case "r":
-                    move.setPiece(PiecesUI.BLACK_ROOK);
-                    boardUI.setPiece(PiecesUI.BLACK_ROOK, move.getDestination());
-                    break;
-                case "q":
-                    move.setPiece(PiecesUI.BLACK_QUEEN);
-                    boardUI.setPiece(PiecesUI.BLACK_QUEEN, move.getDestination());
-                    break;
-                default:
-                    move.setPiece(PiecesUI.BLACK_QUEEN);
-                    boardUI.setPiece(PiecesUI.BLACK_QUEEN, move.getDestination());
-                    break;                    
-            }
-            boardUI.update(move.getDestination());
-            //aktion.enginePromotionFig="";
-       }  
-       if ((move.getPiece()==0)&(move.getSource()>=48)&(move.getSource()<=55)) {
-            System.out.println("White Pawn Promotion !!!!");            
-            switch (aktion.enginePromotionFig) {
-                case "n": 
-                    move.setPiece(PiecesUI.WHITE_KNIGHT);
-                    boardUI.setPiece(PiecesUI.WHITE_KNIGHT, move.getDestination());
-                    break;
-                case "b":
-                    move.setPiece(PiecesUI.WHITE_BISHOP);
-                    boardUI.setPiece(PiecesUI.WHITE_BISHOP, move.getDestination()); 
-                    break;
-                case "r":
-                    move.setPiece(PiecesUI.WHITE_ROOK);
-                    boardUI.setPiece(PiecesUI.WHITE_ROOK, move.getDestination());
-                    break;
-                case "q":
-                    move.setPiece(PiecesUI.WHITE_QUEEN);
-                    boardUI.setPiece(PiecesUI.WHITE_QUEEN, move.getDestination());
-                    break;
-                default:
-                    move.setPiece(PiecesUI.WHITE_QUEEN);
-                    boardUI.setPiece(PiecesUI.WHITE_QUEEN, move.getDestination());
-                    break;                    
-            }
-            boardUI.update(move.getDestination());
-            //aktion.enginePromotionFig="";
-       }         
+                        commandStart(move);
+                        
+                        selectedWhitePiece(move);
+                        selectedBlackPiece(move);
+ 
     fireMovePrinted(new EngineEvent(this, matcher.group(3)));
     fireMovePerformed(new MoveEvent(this, move));
     //System.out.println("OPA");
@@ -313,6 +330,29 @@ public class EngineAgentExt extends EngineAgent {
             writeLine("go depth " + aktion.Depth);
        }
 	 
+ }
+ 
+ private void exceptUserMove(Move move, String usercmd) {
+     if (ceTip.equals("uci")&&colorCE.equals("black")&&aktion.enemyTip.equals("another")) {
+         if (MoveListUI.count%2==1) {
+              writeLine("position startpos moves" + aktion.uciAllMovesString);
+              if (aktion.UseClock.equals("true") && !goEngine.equals("Magnum"))
+                  writeLine("go depth " + aktion.Depth + " wtime " + frame.chessClock.getTime(ChessClock.WHITE_TURN) + " btime " + frame.chessClock.getTime(ChessClock.BLACK_TURN) + " winc 0 binc 0");
+              else
+                  writeLine("go depth " + aktion.Depth);
+              return;
+         }// if MoveListUI.count%2!=1
+         else {
+             if ((move.getPiece()==0)&(move.getSource()>=48)&(move.getSource()<=55))
+                 writeLine(usercmd+"q");
+             else if ((move.getPiece()==6)&(move.getSource()>=8)&(move.getSource()<=15)) 
+                 writeLine(usercmd+"q");
+             else
+                 writeLine(usercmd);
+             //System.out.println("OPA");
+             return;
+         }
+     }
  }
  
  @Override
@@ -371,26 +411,8 @@ public class EngineAgentExt extends EngineAgent {
             writeLine("go depth " + aktion.Depth);
           return;
         }
-       if (ceTip.equals("uci")&&colorCE.equals("black")&&aktion.enemyTip.equals("another")) {
-           if (MoveListUI.count%2==1) {
-                writeLine("position startpos moves" + aktion.uciAllMovesString);
-                if (aktion.UseClock.equals("true") && !goEngine.equals("Magnum"))
-                    writeLine("go depth " + aktion.Depth + " wtime " + frame.chessClock.getTime(ChessClock.WHITE_TURN) + " btime " + frame.chessClock.getTime(ChessClock.BLACK_TURN) + " winc 0 binc 0");
-                else
-                    writeLine("go depth " + aktion.Depth);
-                return;
-           }// if MoveListUI.count%2!=1
-           else {
-               if ((move.getPiece()==0)&(move.getSource()>=48)&(move.getSource()<=55))
-                   writeLine(usercmd+"q");
-               else if ((move.getPiece()==6)&(move.getSource()>=8)&(move.getSource()<=15)) 
-                   writeLine(usercmd+"q");
-               else
-                   writeLine(usercmd);
-               //System.out.println("OPA");
-               return;
-           }
-       }
+       exceptUserMove(move,usercmd);
+      
    }
  
  private String getTime(long time) { time /= 1000;return time/60+":"+(time%60)/1000; }
