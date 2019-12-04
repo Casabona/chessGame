@@ -1003,6 +1003,8 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
     	  jMenuItem4 = new javax.swing.JMenuItem();
           jMenuItem5 = new javax.swing.JMenuItem();
           jMenuItem1 = new javax.swing.JMenuItem();
+          jMenuItem2 = new javax.swing.JMenuItem();
+          jMenuItem3 = new javax.swing.JMenuItem();
           
           jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/x-b-16.png"))); // NOI18N
           jMenuItem4.setText("Xboard Engines Links & Ratings");
@@ -1027,7 +1029,25 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
                   jMenuItem1ActionPerformed(evt);
               }
           });
+          
+          jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/log-16-blue.png"))); // NOI18N
+          jMenuItem2.setText("View Game Log");
+          jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  jMenuItem2ActionPerformed(evt);
+              }
+          });
+          
+          jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/volume_loud.png"))); // NOI18N
+          jMenuItem3.setText("Sound Volume");
+          jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  jMenuItem3ActionPerformed(evt);
+              }
+          });
     }
+    
+    
     /**
      * initialise le bouton new et exit
      */
@@ -1076,129 +1096,54 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
           });
     	
     }
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
-
+    
+    private void initJtoolBar3() {
+    	 jToolBar3.add(bSoundMixer);
+         jToolBar3.add(bUseSound);
+         jToolBar3.add(bcomboMode);
+         jToolBar3.add(bcomboDepth);
+         jToolBar3.add(bcomboTime);
+         jToolBar3.add(bUseClock);
+         jToolBar3.add(bSendWhite);
+         jToolBar3.add(bSendBlack);
+         jToolBar3.add(comboWPlayerCE);
+         jToolBar3.add(jSeparator2);
+         jToolBar3.add(comboBPlayerCE);
+         jToolBar3.add(jSeparator1);
+    }
+    
+    private void initInfo() {
     	
-        bNew = new javax.swing.JButton();
-        bKillAll = new javax.swing.JButton();
-        bSaveCfg = new javax.swing.JButton();
+    	mInfo = new javax.swing.JMenu();
+    	 mInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/info-green-16.png"))); // NOI18N
+         mInfo.setText("Info");
 
-        initButtonMix();
-
-        initButonCombo();
-
-        initBsend();
-     
-        jSeparator2 = new javax.swing.JToolBar.Separator();
-       
-        jSeparator1 = new javax.swing.JToolBar.Separator();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        mFile = new javax.swing.JMenu();
-//        mNewGame = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-//        mExit = new javax.swing.JMenuItem();
-//        mOptions = new javax.swing.JMenu();
-        initBbase();
-       initMtime();
-       
-        jMenu1 = new javax.swing.JMenu();
-      
-        jMenuItem3 = new javax.swing.JMenuItem();
-        mBoardTheme = new javax.swing.JMenuItem();
-        mChangeSkin = new javax.swing.JMenuItem();
-        mSaveCfg = new javax.swing.JMenuItem();
-
-        initEngine(); 
-
-        initDepth();
-        initWire();
-        
-//        mSendWhite = new javax.swing.JMenuItem();
-//        mSendBlack = new javax.swing.JMenuItem();
-        mKillAll = new javax.swing.JMenuItem();
-        mUndoLast = new javax.swing.JMenuItem();
-        mInfo = new javax.swing.JMenu();
-
-        initItems();
-        
-initBoard();
-initMSend();
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(610, 650));
-        setUndecorated(true);
-        setResizable(false);
-
-        jToolBar3.add(bSoundMixer);
-
-        jToolBar3.add(bUseSound);
-
-        jToolBar3.add(bcomboMode);
-
-        jToolBar3.add(bcomboDepth);
-
-        jToolBar3.add(bcomboTime);
-  
-        jToolBar3.add(bUseClock);
-
-        jToolBar3.add(bSendWhite);
-
-        jToolBar3.add(bSendBlack);
-
-        jToolBar3.add(comboWPlayerCE);
-        jToolBar3.add(jSeparator2);
-
-        jToolBar3.add(comboBPlayerCE);
-        jToolBar3.add(jSeparator1);
-        
-        jToolBar2.add(jToolBar3);
-
-        getContentPane().add(jToolBar2, java.awt.BorderLayout.NORTH);
-
+         mInfo.add(jMenuItem4);
+         mInfo.add(jMenuItem5);
+         mInfo.add(jMenuItem1);
+    }
+    /**
+     * 
+     * initialise le bouton option
+     */
+    private void initOption() {
+    	mFile = new javax.swing.JMenu();
+    	
         mFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/Actions-document-open-icon.png"))); // NOI18N
         mFile.setText("File");
-
-
         mFile.add(mNewGame);
-
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/log-16-blue.png"))); // NOI18N
-        jMenuItem2.setText("View Game Log");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
         mFile.add(jMenuItem2);
-
-
         mFile.add(mExit);
-
         jMenuBar1.add(mFile);
-
         mOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/application-16.png"))); // NOI18N
         mOptions.setText("Options");
-
         mOptions.add(mTimeMenu);
-
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/sound-juk.png"))); // NOI18N
         jMenu1.setText("Sound Control");
-
-
         jMenu1.add(mUseSound);
-
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/volume_loud.png"))); // NOI18N
-        jMenuItem3.setText("Sound Volume");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
         jMenu1.add(jMenuItem3);
-
         mOptions.add(jMenu1);
-
+        
         mBoardTheme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/color_swatch.png"))); // NOI18N
         mBoardTheme.setText("Change Board Theme");
         mBoardTheme.addActionListener(new java.awt.event.ActionListener() {
@@ -1225,31 +1170,67 @@ initMSend();
             }
         });
         mOptions.add(mSaveCfg);
+    }
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+    	
+        bNew = new javax.swing.JButton();
+        bKillAll = new javax.swing.JButton();
+        bSaveCfg = new javax.swing.JButton();
 
+        initButtonMix();
+
+        initButonCombo();
+
+        initBsend();
+     
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+       
+        jSeparator1 = new javax.swing.JToolBar.Separator();
+        jMenuBar1 = new javax.swing.JMenuBar();
+
+        initBbase();
+       initMtime();
+       
+        jMenu1 = new javax.swing.JMenu();
+      
+        mBoardTheme = new javax.swing.JMenuItem();
+        mChangeSkin = new javax.swing.JMenuItem();
+        mSaveCfg = new javax.swing.JMenuItem();
+
+        initEngine(); 
+
+        initDepth();
+        initWire(); 
+
+        mKillAll = new javax.swing.JMenuItem();
+        mUndoLast = new javax.swing.JMenuItem();
+      
+        initItems();
+		initBoard();
+		initMSend();
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(610, 650));
+        setUndecorated(true);
+        setResizable(false);
+
+        initJtoolBar3();
+        
+        jToolBar2.add(jToolBar3);
+
+        getContentPane().add(jToolBar2, java.awt.BorderLayout.NORTH);
+
+
+        initOption();
         jMenuBar1.add(mOptions);
-
-
 
         mEngineConfig.add(mEngineDepth);
 
         mChessEngines.add(mEngineConfig);
 
-//        mSendWhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/send-white-16-green.png"))); // NOI18N
-//        mSendWhite.setText("Send Command to White CE");
-//        mSendWhite.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mSendWhiteActionPerformed(evt);
-//            }
-//        });
         mChessEngines.add(mSendWhite);
 
-//        mSendBlack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/send-black-16-right.png"))); // NOI18N
-//        mSendBlack.setText("Send Command to Black CE");
-//        mSendBlack.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mSendBlackActionPerformed(evt);
-//            }
-//        });
         mChessEngines.add(mSendBlack);
 
         mKillAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/stop_red.png"))); // NOI18N
@@ -1271,19 +1252,8 @@ initMSend();
         mChessEngines.add(mUndoLast);
 
         jMenuBar1.add(mChessEngines);
-
-        mInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/info-green-16.png"))); // NOI18N
-        mInfo.setText("Info");
-
-
-        mInfo.add(jMenuItem4);
-
-
-        mInfo.add(jMenuItem5);
-
-
-        mInfo.add(jMenuItem1);
-
+        initInfo();
+       
         jMenuBar1.add(mInfo);
 
         setJMenuBar(jMenuBar1);
