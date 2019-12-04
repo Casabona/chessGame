@@ -1466,7 +1466,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
                 System.out.println("boardUI = "+boardUI.getSize());
                 System.out.println("borderPanel = "+borderPanel.getSize());
                 //frame.newGame(Agent.USER_AGENT, Agent.ENGINE_AGENT);
-                new Run_Thread();
+                new Run_Thread(); // creation du thread gerant l'echequier
             }
         }); 
         //new Run_Thread();

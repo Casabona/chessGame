@@ -47,7 +47,11 @@ import java.util.prefs.Preferences;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
-
+/**
+ * contiens l'ensemble des variables global du jeu
+ * @author casabona.jonathan
+ *
+ */
 public class Actions {
 
     public static String Mode = "hard";

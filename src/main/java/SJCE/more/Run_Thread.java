@@ -5,7 +5,11 @@ import static SJCE.XChessFrame.boardUI;
 import static SJCE.XChessFrame.borderPanel;
 import SJCE.xgui.Agent.Agent;
 import javax.swing.SwingUtilities;
-
+/**
+ * gere l'echequier dans un thread different
+ * @author casabona.jonathan
+ *
+ */
 public class Run_Thread extends Thread {
 
     public Run_Thread () {  start();  }
