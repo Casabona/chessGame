@@ -11,6 +11,11 @@ import javax.sound.sampled.Line;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.Mixer.Info;
+/**
+ * gere le son dans le jeu
+ * @author casabona.jonathan
+ *
+ */
 public class ControlSound {
     
  public static void setMasterOutputVolume(float value) {
@@ -140,6 +145,20 @@ public class ControlSound {
    return null;
   }
  }
+ 
+ public static void addHierarchyInfo(Line line,StringBuilder sb) {
+	    boolean opened = open(line);
+	    for (Control control : line.getControls()) {
+	     sb.append("    Control: ").append(toString(control)).append("\n");
+	     if (control instanceof CompoundControl) {
+	      CompoundControl compoundControl = (CompoundControl) control;
+	      for (Control subControl : compoundControl.getMemberControls()) {
+	       sb.append("      Sub-Control: ").append(toString(subControl)).append("\n");
+	      }
+	     }
+	    }
+	    if (opened) line.close();
+ }
 
  public static String getHierarchyInfo() {
   StringBuilder sb = new StringBuilder();
@@ -148,32 +167,12 @@ public class ControlSound {
 
    for (Line line : getAvailableOutputLines(mixer)) {
     sb.append("  OUT: ").append(toString(line)).append("\n");
-    boolean opened = open(line);
-    for (Control control : line.getControls()) {
-     sb.append("    Control: ").append(toString(control)).append("\n");
-     if (control instanceof CompoundControl) {
-      CompoundControl compoundControl = (CompoundControl) control;
-      for (Control subControl : compoundControl.getMemberControls()) {
-       sb.append("      Sub-Control: ").append(toString(subControl)).append("\n");
-      }
-     }
-    }
-    if (opened) line.close();
+    addHierarchyInfo(line, sb);
    }
 
    for (Line line : getAvailableOutputLines(mixer)) {
     sb.append("  IN: ").append(toString(line)).append("\n");
-    boolean opened = open(line);
-    for (Control control : line.getControls()) {
-     sb.append("    Control: ").append(toString(control)).append("\n");
-     if (control instanceof CompoundControl) {
-      CompoundControl compoundControl = (CompoundControl) control;
-      for (Control subControl : compoundControl.getMemberControls()) {
-       sb.append("      Sub-Control: ").append(toString(subControl)).append("\n");
-      }
-     }
-    }
-    if (opened) line.close();
+    addHierarchyInfo(line, sb);
    }
 
    sb.append("\n");

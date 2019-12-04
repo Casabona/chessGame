@@ -11,6 +11,12 @@ import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
+
+/**
+ * Fenetre  avec slide bar pour modifier le son
+ * @author casabona.jonathan
+ *
+ */
 public class MixerFrame extends javax.swing.JDialog {
    public static final int RET_CANCEL = 0;
    public static final int RET_OK = 1;
@@ -127,10 +133,15 @@ public class MixerFrame extends javax.swing.JDialog {
         Actions.currentMixer=MixerFrameSlider.getValue();        
         MixerIconSet();
     }//GEN-LAST:event_MixerFrameSliderStateChanged
+    
+    /**
+     * button Mute on mixer window
+     * @param evt : click on button
+     */
     private void bMuteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMuteActionPerformed
         if (Actions.currentMute.equals("false"))
          {
-            Actions.currentMute="true"; 
+            Actions.currentMute="true"; // on toogle le buton
             ControlSound.setMasterOutputMute(true); 
             bMute.setSelected(true);
             System.out.println("Volume set to ZERO = 0");
@@ -139,7 +150,7 @@ public class MixerFrame extends javax.swing.JDialog {
          }
         else
          {
-            Actions.currentMute="false"; 
+            Actions.currentMute="false"; // on toogle le buton
             ControlSound.setMasterOutputMute(false); 
             bMute.setSelected(false);
             ControlSound.setMasterOutputVolume((float)MixerFrameSlider.getValue()/100); 

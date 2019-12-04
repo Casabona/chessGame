@@ -286,6 +286,35 @@ public class EngineAgentExt extends EngineAgent {
    if(matcher.matches()) fireIllegalPrinted(new EngineEvent(this));
  }
  
+ /**
+  * Write data about move
+  * @param usercmd : mouvement
+  */
+ private void userMoveWriter(String usercmd) {
+	 
+	   if (ceTip.equals("xboard"))  
+       {
+         switch (goEngine) {
+             case "Animats":      writeLine(usercmd); break;
+             case "FrankWalter":  writeLine("usermove "+usercmd+"q"); break;
+             case "KennyClassIQ": writeLine("usermove "+usercmd+"q"); break;
+             case "Talvmenni":    writeLine("usermove "+usercmd+"q"); break;
+             case "FairyPrincess":    writeLine("usermove "+usercmd+"q"); break;
+             default:             writeLine(usercmd+"q"); break;
+         }                
+       }
+      else
+       {
+        aktion.uciAllMovesString = aktion.uciAllMovesString + "q";               
+        writeLine("position startpos moves" + aktion.uciAllMovesString);
+        if (aktion.UseClock.equals("true") && !goEngine.equals("Magnum"))
+            writeLine("go depth " + aktion.Depth + " wtime " + frame.chessClock.getTime(ChessClock.WHITE_TURN) + " btime " + frame.chessClock.getTime(ChessClock.BLACK_TURN) + " winc 0 binc 0");
+        else
+            writeLine("go depth " + aktion.Depth);
+       }
+	 
+ }
+ 
  @Override
  public void userMove(Move move) 
    { 
@@ -302,26 +331,7 @@ public class EngineAgentExt extends EngineAgent {
        }        
        if ((move.getPiece()==0)&(move.getSource()>=48)&(move.getSource()<=55)) 
         {
-          if (ceTip.equals("xboard"))  
-           {
-             switch (goEngine) {
-                 case "Animats":      writeLine(usercmd); break;
-                 case "FrankWalter":  writeLine("usermove "+usercmd+"q"); break;
-                 case "KennyClassIQ": writeLine("usermove "+usercmd+"q"); break;
-                 case "Talvmenni":    writeLine("usermove "+usercmd+"q"); break;
-                 case "FairyPrincess":    writeLine("usermove "+usercmd+"q"); break;
-                 default:             writeLine(usercmd+"q"); break;
-             }                
-           }
-          else
-           {
-            aktion.uciAllMovesString = aktion.uciAllMovesString + "q";               
-            writeLine("position startpos moves" + aktion.uciAllMovesString);
-            if (aktion.UseClock.equals("true") && !goEngine.equals("Magnum"))
-                writeLine("go depth " + aktion.Depth + " wtime " + frame.chessClock.getTime(ChessClock.WHITE_TURN) + " btime " + frame.chessClock.getTime(ChessClock.BLACK_TURN) + " winc 0 binc 0");
-            else
-                writeLine("go depth " + aktion.Depth);
-           }
+    	   userMoveWriter(usercmd);
           System.out.println("White Pawn to Queen !");            
           move.setPiece(PiecesUI.WHITE_QUEEN);
           boardUI.setPiece(PiecesUI.WHITE_QUEEN, move.getDestination());
@@ -330,26 +340,8 @@ public class EngineAgentExt extends EngineAgent {
         }
        if ((move.getPiece()==6)&(move.getSource()>=8)&(move.getSource()<=15)) 
         {
-          if (ceTip.equals("xboard"))  
-           { 
-             switch (goEngine) {
-                 case "Animats":      writeLine(usercmd); break;
-                 case "FrankWalter":  writeLine("usermove "+usercmd+"q"); break;
-                 case "KennyClassIQ": writeLine("usermove "+usercmd+"q"); break;
-                 case "Talvmenni":    writeLine("usermove "+usercmd+"q"); break;
-                 case "FairyPrincess":    writeLine("usermove "+usercmd+"q"); break;
-                 default:             writeLine(usercmd+"q"); break;
-             } 
-           }
-          else
-           {
-            aktion.uciAllMovesString = aktion.uciAllMovesString + "q";  
-            writeLine("position startpos moves" + aktion.uciAllMovesString);
-            if (aktion.UseClock.equals("true") && !goEngine.equals("Magnum"))
-                writeLine("go depth " + aktion.Depth + " wtime " + frame.chessClock.getTime(ChessClock.WHITE_TURN) + " btime " + frame.chessClock.getTime(ChessClock.BLACK_TURN) + " winc 0 binc 0");
-            else
-                writeLine("go depth " + aktion.Depth);            
-           } 
+           
+    	   userMoveWriter(usercmd);
           System.out.println("Black Pawn to Queen !");            
           move.setPiece(PiecesUI.BLACK_QUEEN);
           boardUI.setPiece(PiecesUI.BLACK_QUEEN, move.getDestination());

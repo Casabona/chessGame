@@ -42,7 +42,9 @@ public abstract class EngineAgent extends Agent {
         " bagaturchess.engines.bagatur.cfg.board.BoardConfigImpl",
         " bagaturchess.engines.bagatur.cfg.eval.BagaturEvalConfigImpl_v2"       
     };
-    public static String [] argsBagaturNcpu = {
+    public static String [] argsBagaturNcpu = argsBagatur1cpu;
+    		
+    		/* {
         " bagaturchess.engines.base.cfg.UCIConfig_BaseImpl",
         " bagaturchess.search.impl.uci_adaptor.UCISearchAdaptorImpl_PonderingOpponentMove",
         " bagaturchess.engines.base.cfg.UCISearchAdaptorConfig_BaseImpl",
@@ -52,7 +54,7 @@ public abstract class EngineAgent extends Agent {
         " bagaturchess.engines.bagatur.cfg.search.SearchConfigImpl_MTD_SMP",
         " bagaturchess.engines.bagatur.cfg.board.BoardConfigImpl",
         " bagaturchess.engines.bagatur.cfg.eval.BagaturEvalConfigImpl_v2"
-    };  
+    };  */
     public String ceTip;
     public String goEngine;
     public String colorCE;
