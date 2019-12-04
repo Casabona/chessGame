@@ -425,6 +425,8 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
        mUseClock = new javax.swing.JCheckBoxMenuItem();
        bcomboTime = new javax.swing.JComboBox();
        bUseClock = new javax.swing.JToggleButton();
+       mTimeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/time-16.png"))); // NOI18N
+       mTimeMenu.setText("Time");
 	   
    }
     /**
@@ -434,9 +436,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
     	
     	initVariableMtime();
           
-          
-          mTimeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/time-16.png"))); // NOI18N
-          mTimeMenu.setText("Time");
+        
 
           mUseClock.setText("Use Clock");
           mUseClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/Alarm-clock-16.png"))); // NOI18N
@@ -501,19 +501,20 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
           mTimeMenu.add(mTime);
           
 
-          bcomboTime.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "5", "10", "15", "20", "25", "30" }));
+        
+          initClockButton();
+    }
+    
+    private void initClockButton() {
+    	
+    	  bcomboTime.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "5", "10", "15", "20", "25", "30" }));
           bcomboTime.setToolTipText("Set Time (min)");
           bcomboTime.addActionListener(new java.awt.event.ActionListener() {
               public void actionPerformed(java.awt.event.ActionEvent evt) {
                   bcomboTimeActionPerformed(evt);
               }
           });
-          initClockButton();
-    }
-    
-    private void initClockButton() {
-    	
-        
+          
         bUseClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/clock-plus-24.png"))); // NOI18N
         bUseClock.setToolTipText("Use Clock");
         bUseClock.setFocusable(false);
@@ -783,94 +784,80 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
          jToolBar3 = new javax.swing.JToolBar();
          
     }
-    
+    private void initButtonJtoolBar1() {
+    	
+         bUndoLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/undo-red-24.png"))); // NOI18N
+         bUndoLast.setToolTipText("Undo Last One Move");
+         bUndoLast.setFocusable(false);
+         bUndoLast.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bUndoLast.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bUndoLast.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bUndoLastActionPerformed(evt);
+             }
+         });
+      
+         
+         bSelectWhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/knight-white-24.png"))); // NOI18N
+         bSelectWhite.setToolTipText("Select White Player Chess Engine");
+         bSelectWhite.setFocusable(false);
+         bSelectWhite.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bSelectWhite.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bSelectWhite.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bSelectWhiteActionPerformed(evt);
+             }
+         });
+         
+         bChangeSkin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/skin_color_chooser-24.png"))); // NOI18N
+         bChangeSkin.setToolTipText("Change Skin");
+         bChangeSkin.setFocusable(false);
+         bChangeSkin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bChangeSkin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bChangeSkin.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bChangeSkinActionPerformed(evt);
+             }
+         });
+         
+         bBoardTheme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/color-swatch-24.png"))); // NOI18N
+         bBoardTheme.setToolTipText("Select Board Theme");
+         bBoardTheme.setFocusable(false);
+         bBoardTheme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bBoardTheme.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bBoardTheme.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bBoardThemeActionPerformed(evt);
+             }
+         });
+         
+         bLinks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/x-b-24.png"))); // NOI18N
+         bLinks.setToolTipText("Xboard Engine Links & Ratings");
+         bLinks.setFocusable(false);
+         bLinks.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bLinks.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bLinks.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bLinksActionPerformed(evt);
+             }
+         });
+         
+     
+         
+         bAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/info-book-green.png"))); // NOI18N
+         bAbout.setToolTipText("About");
+         bAbout.setFocusable(false);
+         bAbout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bAbout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bAbout.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bAboutActionPerformed(evt);
+             }
+         });
+    }
     private void initJtoolBar1() {
         jToolBar1.setFloatable(false);
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/log-24-blue.png"))); // NOI18N
-        jButton3.setToolTipText("Show Game Log in separate window");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton3);
-
-        bUndoLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/undo-red-24.png"))); // NOI18N
-        bUndoLast.setToolTipText("Undo Last One Move");
-        bUndoLast.setFocusable(false);
-        bUndoLast.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bUndoLast.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bUndoLast.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bUndoLastActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(bUndoLast);
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/knight-black-24.png"))); // NOI18N
-        jButton1.setToolTipText("Select Black Player Chess Engine");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton1);
-
-        bSelectWhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/knight-white-24.png"))); // NOI18N
-        bSelectWhite.setToolTipText("Select White Player Chess Engine");
-        bSelectWhite.setFocusable(false);
-        bSelectWhite.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bSelectWhite.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bSelectWhite.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSelectWhiteActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(bSelectWhite);
-
-        bChangeSkin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/skin_color_chooser-24.png"))); // NOI18N
-        bChangeSkin.setToolTipText("Change Skin");
-        bChangeSkin.setFocusable(false);
-        bChangeSkin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bChangeSkin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bChangeSkin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bChangeSkinActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(bChangeSkin);
-
-        bBoardTheme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/color-swatch-24.png"))); // NOI18N
-        bBoardTheme.setToolTipText("Select Board Theme");
-        bBoardTheme.setFocusable(false);
-        bBoardTheme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bBoardTheme.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bBoardTheme.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bBoardThemeActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(bBoardTheme);
-
-        bLinks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/x-b-24.png"))); // NOI18N
-        bLinks.setToolTipText("Xboard Engine Links & Ratings");
-        bLinks.setFocusable(false);
-        bLinks.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bLinks.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bLinks.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bLinksActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(bLinks);
-
+        
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/U-blue-24.png"))); // NOI18N
         jButton2.setToolTipText("Uci Engines Links & Ratings");
         jButton2.setFocusable(false);
@@ -881,18 +868,45 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
                 jButton2ActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton2);
-
-        bAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/info-book-green.png"))); // NOI18N
-        bAbout.setToolTipText("About");
-        bAbout.setFocusable(false);
-        bAbout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bAbout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bAbout.addActionListener(new java.awt.event.ActionListener() {
+        
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/knight-black-24.png"))); // NOI18N
+        jButton1.setToolTipText("Select Black Player Chess Engine");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAboutActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
+        
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/log-24-blue.png"))); // NOI18N
+        jButton3.setToolTipText("Show Game Log in separate window");
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        initButtonJtoolBar1();
+        jToolBar1.add(jButton3);
+
+        jToolBar1.add(bUndoLast);
+
+        jToolBar1.add(jButton1);
+
+        jToolBar1.add(bSelectWhite);
+      
+        jToolBar1.add(bChangeSkin);
+       
+        jToolBar1.add(bBoardTheme);
+
+        jToolBar1.add(bLinks);
+
+        jToolBar1.add(jButton2);
+      
         jToolBar1.add(bAbout);
     }
     
