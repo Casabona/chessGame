@@ -394,6 +394,8 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
           mTime30 = new javax.swing.JRadioButtonMenuItem();
           mTimeMenu = new javax.swing.JMenu();
           mUseClock = new javax.swing.JCheckBoxMenuItem();
+          bcomboTime = new javax.swing.JComboBox();
+          bUseClock = new javax.swing.JToggleButton();
           
           
           mTimeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/time-16.png"))); // NOI18N
@@ -461,7 +463,25 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
 
           mTimeMenu.add(mTime);
           
+
+          bcomboTime.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "5", "10", "15", "20", "25", "30" }));
+          bcomboTime.setToolTipText("Set Time (min)");
+          bcomboTime.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  bcomboTimeActionPerformed(evt);
+              }
+          });
           
+          bUseClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/clock-plus-24.png"))); // NOI18N
+          bUseClock.setToolTipText("Use Clock");
+          bUseClock.setFocusable(false);
+          bUseClock.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+          bUseClock.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+          bUseClock.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  bUseClockActionPerformed(evt);
+              }
+          });
     }
     /**
      * fenetre de la profondeur
@@ -547,38 +567,237 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
            
            
     }
+    
+    private void initWire() {
+    	   verticalSplit = new javax.swing.JSplitPane();
+           scrollOutputArea = new javax.swing.JScrollPane();
+           outputArea = new javax.swing.JTextArea();
+           horizontalSplit = new javax.swing.JSplitPane();
+           sidePanel = new javax.swing.JPanel();
+           scrollMoveList = new javax.swing.JScrollPane();
+           borderPanel = new javax.swing.JPanel();
+           
+
+           verticalSplit.setDividerLocation(415);
+           verticalSplit.setDividerSize(0);
+           verticalSplit.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+           verticalSplit.setEnabled(false);
+           verticalSplit.setMaximumSize(new java.awt.Dimension(550, 550));
+           verticalSplit.setMinimumSize(new java.awt.Dimension(550, 550));
+           verticalSplit.setOpaque(false);
+           verticalSplit.setPreferredSize(new java.awt.Dimension(550, 550));
+           
+           verticalSplit.setBottomComponent(scrollOutputArea);
+           scrollOutputArea.getAccessibleContext().setAccessibleParent(verticalSplit);
+           scrollOutputArea.setBorder(javax.swing.BorderFactory.createTitledBorder("Engine Output"));
+
+           outputArea.setEditable(false);
+           outputArea.setColumns(20);
+           outputArea.setRows(5);
+           outputArea.setMaximumSize(new java.awt.Dimension(102, 62));
+           outputArea.setMinimumSize(new java.awt.Dimension(102, 62));
+           scrollOutputArea.setViewportView(outputArea);
+
+//           verticalSplit.setBottomComponent(scrollOutputArea);
+//           scrollOutputArea.getAccessibleContext().setAccessibleParent(verticalSplit);
+
+           horizontalSplit.setDividerLocation(415);
+           horizontalSplit.setDividerSize(0);
+           horizontalSplit.setEnabled(false);
+           horizontalSplit.setOpaque(false);
+
+           sidePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Moves"));
+           sidePanel.setMaximumSize(new java.awt.Dimension(120, 450));
+           sidePanel.setMinimumSize(new java.awt.Dimension(120, 450));
+           sidePanel.setOpaque(false);
+           sidePanel.setPreferredSize(new java.awt.Dimension(120, 450));
+
+           javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
+           sidePanel.setLayout(sidePanelLayout);
+           sidePanelLayout.setHorizontalGroup(
+               sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(scrollMoveList, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+           );
+           sidePanelLayout.setVerticalGroup(
+               sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(scrollMoveList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
+           );
+
+           horizontalSplit.setRightComponent(sidePanel);
+           sidePanel.getAccessibleContext().setAccessibleParent(horizontalSplit);
+
+           borderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Chess Board"));
+           borderPanel.setDoubleBuffered(false);
+           borderPanel.setMaximumSize(new java.awt.Dimension(410, 410));
+           borderPanel.setMinimumSize(new java.awt.Dimension(410, 410));
+           borderPanel.setPreferredSize(new java.awt.Dimension(410, 410));
+
+           javax.swing.GroupLayout borderPanelLayout = new javax.swing.GroupLayout(borderPanel);
+           borderPanel.setLayout(borderPanelLayout);
+           borderPanelLayout.setHorizontalGroup(
+               borderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGap(0, 404, Short.MAX_VALUE)
+           );
+           borderPanelLayout.setVerticalGroup(
+               borderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGap(0, 428, Short.MAX_VALUE)
+           );
+
+           horizontalSplit.setLeftComponent(borderPanel);
+
+           verticalSplit.setTopComponent(horizontalSplit);
+           horizontalSplit.getAccessibleContext().setAccessibleParent(verticalSplit);
+
+           getContentPane().add(verticalSplit, java.awt.BorderLayout.CENTER);
+           
+
+    	
+    }
+    
+    private void initEngine() {
+    	  mSelectCEwhite = new javax.swing.JMenuItem();
+          mSelectCEblack = new javax.swing.JMenuItem();
+          mChessEngines = new javax.swing.JMenu();
+          mEngineConfig = new javax.swing.JMenu();
+          mEngineMode = new javax.swing.JMenu();
+          mPlayers = new javax.swing.JMenu();
+          mModeEasy = new javax.swing.JRadioButtonMenuItem();
+          mModeHard = new javax.swing.JRadioButtonMenuItem();
+          
+          mPlayers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/play_green-1.png"))); // NOI18N
+          mPlayers.setText("Players");
+
+          mSelectCEwhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/white_knight-16.png"))); // NOI18N
+          mSelectCEwhite.setText("Select White Player Chess Engine");
+          mSelectCEwhite.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  mSelectCEwhiteActionPerformed(evt);
+              }
+          });
+          mPlayers.add(mSelectCEwhite);
+
+          mSelectCEblack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/black-knight-16.png"))); // NOI18N
+          mSelectCEblack.setText("Select Black Player Chess Engine");
+          mSelectCEblack.setToolTipText("");
+          mSelectCEblack.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  mSelectCEblackActionPerformed(evt);
+              }
+          });
+          mPlayers.add(mSelectCEblack);
+
+          jMenuBar1.add(mPlayers);
+
+          mChessEngines.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/Knight-Yellow-16.png"))); // NOI18N
+          mChessEngines.setText("Engines");
+
+          mEngineConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/options-16.png"))); // NOI18N
+          mEngineConfig.setText("Engine Config");
+          mEngineConfig.setToolTipText("for Frittle/KingsOut/ArabianKnight");
+
+          mEngineMode.setText("Engine Mode");
+          mEngineMode.setToolTipText("");
+
+          mModeEasy.setText("Easy ( pondering OFF )");
+          mModeEasy.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  mModeEasyActionPerformed(evt);
+              }
+          });
+          mEngineMode.add(mModeEasy);
+
+          mModeHard.setText("Hard ( pondering ON )");
+          mModeHard.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  mModeHardActionPerformed(evt);
+              }
+          });
+          mEngineMode.add(mModeHard);
+
+          mEngineConfig.add(mEngineMode);
+    	
+    }
+    
+    private void initBoard() {
+    	 jToolBar2 = new javax.swing.JToolBar();
+         jToolBar1 = new javax.swing.JToolBar();
+         jButton3 = new javax.swing.JButton();
+         bUndoLast = new javax.swing.JButton();
+         jButton1 = new javax.swing.JButton();
+         bSelectWhite = new javax.swing.JButton();
+         bChangeSkin = new javax.swing.JButton();
+         bBoardTheme = new javax.swing.JButton();
+         bLinks = new javax.swing.JButton();
+         jButton2 = new javax.swing.JButton();
+         bAbout = new javax.swing.JButton();
+         jToolBar3 = new javax.swing.JToolBar();
+         
+         
+         
+         
+    }
+    
+    private void initButtonMix() {
+    	 bSoundMixer = new javax.swing.JButton();
+         bUseSound = new javax.swing.JToggleButton();
+         
+         bSoundMixer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/audio_volume_high.png"))); // NOI18N
+         bSoundMixer.setToolTipText("Sound Volume");
+         bSoundMixer.setFocusable(false);
+         bSoundMixer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bSoundMixer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bSoundMixer.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bSoundMixerActionPerformed(evt);
+             }
+         });
+         
+         bUseSound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/sound-add-icon.png"))); // NOI18N
+         bUseSound.setToolTipText("Use Sound");
+         bUseSound.setFocusable(false);
+         bUseSound.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bUseSound.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bUseSound.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bUseSoundActionPerformed(evt);
+             }
+         });
+         
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        verticalSplit = new javax.swing.JSplitPane();
-        scrollOutputArea = new javax.swing.JScrollPane();
-        outputArea = new javax.swing.JTextArea();
-        horizontalSplit = new javax.swing.JSplitPane();
-        sidePanel = new javax.swing.JPanel();
-        scrollMoveList = new javax.swing.JScrollPane();
-        borderPanel = new javax.swing.JPanel();
-        jToolBar2 = new javax.swing.JToolBar();
-        jToolBar1 = new javax.swing.JToolBar();
-        jButton3 = new javax.swing.JButton();
-        bUndoLast = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        bSelectWhite = new javax.swing.JButton();
-        bChangeSkin = new javax.swing.JButton();
-        bBoardTheme = new javax.swing.JButton();
-        bLinks = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        bAbout = new javax.swing.JButton();
-        jToolBar3 = new javax.swing.JToolBar();
+//        verticalSplit = new javax.swing.JSplitPane();
+//        scrollOutputArea = new javax.swing.JScrollPane();
+//        outputArea = new javax.swing.JTextArea();
+//        horizontalSplit = new javax.swing.JSplitPane();
+//        sidePanel = new javax.swing.JPanel();
+//        scrollMoveList = new javax.swing.JScrollPane();
+//        borderPanel = new javax.swing.JPanel();
+//        jToolBar2 = new javax.swing.JToolBar();
+//        jToolBar1 = new javax.swing.JToolBar();
+//        jButton3 = new javax.swing.JButton();
+//        bUndoLast = new javax.swing.JButton();
+//        jButton1 = new javax.swing.JButton();
+//        bSelectWhite = new javax.swing.JButton();
+//        bChangeSkin = new javax.swing.JButton();
+//        bBoardTheme = new javax.swing.JButton();
+//        bLinks = new javax.swing.JButton();
+//        jButton2 = new javax.swing.JButton();
+//        bAbout = new javax.swing.JButton();
+//        jToolBar3 = new javax.swing.JToolBar();
+    	initBoard();
         bNew = new javax.swing.JButton();
         bKillAll = new javax.swing.JButton();
         bSaveCfg = new javax.swing.JButton();
-        bSoundMixer = new javax.swing.JButton();
-        bUseSound = new javax.swing.JToggleButton();
+//        bSoundMixer = new javax.swing.JButton();
+//        bUseSound = new javax.swing.JToggleButton();
+        initButtonMix();
         bcomboMode = new javax.swing.JComboBox<>();
         bcomboDepth = new javax.swing.JComboBox<>();
-        bcomboTime = new javax.swing.JComboBox();
-        bUseClock = new javax.swing.JToggleButton();
+//        bcomboTime = new javax.swing.JComboBox();
+//        bUseClock = new javax.swing.JToggleButton();
         bSendWhite = new javax.swing.JButton();
         bSendBlack = new javax.swing.JButton();
         comboWPlayerCE = new javax.swing.JComboBox<>();
@@ -608,14 +827,15 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         mBoardTheme = new javax.swing.JMenuItem();
         mChangeSkin = new javax.swing.JMenuItem();
         mSaveCfg = new javax.swing.JMenuItem();
-        mPlayers = new javax.swing.JMenu();
-        mSelectCEwhite = new javax.swing.JMenuItem();
-        mSelectCEblack = new javax.swing.JMenuItem();
-        mChessEngines = new javax.swing.JMenu();
-        mEngineConfig = new javax.swing.JMenu();
-        mEngineMode = new javax.swing.JMenu();
-        mModeEasy = new javax.swing.JRadioButtonMenuItem();
-        mModeHard = new javax.swing.JRadioButtonMenuItem();
+//        mPlayers = new javax.swing.JMenu();
+//        mSelectCEwhite = new javax.swing.JMenuItem();
+//        mSelectCEblack = new javax.swing.JMenuItem();
+//        mChessEngines = new javax.swing.JMenu();
+//        mEngineConfig = new javax.swing.JMenu();
+//        mEngineMode = new javax.swing.JMenu();
+        initEngine(); 
+//        mModeEasy = new javax.swing.JRadioButtonMenuItem();
+//        mModeHard = new javax.swing.JRadioButtonMenuItem();
 //        mEngineDepth = new javax.swing.JMenu();
 //        mDepth2 = new javax.swing.JRadioButtonMenuItem();
 //        mDepth3 = new javax.swing.JRadioButtonMenuItem();
@@ -626,7 +846,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
 //        mDepth8 = new javax.swing.JRadioButtonMenuItem();
 //        mDepth9 = new javax.swing.JRadioButtonMenuItem();
         initDepth();
-        
+        initWire();
         
         mSendWhite = new javax.swing.JMenuItem();
         mSendBlack = new javax.swing.JMenuItem();
@@ -641,76 +861,76 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         setMinimumSize(new java.awt.Dimension(610, 650));
         setUndecorated(true);
         setResizable(false);
+//
+//        verticalSplit.setDividerLocation(415);
+//        verticalSplit.setDividerSize(0);
+//        verticalSplit.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+//        verticalSplit.setEnabled(false);
+//        verticalSplit.setMaximumSize(new java.awt.Dimension(550, 550));
+//        verticalSplit.setMinimumSize(new java.awt.Dimension(550, 550));
+//        verticalSplit.setOpaque(false);
+//        verticalSplit.setPreferredSize(new java.awt.Dimension(550, 550));
 
-        verticalSplit.setDividerLocation(415);
-        verticalSplit.setDividerSize(0);
-        verticalSplit.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-        verticalSplit.setEnabled(false);
-        verticalSplit.setMaximumSize(new java.awt.Dimension(550, 550));
-        verticalSplit.setMinimumSize(new java.awt.Dimension(550, 550));
-        verticalSplit.setOpaque(false);
-        verticalSplit.setPreferredSize(new java.awt.Dimension(550, 550));
-
-        scrollOutputArea.setBorder(javax.swing.BorderFactory.createTitledBorder("Engine Output"));
-
-        outputArea.setEditable(false);
-        outputArea.setColumns(20);
-        outputArea.setRows(5);
-        outputArea.setMaximumSize(new java.awt.Dimension(102, 62));
-        outputArea.setMinimumSize(new java.awt.Dimension(102, 62));
-        scrollOutputArea.setViewportView(outputArea);
-
-        verticalSplit.setBottomComponent(scrollOutputArea);
-        scrollOutputArea.getAccessibleContext().setAccessibleParent(verticalSplit);
-
-        horizontalSplit.setDividerLocation(415);
-        horizontalSplit.setDividerSize(0);
-        horizontalSplit.setEnabled(false);
-        horizontalSplit.setOpaque(false);
-
-        sidePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Moves"));
-        sidePanel.setMaximumSize(new java.awt.Dimension(120, 450));
-        sidePanel.setMinimumSize(new java.awt.Dimension(120, 450));
-        sidePanel.setOpaque(false);
-        sidePanel.setPreferredSize(new java.awt.Dimension(120, 450));
-
-        javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
-        sidePanel.setLayout(sidePanelLayout);
-        sidePanelLayout.setHorizontalGroup(
-            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollMoveList, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
-        );
-        sidePanelLayout.setVerticalGroup(
-            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollMoveList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
-        );
-
-        horizontalSplit.setRightComponent(sidePanel);
-        sidePanel.getAccessibleContext().setAccessibleParent(horizontalSplit);
-
-        borderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Chess Board"));
-        borderPanel.setDoubleBuffered(false);
-        borderPanel.setMaximumSize(new java.awt.Dimension(410, 410));
-        borderPanel.setMinimumSize(new java.awt.Dimension(410, 410));
-        borderPanel.setPreferredSize(new java.awt.Dimension(410, 410));
-
-        javax.swing.GroupLayout borderPanelLayout = new javax.swing.GroupLayout(borderPanel);
-        borderPanel.setLayout(borderPanelLayout);
-        borderPanelLayout.setHorizontalGroup(
-            borderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
-        );
-        borderPanelLayout.setVerticalGroup(
-            borderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 428, Short.MAX_VALUE)
-        );
-
-        horizontalSplit.setLeftComponent(borderPanel);
-
-        verticalSplit.setTopComponent(horizontalSplit);
-        horizontalSplit.getAccessibleContext().setAccessibleParent(verticalSplit);
-
-        getContentPane().add(verticalSplit, java.awt.BorderLayout.CENTER);
+//        scrollOutputArea.setBorder(javax.swing.BorderFactory.createTitledBorder("Engine Output"));
+//
+//        outputArea.setEditable(false);
+//        outputArea.setColumns(20);
+//        outputArea.setRows(5);
+//        outputArea.setMaximumSize(new java.awt.Dimension(102, 62));
+//        outputArea.setMinimumSize(new java.awt.Dimension(102, 62));
+//        scrollOutputArea.setViewportView(outputArea);
+//
+////        verticalSplit.setBottomComponent(scrollOutputArea);
+////        scrollOutputArea.getAccessibleContext().setAccessibleParent(verticalSplit);
+//
+//        horizontalSplit.setDividerLocation(415);
+//        horizontalSplit.setDividerSize(0);
+//        horizontalSplit.setEnabled(false);
+//        horizontalSplit.setOpaque(false);
+//
+//        sidePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Moves"));
+//        sidePanel.setMaximumSize(new java.awt.Dimension(120, 450));
+//        sidePanel.setMinimumSize(new java.awt.Dimension(120, 450));
+//        sidePanel.setOpaque(false);
+//        sidePanel.setPreferredSize(new java.awt.Dimension(120, 450));
+//
+//        javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
+//        sidePanel.setLayout(sidePanelLayout);
+//        sidePanelLayout.setHorizontalGroup(
+//            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addComponent(scrollMoveList, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+//        );
+//        sidePanelLayout.setVerticalGroup(
+//            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addComponent(scrollMoveList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
+//        );
+//
+//        horizontalSplit.setRightComponent(sidePanel);
+//        sidePanel.getAccessibleContext().setAccessibleParent(horizontalSplit);
+//
+//        borderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Chess Board"));
+//        borderPanel.setDoubleBuffered(false);
+//        borderPanel.setMaximumSize(new java.awt.Dimension(410, 410));
+//        borderPanel.setMinimumSize(new java.awt.Dimension(410, 410));
+//        borderPanel.setPreferredSize(new java.awt.Dimension(410, 410));
+//
+//        javax.swing.GroupLayout borderPanelLayout = new javax.swing.GroupLayout(borderPanel);
+//        borderPanel.setLayout(borderPanelLayout);
+//        borderPanelLayout.setHorizontalGroup(
+//            borderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addGap(0, 404, Short.MAX_VALUE)
+//        );
+//        borderPanelLayout.setVerticalGroup(
+//            borderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addGap(0, 428, Short.MAX_VALUE)
+//        );
+//
+//        horizontalSplit.setLeftComponent(borderPanel);
+//
+//        verticalSplit.setTopComponent(horizontalSplit);
+//        horizontalSplit.getAccessibleContext().setAccessibleParent(verticalSplit);
+//
+//        getContentPane().add(verticalSplit, java.awt.BorderLayout.CENTER);
 
         jToolBar2.setFloatable(false);
         jToolBar2.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -865,28 +1085,28 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         });
         jToolBar3.add(bSaveCfg);
 
-        bSoundMixer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/audio_volume_high.png"))); // NOI18N
-        bSoundMixer.setToolTipText("Sound Volume");
-        bSoundMixer.setFocusable(false);
-        bSoundMixer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bSoundMixer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bSoundMixer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSoundMixerActionPerformed(evt);
-            }
-        });
+//        bSoundMixer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/audio_volume_high.png"))); // NOI18N
+//        bSoundMixer.setToolTipText("Sound Volume");
+//        bSoundMixer.setFocusable(false);
+//        bSoundMixer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+//        bSoundMixer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+//        bSoundMixer.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                bSoundMixerActionPerformed(evt);
+//            }
+//        });
         jToolBar3.add(bSoundMixer);
 
-        bUseSound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/sound-add-icon.png"))); // NOI18N
-        bUseSound.setToolTipText("Use Sound");
-        bUseSound.setFocusable(false);
-        bUseSound.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bUseSound.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bUseSound.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bUseSoundActionPerformed(evt);
-            }
-        });
+//        bUseSound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/sound-add-icon.png"))); // NOI18N
+//        bUseSound.setToolTipText("Use Sound");
+//        bUseSound.setFocusable(false);
+//        bUseSound.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+//        bUseSound.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+//        bUseSound.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                bUseSoundActionPerformed(evt);
+//            }
+//        });
         jToolBar3.add(bUseSound);
 
         bcomboMode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "hard", "easy" }));
@@ -906,26 +1126,26 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
             }
         });
         jToolBar3.add(bcomboDepth);
-
-        bcomboTime.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "5", "10", "15", "20", "25", "30" }));
-        bcomboTime.setToolTipText("Set Time (min)");
-        bcomboTime.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bcomboTimeActionPerformed(evt);
-            }
-        });
+//
+//        bcomboTime.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "5", "10", "15", "20", "25", "30" }));
+//        bcomboTime.setToolTipText("Set Time (min)");
+//        bcomboTime.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                bcomboTimeActionPerformed(evt);
+//            }
+//        });
         jToolBar3.add(bcomboTime);
 
-        bUseClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/clock-plus-24.png"))); // NOI18N
-        bUseClock.setToolTipText("Use Clock");
-        bUseClock.setFocusable(false);
-        bUseClock.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bUseClock.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bUseClock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bUseClockActionPerformed(evt);
-            }
-        });
+//        bUseClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/clock-plus-24.png"))); // NOI18N
+//        bUseClock.setToolTipText("Use Clock");
+//        bUseClock.setFocusable(false);
+//        bUseClock.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+//        bUseClock.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+//        bUseClock.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                bUseClockActionPerformed(evt);
+//            }
+//        });
         jToolBar3.add(bUseClock);
 
         bSendWhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/send-white-24-green.png"))); // NOI18N
@@ -1131,57 +1351,60 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
 
         jMenuBar1.add(mOptions);
 
-        mPlayers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/play_green-1.png"))); // NOI18N
-        mPlayers.setText("Players");
-
-        mSelectCEwhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/white_knight-16.png"))); // NOI18N
-        mSelectCEwhite.setText("Select White Player Chess Engine");
-        mSelectCEwhite.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mSelectCEwhiteActionPerformed(evt);
-            }
-        });
-        mPlayers.add(mSelectCEwhite);
-
-        mSelectCEblack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/black-knight-16.png"))); // NOI18N
-        mSelectCEblack.setText("Select Black Player Chess Engine");
-        mSelectCEblack.setToolTipText("");
-        mSelectCEblack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mSelectCEblackActionPerformed(evt);
-            }
-        });
-        mPlayers.add(mSelectCEblack);
-
-        jMenuBar1.add(mPlayers);
-
-        mChessEngines.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/Knight-Yellow-16.png"))); // NOI18N
-        mChessEngines.setText("Engines");
-
-        mEngineConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/options-16.png"))); // NOI18N
-        mEngineConfig.setText("Engine Config");
-        mEngineConfig.setToolTipText("for Frittle/KingsOut/ArabianKnight");
-
-        mEngineMode.setText("Engine Mode");
-        mEngineMode.setToolTipText("");
-
-        mModeEasy.setText("Easy ( pondering OFF )");
-        mModeEasy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mModeEasyActionPerformed(evt);
-            }
-        });
-        mEngineMode.add(mModeEasy);
-
-        mModeHard.setText("Hard ( pondering ON )");
-        mModeHard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mModeHardActionPerformed(evt);
-            }
-        });
-        mEngineMode.add(mModeHard);
-
-        mEngineConfig.add(mEngineMode);
+//		mPlayers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/play_green-1.png"))); // NOI18N
+//		mPlayers.setText("Players");
+//
+//		mSelectCEwhite
+//				.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/white_knight-16.png"))); // NOI18N
+//		mSelectCEwhite.setText("Select White Player Chess Engine");
+//		mSelectCEwhite.addActionListener(new java.awt.event.ActionListener() {
+//			public void actionPerformed(java.awt.event.ActionEvent evt) {
+//				mSelectCEwhiteActionPerformed(evt);
+//			}
+//		});
+//		mPlayers.add(mSelectCEwhite);
+//
+//		mSelectCEblack
+//				.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/black-knight-16.png"))); // NOI18N
+//		mSelectCEblack.setText("Select Black Player Chess Engine");
+//		mSelectCEblack.setToolTipText("");
+//		mSelectCEblack.addActionListener(new java.awt.event.ActionListener() {
+//			public void actionPerformed(java.awt.event.ActionEvent evt) {
+//				mSelectCEblackActionPerformed(evt);
+//			}
+//		});
+//		mPlayers.add(mSelectCEblack);
+//
+//		jMenuBar1.add(mPlayers);
+//
+//		mChessEngines
+//				.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/Knight-Yellow-16.png"))); // NOI18N
+//		mChessEngines.setText("Engines");
+//
+//		mEngineConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/options-16.png"))); // NOI18N
+//		mEngineConfig.setText("Engine Config");
+//		mEngineConfig.setToolTipText("for Frittle/KingsOut/ArabianKnight");
+//
+//		mEngineMode.setText("Engine Mode");
+//		mEngineMode.setToolTipText("");
+//
+//		mModeEasy.setText("Easy ( pondering OFF )");
+//		mModeEasy.addActionListener(new java.awt.event.ActionListener() {
+//			public void actionPerformed(java.awt.event.ActionEvent evt) {
+//				mModeEasyActionPerformed(evt);
+//			}
+//		});
+//		mEngineMode.add(mModeEasy);
+//
+//		mModeHard.setText("Hard ( pondering ON )");
+//		mModeHard.addActionListener(new java.awt.event.ActionListener() {
+//			public void actionPerformed(java.awt.event.ActionEvent evt) {
+//				mModeHardActionPerformed(evt);
+//			}
+//		});
+//		mEngineMode.add(mModeHard);
+//
+//		mEngineConfig.add(mEngineMode);
 
 //        mEngineDepth.setText("Engine Search Depth");
 //        mEngineDepth.setToolTipText("");
