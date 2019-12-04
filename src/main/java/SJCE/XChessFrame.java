@@ -784,8 +784,33 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
          jToolBar3 = new javax.swing.JToolBar();
          
     }
-    private void initButtonJtoolBar1() {
+    
+    private void initBoardTheme() {
+    	  bChangeSkin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/skin_color_chooser-24.png"))); // NOI18N
+          bChangeSkin.setToolTipText("Change Skin");
+          bChangeSkin.setFocusable(false);
+          bChangeSkin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+          bChangeSkin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+          bChangeSkin.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  bChangeSkinActionPerformed(evt);
+              }
+          });
+          
+          bBoardTheme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/color-swatch-24.png"))); // NOI18N
+          bBoardTheme.setToolTipText("Select Board Theme");
+          bBoardTheme.setFocusable(false);
+          bBoardTheme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+          bBoardTheme.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+          bBoardTheme.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  bBoardThemeActionPerformed(evt);
+              }
+          });
     	
+    }
+    private void initButtonJtoolBar1() {
+    	initBoardTheme();
          bUndoLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/undo-red-24.png"))); // NOI18N
          bUndoLast.setToolTipText("Undo Last One Move");
          bUndoLast.setFocusable(false);
@@ -809,27 +834,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
              }
          });
          
-         bChangeSkin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/skin_color_chooser-24.png"))); // NOI18N
-         bChangeSkin.setToolTipText("Change Skin");
-         bChangeSkin.setFocusable(false);
-         bChangeSkin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bChangeSkin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         bChangeSkin.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 bChangeSkinActionPerformed(evt);
-             }
-         });
-         
-         bBoardTheme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/color-swatch-24.png"))); // NOI18N
-         bBoardTheme.setToolTipText("Select Board Theme");
-         bBoardTheme.setFocusable(false);
-         bBoardTheme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bBoardTheme.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         bBoardTheme.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 bBoardThemeActionPerformed(evt);
-             }
-         });
+       
          
          bLinks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/x-b-24.png"))); // NOI18N
          bLinks.setToolTipText("Xboard Engine Links & Ratings");

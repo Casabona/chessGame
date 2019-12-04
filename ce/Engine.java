@@ -863,89 +863,60 @@ public class Engine extends java.lang.Object
 		if (wasGo)
 			play();
 	}
+	
+	private void initThink() {
+		if (!computerWhite) // convert blacks' move to white notation
+			bestMove = (short)(7 - (stringMove.charAt(1) - '1'));
+		else
+			bestMove = (short)(stringMove.charAt(1) - '1');
 
-	/**
-	 * Makes the next move using iterative deepening.
-	 * @throws InterruptedException It might be thrown by the Thread.join method.
-	 */
-	private void play()
-	throws InterruptedException
-	{
-		stopThinking();
+		bestMove = (short)((bestMove << 3) + (stringMove.charAt(0) - 'a'));
 
 		if (!computerWhite)
-			p.invertPosition();
-
-		long startTime = System.currentTimeMillis();
-
-		int moveTime; // time per one move in ms
-		if (levelMoves == 0)
-			moveTime = Math.min(1000 * timeLeft / 32, 1000 * levelTime / 50);
+			bestMove = (short)((bestMove << 3) + 7 - (stringMove.charAt(3) - '1'));
 		else
-			moveTime = 1000 * Math.min(levelTime / levelMoves,
-				timeLeft / (levelMoves - numberOfMoves));
-		if (moveTime > 2 * 1000 * operatorTime) // some time for the operator
-			moveTime -= 1000 * operatorTime;
+			bestMove = (short)((bestMove << 3) + (stringMove.charAt(3) - '1'));
 
-		short bestMove = 0;
-		int maxDepth = 1;
-		int e = p.evaluatePosition();
-
-		// first check if there is some hint from the opening book
-		// if so just play it, otherwise calculate normally
-		String stringMove = Book.getBestMove(openingMoves);
-		if (!stringMove.equals("")) // something has been found
-		{
-			if (!computerWhite) // convert blacks' move to white notation
-				bestMove = (short)(7 - (stringMove.charAt(1) - '1'));
-			else
-				bestMove = (short)(stringMove.charAt(1) - '1');
-
-			bestMove = (short)((bestMove << 3) + (stringMove.charAt(0) - 'a'));
-
-			if (!computerWhite)
-				bestMove = (short)((bestMove << 3) + 7 - (stringMove.charAt(3) - '1'));
-			else
-				bestMove = (short)((bestMove << 3) + (stringMove.charAt(3) - '1'));
-
-			bestMove = (short)((bestMove << 3) + (stringMove.charAt(2) - 'a'));
-		}
-		else // start thinking
-		{
-			int alpha, beta, gamma, delta;
+		bestMove = (short)((bestMove << 3) + (stringMove.charAt(2) - 'a'));
+	}
 	
-			if (numberOfThreads == 1) // one thread, standard search
+	private thinkThread1() {
+		if (numberOfThreads == 1) // one thread, standard search
+		{
+			while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0 ||
+				maxDepth == 1)
+			// do not start the next iteration if there is not enough time
 			{
-				while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0 ||
-					maxDepth == 1)
-				// do not start the next iteration if there is not enough time
+				alpha = -Search.INFINITY;
+				beta = Search.INFINITY;
+				s1 = new Search(p, alpha, beta, maxDepth, "1",
+					startTime, xboard, post, computerWhite);
+				s1.start();
+				if (maxDepth > 1) // the first loop must be always finished
 				{
-					alpha = -Search.INFINITY;
-					beta = Search.INFINITY;
-					s1 = new Search(p, alpha, beta, maxDepth, "1",
-						startTime, xboard, post, computerWhite);
-					s1.start();
-					if (maxDepth > 1) // the first loop must be always finished
-					{
-						s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-						// max to be sure that the wait time is always positive
-						s1.stopIt();
-					}
-					s1.join();
-	
-					if (!s1.getLastRunFinished()) // not enough time
-						break;
-	
-					bestMove = s1.getBestMove();
-					e = s1.getBestValue();
-	
-					if (e >= Search.CHECKMATE_VALUE)
-						break;
-	
-					maxDepth++;
+					s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+					// max to be sure that the wait time is always positive
+					s1.stopIt();
 				}
+				s1.join();
+
+				if (!s1.getLastRunFinished()) // not enough time
+					break;
+
+				bestMove = s1.getBestMove();
+				e = s1.getBestValue();
+
+				if (e >= Search.CHECKMATE_VALUE)
+					break;
+
+				maxDepth++;
 			}
-			else if (numberOfThreads == 2) // two threads, normal search
+		}
+	}
+
+	private thinkThread2() {
+		
+		 if (numberOfThreads == 2) // two threads, normal search
 			{
 				while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0 ||
 					maxDepth == 1)
@@ -1024,14 +995,41 @@ public class Engine extends java.lang.Object
 					maxDepth++;
 				}
 			}
-			else if (numberOfThreads == 3) // one thread, aspiration search
+		
+	}
+	
+	private void thinkThread3() {
+		if (numberOfThreads == 3) // one thread, aspiration search
+		{
+			while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0 ||
+				maxDepth == 1)
 			{
-				while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0 ||
-					maxDepth == 1)
+				alpha = e - SEARCH_MARGIN;
+				beta = e + SEARCH_MARGIN;
+				s1 = new Search(p, alpha, beta, maxDepth, "1",
+					startTime, xboard, post, computerWhite);
+				s1.start();
+				if (maxDepth > 1) // the first loop must be always finished
 				{
-					alpha = e - SEARCH_MARGIN;
-					beta = e + SEARCH_MARGIN;
-					s1 = new Search(p, alpha, beta, maxDepth, "1",
+					s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+					// max to be sure that the wait time is always positive
+					s1.stopIt();
+				}
+				s1.join();
+
+				if (!s1.getLastRunFinished()) // not enough time
+					break;
+
+				if (s1.getBestValue() > alpha && s1.getBestValue() < beta)
+				{
+					bestMove = s1.getBestMove();
+					e = s1.getBestValue();
+				}
+				else if (s1.getBestValue() <= alpha) // research needed
+				{
+					alpha = -Search.INFINITY;
+					beta = s1.getBestValue();
+					s1 = new Search(p, alpha, beta, maxDepth, "1\'",
 						startTime, xboard, post, computerWhite);
 					s1.start();
 					if (maxDepth > 1) // the first loop must be always finished
@@ -1041,77 +1039,120 @@ public class Engine extends java.lang.Object
 						s1.stopIt();
 					}
 					s1.join();
-	
+
 					if (!s1.getLastRunFinished()) // not enough time
 						break;
+
+					bestMove = s1.getBestMove();
+					e = s1.getBestValue();
+				}
+				else if (s1.getBestValue() >= beta) // research needed
+				{
+					alpha = s1.getBestValue();
+					beta = Search.INFINITY;
+					s1 = new Search(p, alpha, beta, maxDepth, "1\'",
+						startTime, xboard, post, computerWhite);
+					s1.start();
+					if (maxDepth > 1) // the first loop must be always finished
+					{
+						s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+						// max to be sure that the wait time is always positive
+						s1.stopIt();
+					}
+					s1.join();
+
+					if (!s1.getLastRunFinished()) // not enough time
+						break;
+
+					bestMove = s1.getBestMove();
+					e = s1.getBestValue();
+				}
+
+				if (e >= Search.CHECKMATE_VALUE)
+					break;
+
+				maxDepth++;
+			}
+		}
+	}
 	
+	private void thingThread4() {
+		if (numberOfThreads == 4) // two threads, parallel aspiration search
+
+		{
+			while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0 ||
+				maxDepth == 1)
+			{
+				alpha = e - 2 * SEARCH_MARGIN;
+				beta = e;
+				gamma = e + 2 * SEARCH_MARGIN;
+				s1 = new Search(p, alpha, beta, maxDepth, "1",
+					startTime, xboard, post, computerWhite);
+				s2 = new Search(p, beta, gamma, maxDepth, "2",
+				 startTime, xboard, post, computerWhite);
+				s1.start();
+				s2.start();
+				if (maxDepth > 1) // the first loop must be always finished
+				{
+					s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+					s2.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+					// max to be sure that the wait time is always positive
+					s1.stopIt();
+					s2.stopIt();
+				}
+				s1.join();
+				s2.join();
+
+				if (s1.getLastRunFinished() && !s2.getLastRunFinished())
+				{
 					if (s1.getBestValue() > alpha && s1.getBestValue() < beta)
 					{
 						bestMove = s1.getBestMove();
 						e = s1.getBestValue();
 					}
-					else if (s1.getBestValue() <= alpha) // research needed
-					{
-						alpha = -Search.INFINITY;
-						beta = s1.getBestValue();
-						s1 = new Search(p, alpha, beta, maxDepth, "1\'",
-							startTime, xboard, post, computerWhite);
-						s1.start();
-						if (maxDepth > 1) // the first loop must be always finished
-						{
-							s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-							// max to be sure that the wait time is always positive
-							s1.stopIt();
-						}
-						s1.join();
-	
-						if (!s1.getLastRunFinished()) // not enough time
-							break;
-	
-						bestMove = s1.getBestMove();
-						e = s1.getBestValue();
-					}
-					else if (s1.getBestValue() >= beta) // research needed
-					{
-						alpha = s1.getBestValue();
-						beta = Search.INFINITY;
-						s1 = new Search(p, alpha, beta, maxDepth, "1\'",
-							startTime, xboard, post, computerWhite);
-						s1.start();
-						if (maxDepth > 1) // the first loop must be always finished
-						{
-							s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-							// max to be sure that the wait time is always positive
-							s1.stopIt();
-						}
-						s1.join();
-	
-						if (!s1.getLastRunFinished()) // not enough time
-							break;
-	
-						bestMove = s1.getBestMove();
-						e = s1.getBestValue();
-					}
-	
-					if (e >= Search.CHECKMATE_VALUE)
+					else
 						break;
-	
-					maxDepth++;
 				}
-			}
-			else if (numberOfThreads == 4) // two threads, parallel aspiration search
-
-			{
-				while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0 ||
-					maxDepth == 1)
+				else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
 				{
-					alpha = e - 2 * SEARCH_MARGIN;
-					beta = e;
-					gamma = e + 2 * SEARCH_MARGIN;
-					s1 = new Search(p, alpha, beta, maxDepth, "1",
+					if (s2.getBestValue() > beta && s2.getBestValue() < gamma)
+					{
+						bestMove = s1.getBestMove();
+						e = s1.getBestValue();
+					}
+					else
+						break;
+				}
+				else if (!s1.getLastRunFinished() && !s2.getLastRunFinished())
+				{
+					break;
+				}
+				else if (s1.getBestValue() > alpha && s1.getBestValue() < beta)
+				// s1.getLastRunFinished() && s2.getLastRunFinished()
+				{
+					bestMove = s1.getBestMove();
+					e = s1.getBestValue();
+				}
+				else if (s2.getBestValue() > beta && s2.getBestValue() < gamma)
+				{
+					bestMove = s2.getBestMove();
+					e = s2.getBestValue();
+				}
+				else if (s1.getBestValue() >= beta && s2.getBestValue() <= beta)
+				{
+					// s1.getBestValue() == beta == s2.getBestValue()
+					bestMove = s1.getBestMove();
+					e = s1.getBestValue();
+				}
+				else if (s1.getBestValue() <= alpha) // research needed
+				{
+					alpha = -Search.INFINITY;
+					beta = s1.getBestValue() - 2 * SEARCH_MARGIN;
+					gamma = s1.getBestValue();
+					s1 = new Search(p, alpha, beta, maxDepth, "1\'",
 						startTime, xboard, post, computerWhite);
-					s2 = new Search(p, beta, gamma, maxDepth, "2",
-					 startTime, xboard, post, computerWhite);
+					s2 = new Search(p, beta, gamma, maxDepth, "2\'",
+						startTime, xboard, post, computerWhite);
 					s1.start();
 					s2.start();
 					if (maxDepth > 1) // the first loop must be always finished
@@ -1124,10 +1165,10 @@ public class Engine extends java.lang.Object
 					}
 					s1.join();
 					s2.join();
-	
+
 					if (s1.getLastRunFinished() && !s2.getLastRunFinished())
 					{
-						if (s1.getBestValue() > alpha && s1.getBestValue() < beta)
+						if (s1.getBestValue() < beta)
 						{
 							bestMove = s1.getBestMove();
 							e = s1.getBestValue();
@@ -1137,10 +1178,10 @@ public class Engine extends java.lang.Object
 					}
 					else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
 					{
-						if (s2.getBestValue() > beta && s2.getBestValue() < gamma)
+						if (s2.getBestValue() > beta && s2.getBestValue() <= gamma) // <= !
 						{
-							bestMove = s1.getBestMove();
-							e = s1.getBestValue();
+							bestMove = s2.getBestMove();
+							e = s2.getBestValue();
 						}
 						else
 							break;
@@ -1149,13 +1190,13 @@ public class Engine extends java.lang.Object
 					{
 						break;
 					}
-					else if (s1.getBestValue() > alpha && s1.getBestValue() < beta)
+					else if (s1.getBestValue() < beta)
 					// s1.getLastRunFinished() && s2.getLastRunFinished()
 					{
 						bestMove = s1.getBestMove();
 						e = s1.getBestValue();
 					}
-					else if (s2.getBestValue() > beta && s2.getBestValue() < gamma)
+					else if (s2.getBestValue() > beta)
 					{
 						bestMove = s2.getBestMove();
 						e = s2.getBestValue();
@@ -1166,208 +1207,151 @@ public class Engine extends java.lang.Object
 						bestMove = s1.getBestMove();
 						e = s1.getBestValue();
 					}
-					else if (s1.getBestValue() <= alpha) // research needed
+					else
 					{
-						alpha = -Search.INFINITY;
-						beta = s1.getBestValue() - 2 * SEARCH_MARGIN;
-						gamma = s1.getBestValue();
-						s1 = new Search(p, alpha, beta, maxDepth, "1\'",
-							startTime, xboard, post, computerWhite);
-						s2 = new Search(p, beta, gamma, maxDepth, "2\'",
-							startTime, xboard, post, computerWhite);
-						s1.start();
-						s2.start();
-						if (maxDepth > 1) // the first loop must be always finished
-						{
-							s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-							s2.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-							// max to be sure that the wait time is always positive
-							s1.stopIt();
-							s2.stopIt();
-						}
-						s1.join();
-						s2.join();
-	
-						if (s1.getLastRunFinished() && !s2.getLastRunFinished())
-						{
-							if (s1.getBestValue() < beta)
-							{
-								bestMove = s1.getBestMove();
-								e = s1.getBestValue();
-							}
-							else
-								break;
-						}
-						else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
-						{
-							if (s2.getBestValue() > beta && s2.getBestValue() <= gamma) // <= !
-							{
-								bestMove = s2.getBestMove();
-								e = s2.getBestValue();
-							}
-							else
-								break;
-						}
-						else if (!s1.getLastRunFinished() && !s2.getLastRunFinished())
-						{
-							break;
-						}
-						else if (s1.getBestValue() < beta)
-						// s1.getLastRunFinished() && s2.getLastRunFinished()
-						{
-							bestMove = s1.getBestMove();
-							e = s1.getBestValue();
-						}
-						else if (s2.getBestValue() > beta)
-						{
-							bestMove = s2.getBestMove();
-							e = s2.getBestValue();
-						}
-						else if (s1.getBestValue() >= beta && s2.getBestValue() <= beta)
-						{
-							// s1.getBestValue() == beta == s2.getBestValue()
-							bestMove = s1.getBestMove();
-							e = s1.getBestValue();
-						}
-						else
-						{
-							System.out.println("Should not have happend (threads 4, 1)!");
-							log.println("Output:");
-							log.println("Should not have happend (threads 4, 1)!");
-						}
+						System.out.println("Should not have happend (threads 4, 1)!");
+						log.println("Output:");
+						log.println("Should not have happend (threads 4, 1)!");
 					}
-					else if (s2.getBestValue() >= gamma) // research needed
+				}
+				else if (s2.getBestValue() >= gamma) // research needed
+				{
+					alpha = s2.getBestValue();
+					beta = s2.getBestValue() + 2 * SEARCH_MARGIN;
+					gamma = Search.INFINITY;
+					s1 = new Search(p, alpha, beta, maxDepth, "1\'",
+						startTime, xboard, post, computerWhite);
+					s2 = new Search(p, beta, gamma, maxDepth, "2\'",
+						startTime, xboard, post, computerWhite);
+					s1.start();
+					s2.start();
+					if (maxDepth > 1) // the first loop must be always finished
 					{
-						alpha = s2.getBestValue();
-						beta = s2.getBestValue() + 2 * SEARCH_MARGIN;
-						gamma = Search.INFINITY;
-						s1 = new Search(p, alpha, beta, maxDepth, "1\'",
-							startTime, xboard, post, computerWhite);
-						s2 = new Search(p, beta, gamma, maxDepth, "2\'",
-							startTime, xboard, post, computerWhite);
-						s1.start();
-						s2.start();
-						if (maxDepth > 1) // the first loop must be always finished
+						s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+						s2.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+						// max to be sure that the wait time is always positive
+						s1.stopIt();
+						s2.stopIt();
+					}
+					s1.join();
+					s2.join();
+
+					if (s1.getLastRunFinished() && !s2.getLastRunFinished())
+					{
+						if (s1.getBestValue() >= alpha && s1.getBestValue() < beta) // >= !
 						{
-							s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-							s2.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-							// max to be sure that the wait time is always positive
-							s1.stopIt();
-							s2.stopIt();
-						}
-						s1.join();
-						s2.join();
-	
-						if (s1.getLastRunFinished() && !s2.getLastRunFinished())
-						{
-							if (s1.getBestValue() >= alpha && s1.getBestValue() < beta) // >= !
-							{
-								bestMove = s1.getBestMove();
-								e = s1.getBestValue();
-							}
-							else
-								break;
-						}
-						else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
-						{
-							if (s2.getBestValue() > beta)
-							{
-								bestMove = s2.getBestMove();
-								e = s2.getBestValue();
-							}
-							else
-								break;
-						}
-						else if (!s1.getLastRunFinished() && !s2.getLastRunFinished())
-						{
-							break;
-						}
-						else if (s1.getBestValue() < beta)
-						// s1.getLastRunFinished() && s2.getLastRunFinished()
-						{
-							bestMove = s1.getBestMove();
-							e = s1.getBestValue();
-						}
-						else if (s2.getBestValue() > beta)
-						{
-							bestMove = s2.getBestMove();
-							e = s2.getBestValue();
-						}
-						else if (s1.getBestValue() >= beta && s2.getBestValue() <= beta)
-						{
-							// s1.getBestValue() == beta == s2.getBestValue()
 							bestMove = s1.getBestMove();
 							e = s1.getBestValue();
 						}
 						else
+							break;
+					}
+					else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
+					{
+						if (s2.getBestValue() > beta)
 						{
-							System.out.println("Should not have happend (threads 4, 2)!");
-							log.println("Output:");
-							log.println("Should not have happend (threads 4, 2)!");
+							bestMove = s2.getBestMove();
+							e = s2.getBestValue();
 						}
+						else
+							break;
+					}
+					else if (!s1.getLastRunFinished() && !s2.getLastRunFinished())
+					{
+						break;
+					}
+					else if (s1.getBestValue() < beta)
+					// s1.getLastRunFinished() && s2.getLastRunFinished()
+					{
+						bestMove = s1.getBestMove();
+						e = s1.getBestValue();
+					}
+					else if (s2.getBestValue() > beta)
+					{
+						bestMove = s2.getBestMove();
+						e = s2.getBestValue();
+					}
+					else if (s1.getBestValue() >= beta && s2.getBestValue() <= beta)
+					{
+						// s1.getBestValue() == beta == s2.getBestValue()
+						bestMove = s1.getBestMove();
+						e = s1.getBestValue();
 					}
 					else
 					{
-						System.out.println("Should not have happend (threads 4, 3)!");
+						System.out.println("Should not have happend (threads 4, 2)!");
 						log.println("Output:");
-						log.println("Should not have happend (threads 4, 3)!");
+						log.println("Should not have happend (threads 4, 2)!");
 					}
-	
-					if (e >= Search.CHECKMATE_VALUE)
-						break;
-	
-					maxDepth++;
 				}
-			}
-			else if (numberOfThreads == 5) // one thread, binary alphabeta
-			{
-				while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0 ||
-					maxDepth == 1)
+				else
 				{
-					alpha = -Search.INFINITY;
-					beta = Search.INFINITY;
-					int middle = e;
-					while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0)
-					{
-						s1 = new Search(p, middle - 1, middle + 1, maxDepth, "1",
-							startTime, xboard, post, computerWhite);
-						s1.start();
-						if (maxDepth > 1) // the first loop must be always finished
-						{
-							s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-							// max to be sure that the wait time is always positive
-							s1.stopIt();
-						}
-						s1.join();
-	
-						if (!s1.getLastRunFinished()) // not enough time
-							break;
-	
-						if (s1.getBestValue() == middle)
-						{
-							bestMove = s1.getBestMove();
-							e = s1.getBestValue();
-							break;
-						}
-						else if (s1.getBestValue() <= middle - 1)
-						{
-							beta = s1.getBestValue();
-							middle = (alpha + beta) / 2;
-						}
-						else if (s1.getBestValue() >= middle + 1)
-						{
-							alpha = s1.getBestValue();
-							middle = (alpha + beta) / 2;
-						}
-					}
-	
-					if (e >= Search.CHECKMATE_VALUE)
-						break;
-	
-					maxDepth++;
+					System.out.println("Should not have happend (threads 4, 3)!");
+					log.println("Output:");
+					log.println("Should not have happend (threads 4, 3)!");
 				}
+
+				if (e >= Search.CHECKMATE_VALUE)
+					break;
+
+				maxDepth++;
 			}
-			else if (numberOfThreads == 6) // two threads, triple alphabeta
+		}
+	}
+	
+	private void thingThread5() {
+		if (numberOfThreads == 5) // one thread, binary alphabeta
+		{
+			while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0 ||
+				maxDepth == 1)
+			{
+				alpha = -Search.INFINITY;
+				beta = Search.INFINITY;
+				int middle = e;
+				while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0)
+				{
+					s1 = new Search(p, middle - 1, middle + 1, maxDepth, "1",
+						startTime, xboard, post, computerWhite);
+					s1.start();
+					if (maxDepth > 1) // the first loop must be always finished
+					{
+						s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+						// max to be sure that the wait time is always positive
+						s1.stopIt();
+					}
+					s1.join();
+
+					if (!s1.getLastRunFinished()) // not enough time
+						break;
+
+					if (s1.getBestValue() == middle)
+					{
+						bestMove = s1.getBestMove();
+						e = s1.getBestValue();
+						break;
+					}
+					else if (s1.getBestValue() <= middle - 1)
+					{
+						beta = s1.getBestValue();
+						middle = (alpha + beta) / 2;
+					}
+					else if (s1.getBestValue() >= middle + 1)
+					{
+						alpha = s1.getBestValue();
+						middle = (alpha + beta) / 2;
+					}
+				}
+
+				if (e >= Search.CHECKMATE_VALUE)
+					break;
+
+				maxDepth++;
+			}
+		}
+	}
+	
+	private void thingThread6() {
+		 if (numberOfThreads == 6) // two threads, triple alphabeta
 			{
 				while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0 ||
 					maxDepth == 1)
@@ -1467,85 +1451,20 @@ public class Engine extends java.lang.Object
 					maxDepth++;
 				}
 			}
-			else if (numberOfThreads == 7) // one thread, sequencial search
+	}
+	
+	private void thingThread7() {
+		if (numberOfThreads == 7) // one thread, sequencial search
+		{
+			while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0 ||
+				maxDepth == 1)
 			{
-				while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0 ||
-					maxDepth == 1)
+				int direction = 0;
+				while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0)
 				{
-					int direction = 0;
-					while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0)
-					{
-						s1 = new Search(p, e - 1, e + 1, maxDepth, "1",
-							startTime, xboard, post, computerWhite);
-						s1.start();
-						if (maxDepth > 1) // the first loop must be always finished
-						{
-							s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-							// max to be sure that the wait time is always positive
-							s1.stopIt();
-						}
-						s1.join();
-	
-						if (!s1.getLastRunFinished()) // not enough time
-							break;
-	
-						if (s1.getBestValue() == e)
-						{
-							bestMove = s1.getBestMove();
-							e = s1.getBestValue();
-							break;
-						}
-						else if (s1.getBestValue() == e - 1 && direction == 1)
-						{
-							bestMove = s1.getBestMove();
-							e = s1.getBestValue();
-							break;
-						}
-						else if (s1.getBestValue() == e + 1 && direction == -1)
-						{
-							bestMove = s1.getBestMove();
-							e = s1.getBestValue();
-							break;
-						}
-						else if (s1.getBestValue() <= e - 1)
-						{
-							direction = -1;
-							e = s1.getBestValue() - 1;
-						}
-						else if (s1.getBestValue() >= e + 1)
-						{
-							direction = 1;
-							e = s1.getBestValue() + 1;
-						}
-						else
-						{
-							System.out.println("Should not have happend (threads 7)!");
-							log.println("Output:");
-							log.println("Should not have happend (threads 7)!");
-						}
-					}
-	
-					if (e >= Search.CHECKMATE_VALUE)
-						break;
-	
-					maxDepth++;
-				}
-			}
-			else if (numberOfThreads == 8) // two threads, standard search with parallel window search
-			{
-				while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0 ||
-					maxDepth == 1)
-				{
-					alpha = e - SEARCH_MARGIN;
-					beta = e + SEARCH_MARGIN;
-					gamma = -Search.INFINITY;
-					delta = Search.INFINITY;
-					s1 = new Search(p, alpha, beta, maxDepth, "1",
-						startTime, xboard, post, computerWhite);
-					s2 = new Search(p, gamma, delta, maxDepth, "2",
+					s1 = new Search(p, e - 1, e + 1, maxDepth, "1",
 						startTime, xboard, post, computerWhite);
 					s1.start();
-					s2.start();
 					if (maxDepth > 1) // the first loop must be always finished
 					{
 						s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
@@ -1553,46 +1472,166 @@ public class Engine extends java.lang.Object
 						s1.stopIt();
 					}
 					s1.join();
-	
+
 					if (!s1.getLastRunFinished()) // not enough time
-					{
-						s2.stopIt();
-						if (s2.getLastRunFinished()) // s2 faster than s1 - very rare
-						{
-							bestMove = s2.getBestMove();
-							e = s2.getBestValue();
-						}
 						break;
-					}
-					else if (s1.getBestValue() > alpha && s1.getBestValue() < beta) // found
+
+					if (s1.getBestValue() == e)
 					{
-						s2.stopIt();
 						bestMove = s1.getBestMove();
 						e = s1.getBestValue();
+						break;
 					}
-					else // wait for the second thread
+					else if (s1.getBestValue() == e - 1 && direction == 1)
 					{
-						if (maxDepth > 1) // the first loop must be always finished
-						{
-							s2.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-							// max to be sure that the wait time is always positive
-							s2.stopIt();
-						}
-						s2.join();
+						bestMove = s1.getBestMove();
+						e = s1.getBestValue();
+						break;
+					}
+					else if (s1.getBestValue() == e + 1 && direction == -1)
+					{
+						bestMove = s1.getBestMove();
+						e = s1.getBestValue();
+						break;
+					}
+					else if (s1.getBestValue() <= e - 1)
+					{
+						direction = -1;
+						e = s1.getBestValue() - 1;
+					}
+					else if (s1.getBestValue() >= e + 1)
+					{
+						direction = 1;
+						e = s1.getBestValue() + 1;
+					}
+					else
+					{
+						System.out.println("Should not have happend (threads 7)!");
+						log.println("Output:");
+						log.println("Should not have happend (threads 7)!");
+					}
+				}
+
+				if (e >= Search.CHECKMATE_VALUE)
+					break;
+
+				maxDepth++;
+			}
+		}
+	}
 	
-						if (!s2.getLastRunFinished()) // not enough time
-							break;
-	
+	private void thingThread8() {
+		 if (numberOfThreads == 8) // two threads, standard search with parallel window search
+		{
+			while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0 ||
+				maxDepth == 1)
+			{
+				alpha = e - SEARCH_MARGIN;
+				beta = e + SEARCH_MARGIN;
+				gamma = -Search.INFINITY;
+				delta = Search.INFINITY;
+				s1 = new Search(p, alpha, beta, maxDepth, "1",
+					startTime, xboard, post, computerWhite);
+				s2 = new Search(p, gamma, delta, maxDepth, "2",
+					startTime, xboard, post, computerWhite);
+				s1.start();
+				s2.start();
+				if (maxDepth > 1) // the first loop must be always finished
+				{
+					s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+					// max to be sure that the wait time is always positive
+					s1.stopIt();
+				}
+				s1.join();
+
+				if (!s1.getLastRunFinished()) // not enough time
+				{
+					s2.stopIt();
+					if (s2.getLastRunFinished()) // s2 faster than s1 - very rare
+					{
 						bestMove = s2.getBestMove();
 						e = s2.getBestValue();
 					}
-	
-					if (e >= Search.CHECKMATE_VALUE)
-						break;
-	
-					maxDepth++;
+					break;
 				}
+				else if (s1.getBestValue() > alpha && s1.getBestValue() < beta) // found
+				{
+					s2.stopIt();
+					bestMove = s1.getBestMove();
+					e = s1.getBestValue();
+				}
+				else // wait for the second thread
+				{
+					if (maxDepth > 1) // the first loop must be always finished
+					{
+						s2.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+						// max to be sure that the wait time is always positive
+						s2.stopIt();
+					}
+					s2.join();
+
+					if (!s2.getLastRunFinished()) // not enough time
+						break;
+
+					bestMove = s2.getBestMove();
+					e = s2.getBestValue();
+				}
+
+				if (e >= Search.CHECKMATE_VALUE)
+					break;
+
+				maxDepth++;
 			}
+		}
+	}
+	/**
+	 * Makes the next move using iterative deepening.
+	 * @throws InterruptedException It might be thrown by the Thread.join method.
+	 */
+	private void play()
+	throws InterruptedException
+	{
+		stopThinking();
+
+		if (!computerWhite)
+			p.invertPosition();
+
+		long startTime = System.currentTimeMillis();
+
+		int moveTime; // time per one move in ms
+		if (levelMoves == 0)
+			moveTime = Math.min(1000 * timeLeft / 32, 1000 * levelTime / 50);
+		else
+			moveTime = 1000 * Math.min(levelTime / levelMoves,
+				timeLeft / (levelMoves - numberOfMoves));
+		if (moveTime > 2 * 1000 * operatorTime) // some time for the operator
+			moveTime -= 1000 * operatorTime;
+
+		short bestMove = 0;
+		int maxDepth = 1;
+		int e = p.evaluatePosition();
+
+		// first check if there is some hint from the opening book
+		// if so just play it, otherwise calculate normally
+		String stringMove = Book.getBestMove(openingMoves);
+		if (!stringMove.equals("")) // something has been found
+		{
+			initThink();
+		}
+		else // start thinking
+		{
+			int alpha, beta, gamma, delta;
+	
+			thinkThread1();
+			thinkThread2();
+			thinkThread3();
+			thingThread4();
+			thingThread5();
+			thingThread6();
+			thingThread7()
+			thingThread8();
+			
+		
 		}
 
 		numberOfMoves++;
