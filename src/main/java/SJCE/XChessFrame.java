@@ -484,7 +484,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
           });
     }
     /**
-     * fenetre de la profondeur
+     * fenetre intiisalisant la  profondeur
      */
     private void initDepth() {
     	
@@ -732,14 +732,168 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
          bAbout = new javax.swing.JButton();
          jToolBar3 = new javax.swing.JToolBar();
          
-         
+         jToolBar2.setFloatable(false);
+         jToolBar2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+         jToolBar1.setFloatable(false);
+
+         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/log-24-blue.png"))); // NOI18N
+         jButton3.setToolTipText("Show Game Log in separate window");
+         jButton3.setFocusable(false);
+         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         jButton3.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 jButton3ActionPerformed(evt);
+             }
+         });
+         jToolBar1.add(jButton3);
+
+         bUndoLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/undo-red-24.png"))); // NOI18N
+         bUndoLast.setToolTipText("Undo Last One Move");
+         bUndoLast.setFocusable(false);
+         bUndoLast.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bUndoLast.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bUndoLast.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bUndoLastActionPerformed(evt);
+             }
+         });
+         jToolBar1.add(bUndoLast);
+
+         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/knight-black-24.png"))); // NOI18N
+         jButton1.setToolTipText("Select Black Player Chess Engine");
+         jButton1.setFocusable(false);
+         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         jButton1.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 jButton1ActionPerformed(evt);
+             }
+         });
+         jToolBar1.add(jButton1);
+
+         bSelectWhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/knight-white-24.png"))); // NOI18N
+         bSelectWhite.setToolTipText("Select White Player Chess Engine");
+         bSelectWhite.setFocusable(false);
+         bSelectWhite.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bSelectWhite.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bSelectWhite.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bSelectWhiteActionPerformed(evt);
+             }
+         });
+         jToolBar1.add(bSelectWhite);
+
+         bChangeSkin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/skin_color_chooser-24.png"))); // NOI18N
+         bChangeSkin.setToolTipText("Change Skin");
+         bChangeSkin.setFocusable(false);
+         bChangeSkin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bChangeSkin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bChangeSkin.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bChangeSkinActionPerformed(evt);
+             }
+         });
+         jToolBar1.add(bChangeSkin);
+
+         bBoardTheme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/color-swatch-24.png"))); // NOI18N
+         bBoardTheme.setToolTipText("Select Board Theme");
+         bBoardTheme.setFocusable(false);
+         bBoardTheme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bBoardTheme.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bBoardTheme.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bBoardThemeActionPerformed(evt);
+             }
+         });
+         jToolBar1.add(bBoardTheme);
+
+         bLinks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/x-b-24.png"))); // NOI18N
+         bLinks.setToolTipText("Xboard Engine Links & Ratings");
+         bLinks.setFocusable(false);
+         bLinks.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bLinks.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bLinks.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bLinksActionPerformed(evt);
+             }
+         });
+         jToolBar1.add(bLinks);
+
+         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/U-blue-24.png"))); // NOI18N
+         jButton2.setToolTipText("Uci Engines Links & Ratings");
+         jButton2.setFocusable(false);
+         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         jButton2.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 jButton2ActionPerformed(evt);
+             }
+         });
+         jToolBar1.add(jButton2);
+
+         bAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/info-book-green.png"))); // NOI18N
+         bAbout.setToolTipText("About");
+         bAbout.setFocusable(false);
+         bAbout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bAbout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bAbout.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bAboutActionPerformed(evt);
+             }
+         });
+         jToolBar1.add(bAbout);
+
+         jToolBar2.add(jToolBar1);
+
+         jToolBar3.setFloatable(false);
+
+         bNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/new.png"))); // NOI18N
+         bNew.setToolTipText("New Game");
+         bNew.setFocusable(false);
+         bNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bNew.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bNewActionPerformed(evt);
+             }
+         });
+         jToolBar3.add(bNew);
+
+         bKillAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/stop-red.png"))); // NOI18N
+         bKillAll.setToolTipText("Kill All Engines and reset Board");
+         bKillAll.setFocusable(false);
+         bKillAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bKillAll.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bKillAll.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bKillAllActionPerformed(evt);
+             }
+         });
+         jToolBar3.add(bKillAll);
+
+         bSaveCfg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/floppy_disk_green.png"))); // NOI18N
+         bSaveCfg.setToolTipText("Save Config");
+         bSaveCfg.setFocusable(false);
+         bSaveCfg.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bSaveCfg.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bSaveCfg.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bSaveCfgActionPerformed(evt);
+             }
+         });
+         jToolBar3.add(bSaveCfg);
          
          
     }
-    
+    /**
+     * initialise les boutons pour la gestion du son
+     */
     private void initButtonMix() {
     	 bSoundMixer = new javax.swing.JButton();
          bUseSound = new javax.swing.JToggleButton();
+         mUseSound = new javax.swing.JCheckBoxMenuItem();
          
          bSoundMixer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/audio_volume_high.png"))); // NOI18N
          bSoundMixer.setToolTipText("Sound Volume");
@@ -763,361 +917,25 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
              }
          });
          
+         mUseSound.setSelected(true);
+         mUseSound.setText("Use Sound");
+         mUseSound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/document_music_playlist.png"))); // NOI18N
+         mUseSound.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 mUseSoundActionPerformed(evt);
+             }
+         });
     }
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
-//        verticalSplit = new javax.swing.JSplitPane();
-//        scrollOutputArea = new javax.swing.JScrollPane();
-//        outputArea = new javax.swing.JTextArea();
-//        horizontalSplit = new javax.swing.JSplitPane();
-//        sidePanel = new javax.swing.JPanel();
-//        scrollMoveList = new javax.swing.JScrollPane();
-//        borderPanel = new javax.swing.JPanel();
-//        jToolBar2 = new javax.swing.JToolBar();
-//        jToolBar1 = new javax.swing.JToolBar();
-//        jButton3 = new javax.swing.JButton();
-//        bUndoLast = new javax.swing.JButton();
-//        jButton1 = new javax.swing.JButton();
-//        bSelectWhite = new javax.swing.JButton();
-//        bChangeSkin = new javax.swing.JButton();
-//        bBoardTheme = new javax.swing.JButton();
-//        bLinks = new javax.swing.JButton();
-//        jButton2 = new javax.swing.JButton();
-//        bAbout = new javax.swing.JButton();
-//        jToolBar3 = new javax.swing.JToolBar();
-    	initBoard();
-        bNew = new javax.swing.JButton();
-        bKillAll = new javax.swing.JButton();
-        bSaveCfg = new javax.swing.JButton();
-//        bSoundMixer = new javax.swing.JButton();
-//        bUseSound = new javax.swing.JToggleButton();
-        initButtonMix();
+    /**
+     * initialise les boutons combos
+     */
+    
+    private void initButonCombo() {
         bcomboMode = new javax.swing.JComboBox<>();
         bcomboDepth = new javax.swing.JComboBox<>();
-//        bcomboTime = new javax.swing.JComboBox();
-//        bUseClock = new javax.swing.JToggleButton();
-        bSendWhite = new javax.swing.JButton();
-        bSendBlack = new javax.swing.JButton();
-        comboWPlayerCE = new javax.swing.JComboBox<>();
-        jSeparator2 = new javax.swing.JToolBar.Separator();
         comboBPlayerCE = new javax.swing.JComboBox<>();
-        jSeparator1 = new javax.swing.JToolBar.Separator();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        mFile = new javax.swing.JMenu();
-        mNewGame = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        mExit = new javax.swing.JMenuItem();
-        mOptions = new javax.swing.JMenu();
-       // mTimeMenu = new javax.swing.JMenu();
-        //mUseClock = new javax.swing.JCheckBoxMenuItem();
-//        mTime = new javax.swing.JMenu();
-//        mTime05 = new javax.swing.JRadioButtonMenuItem();
-//        mTime10 = new javax.swing.JRadioButtonMenuItem();
-//        mTime15 = new javax.swing.JRadioButtonMenuItem();
-//        mTime20 = new javax.swing.JRadioButtonMenuItem();
-//        mTime25 = new javax.swing.JRadioButtonMenuItem();
-//        mTime30 = new javax.swing.JRadioButtonMenuItem();
-       initMtime();
-       
-        jMenu1 = new javax.swing.JMenu();
-        mUseSound = new javax.swing.JCheckBoxMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        mBoardTheme = new javax.swing.JMenuItem();
-        mChangeSkin = new javax.swing.JMenuItem();
-        mSaveCfg = new javax.swing.JMenuItem();
-//        mPlayers = new javax.swing.JMenu();
-//        mSelectCEwhite = new javax.swing.JMenuItem();
-//        mSelectCEblack = new javax.swing.JMenuItem();
-//        mChessEngines = new javax.swing.JMenu();
-//        mEngineConfig = new javax.swing.JMenu();
-//        mEngineMode = new javax.swing.JMenu();
-        initEngine(); 
-//        mModeEasy = new javax.swing.JRadioButtonMenuItem();
-//        mModeHard = new javax.swing.JRadioButtonMenuItem();
-//        mEngineDepth = new javax.swing.JMenu();
-//        mDepth2 = new javax.swing.JRadioButtonMenuItem();
-//        mDepth3 = new javax.swing.JRadioButtonMenuItem();
-//        mDepth4 = new javax.swing.JRadioButtonMenuItem();
-//        mDepth5 = new javax.swing.JRadioButtonMenuItem();
-//        mDepth6 = new javax.swing.JRadioButtonMenuItem();
-//        mDepth7 = new javax.swing.JRadioButtonMenuItem();
-//        mDepth8 = new javax.swing.JRadioButtonMenuItem();
-//        mDepth9 = new javax.swing.JRadioButtonMenuItem();
-        initDepth();
-        initWire();
+        comboWPlayerCE = new javax.swing.JComboBox<>();
         
-        mSendWhite = new javax.swing.JMenuItem();
-        mSendBlack = new javax.swing.JMenuItem();
-        mKillAll = new javax.swing.JMenuItem();
-        mUndoLast = new javax.swing.JMenuItem();
-        mInfo = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(610, 650));
-        setUndecorated(true);
-        setResizable(false);
-//
-//        verticalSplit.setDividerLocation(415);
-//        verticalSplit.setDividerSize(0);
-//        verticalSplit.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-//        verticalSplit.setEnabled(false);
-//        verticalSplit.setMaximumSize(new java.awt.Dimension(550, 550));
-//        verticalSplit.setMinimumSize(new java.awt.Dimension(550, 550));
-//        verticalSplit.setOpaque(false);
-//        verticalSplit.setPreferredSize(new java.awt.Dimension(550, 550));
-
-//        scrollOutputArea.setBorder(javax.swing.BorderFactory.createTitledBorder("Engine Output"));
-//
-//        outputArea.setEditable(false);
-//        outputArea.setColumns(20);
-//        outputArea.setRows(5);
-//        outputArea.setMaximumSize(new java.awt.Dimension(102, 62));
-//        outputArea.setMinimumSize(new java.awt.Dimension(102, 62));
-//        scrollOutputArea.setViewportView(outputArea);
-//
-////        verticalSplit.setBottomComponent(scrollOutputArea);
-////        scrollOutputArea.getAccessibleContext().setAccessibleParent(verticalSplit);
-//
-//        horizontalSplit.setDividerLocation(415);
-//        horizontalSplit.setDividerSize(0);
-//        horizontalSplit.setEnabled(false);
-//        horizontalSplit.setOpaque(false);
-//
-//        sidePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Moves"));
-//        sidePanel.setMaximumSize(new java.awt.Dimension(120, 450));
-//        sidePanel.setMinimumSize(new java.awt.Dimension(120, 450));
-//        sidePanel.setOpaque(false);
-//        sidePanel.setPreferredSize(new java.awt.Dimension(120, 450));
-//
-//        javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
-//        sidePanel.setLayout(sidePanelLayout);
-//        sidePanelLayout.setHorizontalGroup(
-//            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-//            .addComponent(scrollMoveList, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
-//        );
-//        sidePanelLayout.setVerticalGroup(
-//            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-//            .addComponent(scrollMoveList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
-//        );
-//
-//        horizontalSplit.setRightComponent(sidePanel);
-//        sidePanel.getAccessibleContext().setAccessibleParent(horizontalSplit);
-//
-//        borderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Chess Board"));
-//        borderPanel.setDoubleBuffered(false);
-//        borderPanel.setMaximumSize(new java.awt.Dimension(410, 410));
-//        borderPanel.setMinimumSize(new java.awt.Dimension(410, 410));
-//        borderPanel.setPreferredSize(new java.awt.Dimension(410, 410));
-//
-//        javax.swing.GroupLayout borderPanelLayout = new javax.swing.GroupLayout(borderPanel);
-//        borderPanel.setLayout(borderPanelLayout);
-//        borderPanelLayout.setHorizontalGroup(
-//            borderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-//            .addGap(0, 404, Short.MAX_VALUE)
-//        );
-//        borderPanelLayout.setVerticalGroup(
-//            borderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-//            .addGap(0, 428, Short.MAX_VALUE)
-//        );
-//
-//        horizontalSplit.setLeftComponent(borderPanel);
-//
-//        verticalSplit.setTopComponent(horizontalSplit);
-//        horizontalSplit.getAccessibleContext().setAccessibleParent(verticalSplit);
-//
-//        getContentPane().add(verticalSplit, java.awt.BorderLayout.CENTER);
-
-        jToolBar2.setFloatable(false);
-        jToolBar2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        jToolBar1.setFloatable(false);
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/log-24-blue.png"))); // NOI18N
-        jButton3.setToolTipText("Show Game Log in separate window");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton3);
-
-        bUndoLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/undo-red-24.png"))); // NOI18N
-        bUndoLast.setToolTipText("Undo Last One Move");
-        bUndoLast.setFocusable(false);
-        bUndoLast.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bUndoLast.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bUndoLast.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bUndoLastActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(bUndoLast);
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/knight-black-24.png"))); // NOI18N
-        jButton1.setToolTipText("Select Black Player Chess Engine");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton1);
-
-        bSelectWhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/knight-white-24.png"))); // NOI18N
-        bSelectWhite.setToolTipText("Select White Player Chess Engine");
-        bSelectWhite.setFocusable(false);
-        bSelectWhite.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bSelectWhite.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bSelectWhite.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSelectWhiteActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(bSelectWhite);
-
-        bChangeSkin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/skin_color_chooser-24.png"))); // NOI18N
-        bChangeSkin.setToolTipText("Change Skin");
-        bChangeSkin.setFocusable(false);
-        bChangeSkin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bChangeSkin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bChangeSkin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bChangeSkinActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(bChangeSkin);
-
-        bBoardTheme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/color-swatch-24.png"))); // NOI18N
-        bBoardTheme.setToolTipText("Select Board Theme");
-        bBoardTheme.setFocusable(false);
-        bBoardTheme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bBoardTheme.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bBoardTheme.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bBoardThemeActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(bBoardTheme);
-
-        bLinks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/x-b-24.png"))); // NOI18N
-        bLinks.setToolTipText("Xboard Engine Links & Ratings");
-        bLinks.setFocusable(false);
-        bLinks.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bLinks.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bLinks.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bLinksActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(bLinks);
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/U-blue-24.png"))); // NOI18N
-        jButton2.setToolTipText("Uci Engines Links & Ratings");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton2);
-
-        bAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/info-book-green.png"))); // NOI18N
-        bAbout.setToolTipText("About");
-        bAbout.setFocusable(false);
-        bAbout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bAbout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bAbout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAboutActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(bAbout);
-
-        jToolBar2.add(jToolBar1);
-
-        jToolBar3.setFloatable(false);
-
-        bNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/new.png"))); // NOI18N
-        bNew.setToolTipText("New Game");
-        bNew.setFocusable(false);
-        bNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bNewActionPerformed(evt);
-            }
-        });
-        jToolBar3.add(bNew);
-
-        bKillAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/stop-red.png"))); // NOI18N
-        bKillAll.setToolTipText("Kill All Engines and reset Board");
-        bKillAll.setFocusable(false);
-        bKillAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bKillAll.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bKillAll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bKillAllActionPerformed(evt);
-            }
-        });
-        jToolBar3.add(bKillAll);
-
-        bSaveCfg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/floppy_disk_green.png"))); // NOI18N
-        bSaveCfg.setToolTipText("Save Config");
-        bSaveCfg.setFocusable(false);
-        bSaveCfg.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bSaveCfg.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bSaveCfg.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSaveCfgActionPerformed(evt);
-            }
-        });
-        jToolBar3.add(bSaveCfg);
-
-//        bSoundMixer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/audio_volume_high.png"))); // NOI18N
-//        bSoundMixer.setToolTipText("Sound Volume");
-//        bSoundMixer.setFocusable(false);
-//        bSoundMixer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-//        bSoundMixer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-//        bSoundMixer.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                bSoundMixerActionPerformed(evt);
-//            }
-//        });
-        jToolBar3.add(bSoundMixer);
-
-//        bUseSound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/sound-add-icon.png"))); // NOI18N
-//        bUseSound.setToolTipText("Use Sound");
-//        bUseSound.setFocusable(false);
-//        bUseSound.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-//        bUseSound.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-//        bUseSound.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                bUseSoundActionPerformed(evt);
-//            }
-//        });
-        jToolBar3.add(bUseSound);
-
-        bcomboMode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "hard", "easy" }));
-        bcomboMode.setToolTipText("Engine mode");
-        bcomboMode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bcomboModeActionPerformed(evt);
-            }
-        });
-        jToolBar3.add(bcomboMode);
-
         bcomboDepth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
         bcomboDepth.setToolTipText("Search Depth ");
         bcomboDepth.addActionListener(new java.awt.event.ActionListener() {
@@ -1125,52 +943,15 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
                 bcomboDepthActionPerformed(evt);
             }
         });
-        jToolBar3.add(bcomboDepth);
-//
-//        bcomboTime.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "5", "10", "15", "20", "25", "30" }));
-//        bcomboTime.setToolTipText("Set Time (min)");
-//        bcomboTime.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                bcomboTimeActionPerformed(evt);
-//            }
-//        });
-        jToolBar3.add(bcomboTime);
-
-//        bUseClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/clock-plus-24.png"))); // NOI18N
-//        bUseClock.setToolTipText("Use Clock");
-//        bUseClock.setFocusable(false);
-//        bUseClock.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-//        bUseClock.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-//        bUseClock.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                bUseClockActionPerformed(evt);
-//            }
-//        });
-        jToolBar3.add(bUseClock);
-
-        bSendWhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/send-white-24-green.png"))); // NOI18N
-        bSendWhite.setToolTipText("Send Command to White CE");
-        bSendWhite.setFocusable(false);
-        bSendWhite.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bSendWhite.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bSendWhite.addActionListener(new java.awt.event.ActionListener() {
+    	
+        bcomboMode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "hard", "easy" }));
+        bcomboMode.setToolTipText("Engine mode");
+        bcomboMode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSendWhiteActionPerformed(evt);
+                bcomboModeActionPerformed(evt);
             }
         });
-        jToolBar3.add(bSendWhite);
-
-        bSendBlack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/send-black-24-right.png"))); // NOI18N
-        bSendBlack.setToolTipText("Send Command to Black CE");
-        bSendBlack.setFocusable(false);
-        bSendBlack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bSendBlack.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bSendBlack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSendBlackActionPerformed(evt);
-            }
-        });
-        jToolBar3.add(bSendBlack);
+        
 
         comboWPlayerCE.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Animats", "ArabianKnight ", "BremboCE", "CaveChess", "CupCake", "ChessBotX       ", "DeepBrutePos", "Frittle", "FrankWalter", "Gladiator", "GNU Chess", "Jchess", "Javalin", "KingsOut      ", "OliThink", "Tiffanys" }));
         comboWPlayerCE.setToolTipText("Select White Player Chess Engine");
@@ -1179,9 +960,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
                 comboWPlayerCEActionPerformed(evt);
             }
         });
-        jToolBar3.add(comboWPlayerCE);
-        jToolBar3.add(jSeparator2);
-
+        
         comboBPlayerCE.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Animats", "ArabianKnight ", "BremboCE", "CaveChess", "CupCake", "ChessBotX       ", "DeepBrutePos", "Frittle", "FrankWalter", "Gladiator", "GNU Chess", "Jchess", "Javalin", "KingsOut      ", "OliThink", "Tiffanys" }));
         comboBPlayerCE.setToolTipText("Select Black Player Chess Engine");
         comboBPlayerCE.addActionListener(new java.awt.event.ActionListener() {
@@ -1189,16 +968,83 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
                 comboBPlayerCEActionPerformed(evt);
             }
         });
-        jToolBar3.add(comboBPlayerCE);
-        jToolBar3.add(jSeparator1);
-
-        jToolBar2.add(jToolBar3);
-
-        getContentPane().add(jToolBar2, java.awt.BorderLayout.NORTH);
-
-        mFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/Actions-document-open-icon.png"))); // NOI18N
-        mFile.setText("File");
-
+    }
+    
+    private void initBsend() {
+    	 bSendWhite = new javax.swing.JButton();
+         bSendBlack = new javax.swing.JButton();
+         
+         bSendWhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/send-white-24-green.png"))); // NOI18N
+         bSendWhite.setToolTipText("Send Command to White CE");
+         bSendWhite.setFocusable(false);
+         bSendWhite.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bSendWhite.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bSendWhite.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bSendWhiteActionPerformed(evt);
+             }
+         });
+         
+         bSendBlack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/send-black-24-right.png"))); // NOI18N
+         bSendBlack.setToolTipText("Send Command to Black CE");
+         bSendBlack.setFocusable(false);
+         bSendBlack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bSendBlack.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         bSendBlack.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 bSendBlackActionPerformed(evt);
+             }
+         });
+    }
+    /**
+     * initialisations des items
+     */
+    private void initItems() {
+    	  jMenuItem4 = new javax.swing.JMenuItem();
+          jMenuItem5 = new javax.swing.JMenuItem();
+          jMenuItem1 = new javax.swing.JMenuItem();
+          
+          jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/x-b-16.png"))); // NOI18N
+          jMenuItem4.setText("Xboard Engines Links & Ratings");
+          jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  jMenuItem4ActionPerformed(evt);
+              }
+          });
+    	
+          jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/U-blue-16.png"))); // NOI18N
+          jMenuItem5.setText("Uci Engines Links & Ratings");
+          jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  jMenuItem5ActionPerformed(evt);
+              }
+          });
+          
+          jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/help-green-16.png"))); // NOI18N
+          jMenuItem1.setText("About");
+          jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  jMenuItem1ActionPerformed(evt);
+              }
+          });
+    }
+    /**
+     * initialise le bouton new et exit
+     */
+    private void initBbase(){
+    	
+        mExit = new javax.swing.JMenuItem();
+        mOptions = new javax.swing.JMenu();
+        mNewGame = new javax.swing.JMenuItem();
+        
+        mExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/quit.png"))); // NOI18N
+        mExit.setText("Exit");
+        mExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mExitActionPerformed(evt);
+            }
+        });
+        
         mNewGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/new.png"))); // NOI18N
         mNewGame.setText("New Game");
         mNewGame.addActionListener(new java.awt.event.ActionListener() {
@@ -1206,6 +1052,115 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
                 mNewGameActionPerformed(evt);
             }
         });
+    	
+    }
+    
+    private void initMSend() {
+    	  mSendWhite = new javax.swing.JMenuItem();
+          mSendBlack = new javax.swing.JMenuItem();
+          
+          mSendWhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/send-white-16-green.png"))); // NOI18N
+          mSendWhite.setText("Send Command to White CE");
+          mSendWhite.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  mSendWhiteActionPerformed(evt);
+              }
+          });
+          
+          mSendBlack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/send-black-16-right.png"))); // NOI18N
+          mSendBlack.setText("Send Command to Black CE");
+          mSendBlack.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  mSendBlackActionPerformed(evt);
+              }
+          });
+    	
+    }
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+
+    	
+        bNew = new javax.swing.JButton();
+        bKillAll = new javax.swing.JButton();
+        bSaveCfg = new javax.swing.JButton();
+
+        initButtonMix();
+
+        initButonCombo();
+
+        initBsend();
+     
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+       
+        jSeparator1 = new javax.swing.JToolBar.Separator();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        mFile = new javax.swing.JMenu();
+//        mNewGame = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+//        mExit = new javax.swing.JMenuItem();
+//        mOptions = new javax.swing.JMenu();
+        initBbase();
+       initMtime();
+       
+        jMenu1 = new javax.swing.JMenu();
+      
+        jMenuItem3 = new javax.swing.JMenuItem();
+        mBoardTheme = new javax.swing.JMenuItem();
+        mChangeSkin = new javax.swing.JMenuItem();
+        mSaveCfg = new javax.swing.JMenuItem();
+
+        initEngine(); 
+
+        initDepth();
+        initWire();
+        
+//        mSendWhite = new javax.swing.JMenuItem();
+//        mSendBlack = new javax.swing.JMenuItem();
+        mKillAll = new javax.swing.JMenuItem();
+        mUndoLast = new javax.swing.JMenuItem();
+        mInfo = new javax.swing.JMenu();
+
+        initItems();
+        
+initBoard();
+initMSend();
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(610, 650));
+        setUndecorated(true);
+        setResizable(false);
+
+        jToolBar3.add(bSoundMixer);
+
+        jToolBar3.add(bUseSound);
+
+        jToolBar3.add(bcomboMode);
+
+        jToolBar3.add(bcomboDepth);
+
+        jToolBar3.add(bcomboTime);
+  
+        jToolBar3.add(bUseClock);
+
+        jToolBar3.add(bSendWhite);
+
+        jToolBar3.add(bSendBlack);
+
+        jToolBar3.add(comboWPlayerCE);
+        jToolBar3.add(jSeparator2);
+
+        jToolBar3.add(comboBPlayerCE);
+        jToolBar3.add(jSeparator1);
+        
+        jToolBar2.add(jToolBar3);
+
+        getContentPane().add(jToolBar2, java.awt.BorderLayout.NORTH);
+
+        mFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/Actions-document-open-icon.png"))); // NOI18N
+        mFile.setText("File");
+
+
         mFile.add(mNewGame);
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/log-16-blue.png"))); // NOI18N
@@ -1217,13 +1172,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         });
         mFile.add(jMenuItem2);
 
-        mExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/quit.png"))); // NOI18N
-        mExit.setText("Exit");
-        mExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mExitActionPerformed(evt);
-            }
-        });
+
         mFile.add(mExit);
 
         jMenuBar1.add(mFile);
@@ -1231,84 +1180,12 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         mOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/application-16.png"))); // NOI18N
         mOptions.setText("Options");
 
-//        mTimeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/time-16.png"))); // NOI18N
-//        mTimeMenu.setText("Time");
-//
-//        mUseClock.setText("Use Clock");
-//        mUseClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/Alarm-clock-16.png"))); // NOI18N
-//        mUseClock.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mUseClockActionPerformed(evt);
-//            }
-//        });
-//        mTimeMenu.add(mUseClock);
-//
-//        mTime.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/calendar_select_day.png"))); // NOI18N
-//        mTime.setText("Set Time (min)");
-//
-//        mTime05.setText("5");
-//        mTime05.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mTime05ActionPerformed(evt);
-//            }
-//        });
-//        mTime.add(mTime05);
-//
-//        mTime10.setText("10");
-//        mTime10.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mTime10ActionPerformed(evt);
-//            }
-//        });
-//        mTime.add(mTime10);
-//
-//        mTime15.setText("15");
-//        mTime15.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mTime15ActionPerformed(evt);
-//            }
-//        });
-//        mTime.add(mTime15);
-//
-//        mTime20.setText("20");
-//        mTime20.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mTime20ActionPerformed(evt);
-//            }
-//        });
-//        mTime.add(mTime20);
-//
-//        mTime25.setText("25");
-//        mTime25.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mTime25ActionPerformed(evt);
-//            }
-//        });
-//        mTime.add(mTime25);
-//
-//        mTime30.setText("30");
-//        mTime30.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mTime30ActionPerformed(evt);
-//            }
-//        });
-//        mTime.add(mTime30);
-//
-//        mTimeMenu.add(mTime);
-
         mOptions.add(mTimeMenu);
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/sound-juk.png"))); // NOI18N
         jMenu1.setText("Sound Control");
 
-        mUseSound.setSelected(true);
-        mUseSound.setText("Use Sound");
-        mUseSound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/document_music_playlist.png"))); // NOI18N
-        mUseSound.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mUseSoundActionPerformed(evt);
-            }
-        });
+
         jMenu1.add(mUseSound);
 
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/volume_loud.png"))); // NOI18N
@@ -1351,148 +1228,28 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
 
         jMenuBar1.add(mOptions);
 
-//		mPlayers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/play_green-1.png"))); // NOI18N
-//		mPlayers.setText("Players");
-//
-//		mSelectCEwhite
-//				.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/white_knight-16.png"))); // NOI18N
-//		mSelectCEwhite.setText("Select White Player Chess Engine");
-//		mSelectCEwhite.addActionListener(new java.awt.event.ActionListener() {
-//			public void actionPerformed(java.awt.event.ActionEvent evt) {
-//				mSelectCEwhiteActionPerformed(evt);
-//			}
-//		});
-//		mPlayers.add(mSelectCEwhite);
-//
-//		mSelectCEblack
-//				.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/black-knight-16.png"))); // NOI18N
-//		mSelectCEblack.setText("Select Black Player Chess Engine");
-//		mSelectCEblack.setToolTipText("");
-//		mSelectCEblack.addActionListener(new java.awt.event.ActionListener() {
-//			public void actionPerformed(java.awt.event.ActionEvent evt) {
-//				mSelectCEblackActionPerformed(evt);
-//			}
-//		});
-//		mPlayers.add(mSelectCEblack);
-//
-//		jMenuBar1.add(mPlayers);
-//
-//		mChessEngines
-//				.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/Knight-Yellow-16.png"))); // NOI18N
-//		mChessEngines.setText("Engines");
-//
-//		mEngineConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/options-16.png"))); // NOI18N
-//		mEngineConfig.setText("Engine Config");
-//		mEngineConfig.setToolTipText("for Frittle/KingsOut/ArabianKnight");
-//
-//		mEngineMode.setText("Engine Mode");
-//		mEngineMode.setToolTipText("");
-//
-//		mModeEasy.setText("Easy ( pondering OFF )");
-//		mModeEasy.addActionListener(new java.awt.event.ActionListener() {
-//			public void actionPerformed(java.awt.event.ActionEvent evt) {
-//				mModeEasyActionPerformed(evt);
-//			}
-//		});
-//		mEngineMode.add(mModeEasy);
-//
-//		mModeHard.setText("Hard ( pondering ON )");
-//		mModeHard.addActionListener(new java.awt.event.ActionListener() {
-//			public void actionPerformed(java.awt.event.ActionEvent evt) {
-//				mModeHardActionPerformed(evt);
-//			}
-//		});
-//		mEngineMode.add(mModeHard);
-//
-//		mEngineConfig.add(mEngineMode);
 
-//        mEngineDepth.setText("Engine Search Depth");
-//        mEngineDepth.setToolTipText("");
-//
-//        mDepth2.setText("2");
-//        mDepth2.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mDepth2ActionPerformed(evt);
-//            }
-//        });
-//        mEngineDepth.add(mDepth2);
-//
-//        mDepth3.setText("3");
-//        mDepth3.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mDepth3ActionPerformed(evt);
-//            }
-//        });
-//        mEngineDepth.add(mDepth3);
-//
-//        mDepth4.setText("4");
-//        mDepth4.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mDepth4ActionPerformed(evt);
-//            }
-//        });
-//        mEngineDepth.add(mDepth4);
-//
-//        mDepth5.setText("5");
-//        mDepth5.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mDepth5ActionPerformed(evt);
-//            }
-//        });
-//        mEngineDepth.add(mDepth5);
-//
-//        mDepth6.setText("6");
-//        mDepth6.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mDepth6ActionPerformed(evt);
-//            }
-//        });
-//        mEngineDepth.add(mDepth6);
-//
-//        mDepth7.setText("7");
-//        mDepth7.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mDepth7ActionPerformed(evt);
-//            }
-//        });
-//        mEngineDepth.add(mDepth7);
-//
-//        mDepth8.setText("8");
-//        mDepth8.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mDepth8ActionPerformed(evt);
-//            }
-//        });
-//        mEngineDepth.add(mDepth8);
-//
-//        mDepth9.setText("9");
-//        mDepth9.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                mDepth9ActionPerformed(evt);
-//            }
-//        });
-//        mEngineDepth.add(mDepth9);
 
         mEngineConfig.add(mEngineDepth);
 
         mChessEngines.add(mEngineConfig);
 
-        mSendWhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/send-white-16-green.png"))); // NOI18N
-        mSendWhite.setText("Send Command to White CE");
-        mSendWhite.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mSendWhiteActionPerformed(evt);
-            }
-        });
+//        mSendWhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/send-white-16-green.png"))); // NOI18N
+//        mSendWhite.setText("Send Command to White CE");
+//        mSendWhite.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mSendWhiteActionPerformed(evt);
+//            }
+//        });
         mChessEngines.add(mSendWhite);
 
-        mSendBlack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/send-black-16-right.png"))); // NOI18N
-        mSendBlack.setText("Send Command to Black CE");
-        mSendBlack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mSendBlackActionPerformed(evt);
-            }
-        });
+//        mSendBlack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/send-black-16-right.png"))); // NOI18N
+//        mSendBlack.setText("Send Command to Black CE");
+//        mSendBlack.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mSendBlackActionPerformed(evt);
+//            }
+//        });
         mChessEngines.add(mSendBlack);
 
         mKillAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/stop_red.png"))); // NOI18N
@@ -1518,31 +1275,13 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         mInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/info-green-16.png"))); // NOI18N
         mInfo.setText("Info");
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/x-b-16.png"))); // NOI18N
-        jMenuItem4.setText("Xboard Engines Links & Ratings");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
+
         mInfo.add(jMenuItem4);
 
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/U-blue-16.png"))); // NOI18N
-        jMenuItem5.setText("Uci Engines Links & Ratings");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
+
         mInfo.add(jMenuItem5);
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/help-green-16.png"))); // NOI18N
-        jMenuItem1.setText("About");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
+
         mInfo.add(jMenuItem1);
 
         jMenuBar1.add(mInfo);
