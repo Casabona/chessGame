@@ -380,7 +380,173 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         BoardThemeSelect bts = new BoardThemeSelect(frame,true);
         bts.setVisible(true);
     }
-    
+    /**
+     * initialise le chrono
+     */
+    private void initMtime() {
+    	
+    	  mTime = new javax.swing.JMenu();
+          mTime05 = new javax.swing.JRadioButtonMenuItem();
+          mTime10 = new javax.swing.JRadioButtonMenuItem();
+          mTime15 = new javax.swing.JRadioButtonMenuItem();
+          mTime20 = new javax.swing.JRadioButtonMenuItem();
+          mTime25 = new javax.swing.JRadioButtonMenuItem();
+          mTime30 = new javax.swing.JRadioButtonMenuItem();
+          mTimeMenu = new javax.swing.JMenu();
+          mUseClock = new javax.swing.JCheckBoxMenuItem();
+          
+          
+          mTimeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/time-16.png"))); // NOI18N
+          mTimeMenu.setText("Time");
+
+          mUseClock.setText("Use Clock");
+          mUseClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/Alarm-clock-16.png"))); // NOI18N
+          mUseClock.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  mUseClockActionPerformed(evt);
+              }
+          });
+          mTimeMenu.add(mUseClock);
+
+          mTime.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/calendar_select_day.png"))); // NOI18N
+          mTime.setText("Set Time (min)");
+
+          mTime05.setText("5");
+          mTime05.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  mTime05ActionPerformed(evt);
+              }
+          });
+          mTime.add(mTime05);
+
+          mTime10.setText("10");
+          mTime10.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  mTime10ActionPerformed(evt);
+              }
+          });
+          mTime.add(mTime10);
+
+          mTime15.setText("15");
+          mTime15.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  mTime15ActionPerformed(evt);
+              }
+          });
+          mTime.add(mTime15);
+
+          mTime20.setText("20");
+          mTime20.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  mTime20ActionPerformed(evt);
+              }
+          });
+          mTime.add(mTime20);
+
+          mTime25.setText("25");
+          mTime25.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  mTime25ActionPerformed(evt);
+              }
+          });
+          mTime.add(mTime25);
+
+          mTime30.setText("30");
+          mTime30.addActionListener(new java.awt.event.ActionListener() {
+              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  mTime30ActionPerformed(evt);
+              }
+          });
+          mTime.add(mTime30);
+
+          mTimeMenu.add(mTime);
+          
+          
+    }
+    /**
+     * fenetre de la profondeur
+     */
+    private void initDepth() {
+    	
+    	   mEngineDepth = new javax.swing.JMenu();
+           mDepth2 = new javax.swing.JRadioButtonMenuItem();
+           mDepth3 = new javax.swing.JRadioButtonMenuItem();
+           mDepth4 = new javax.swing.JRadioButtonMenuItem();
+           mDepth5 = new javax.swing.JRadioButtonMenuItem();
+           mDepth6 = new javax.swing.JRadioButtonMenuItem();
+           mDepth7 = new javax.swing.JRadioButtonMenuItem();
+           mDepth8 = new javax.swing.JRadioButtonMenuItem();
+           mDepth9 = new javax.swing.JRadioButtonMenuItem();
+           
+           mEngineDepth.setText("Engine Search Depth");
+           mEngineDepth.setToolTipText("");
+
+           mDepth2.setText("2");
+           mDepth2.addActionListener(new java.awt.event.ActionListener() {
+               public void actionPerformed(java.awt.event.ActionEvent evt) {
+                   mDepth2ActionPerformed(evt);
+               }
+           });
+           mEngineDepth.add(mDepth2);
+
+           mDepth3.setText("3");
+           mDepth3.addActionListener(new java.awt.event.ActionListener() {
+               public void actionPerformed(java.awt.event.ActionEvent evt) {
+                   mDepth3ActionPerformed(evt);
+               }
+           });
+           mEngineDepth.add(mDepth3);
+
+           mDepth4.setText("4");
+           mDepth4.addActionListener(new java.awt.event.ActionListener() {
+               public void actionPerformed(java.awt.event.ActionEvent evt) {
+                   mDepth4ActionPerformed(evt);
+               }
+           });
+           mEngineDepth.add(mDepth4);
+
+           mDepth5.setText("5");
+           mDepth5.addActionListener(new java.awt.event.ActionListener() {
+               public void actionPerformed(java.awt.event.ActionEvent evt) {
+                   mDepth5ActionPerformed(evt);
+               }
+           });
+           mEngineDepth.add(mDepth5);
+
+           mDepth6.setText("6");
+           mDepth6.addActionListener(new java.awt.event.ActionListener() {
+               public void actionPerformed(java.awt.event.ActionEvent evt) {
+                   mDepth6ActionPerformed(evt);
+               }
+           });
+           mEngineDepth.add(mDepth6);
+
+           mDepth7.setText("7");
+           mDepth7.addActionListener(new java.awt.event.ActionListener() {
+               public void actionPerformed(java.awt.event.ActionEvent evt) {
+                   mDepth7ActionPerformed(evt);
+               }
+           });
+           mEngineDepth.add(mDepth7);
+
+           mDepth8.setText("8");
+           mDepth8.addActionListener(new java.awt.event.ActionListener() {
+               public void actionPerformed(java.awt.event.ActionEvent evt) {
+                   mDepth8ActionPerformed(evt);
+               }
+           });
+           mEngineDepth.add(mDepth8);
+
+           mDepth9.setText("9");
+           mDepth9.addActionListener(new java.awt.event.ActionListener() {
+               public void actionPerformed(java.awt.event.ActionEvent evt) {
+                   mDepth9ActionPerformed(evt);
+               }
+           });
+           mEngineDepth.add(mDepth9);
+           
+           
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -425,15 +591,17 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         jMenuItem2 = new javax.swing.JMenuItem();
         mExit = new javax.swing.JMenuItem();
         mOptions = new javax.swing.JMenu();
-        mTimeMenu = new javax.swing.JMenu();
-        mUseClock = new javax.swing.JCheckBoxMenuItem();
-        mTime = new javax.swing.JMenu();
-        mTime05 = new javax.swing.JRadioButtonMenuItem();
-        mTime10 = new javax.swing.JRadioButtonMenuItem();
-        mTime15 = new javax.swing.JRadioButtonMenuItem();
-        mTime20 = new javax.swing.JRadioButtonMenuItem();
-        mTime25 = new javax.swing.JRadioButtonMenuItem();
-        mTime30 = new javax.swing.JRadioButtonMenuItem();
+       // mTimeMenu = new javax.swing.JMenu();
+        //mUseClock = new javax.swing.JCheckBoxMenuItem();
+//        mTime = new javax.swing.JMenu();
+//        mTime05 = new javax.swing.JRadioButtonMenuItem();
+//        mTime10 = new javax.swing.JRadioButtonMenuItem();
+//        mTime15 = new javax.swing.JRadioButtonMenuItem();
+//        mTime20 = new javax.swing.JRadioButtonMenuItem();
+//        mTime25 = new javax.swing.JRadioButtonMenuItem();
+//        mTime30 = new javax.swing.JRadioButtonMenuItem();
+       initMtime();
+       
         jMenu1 = new javax.swing.JMenu();
         mUseSound = new javax.swing.JCheckBoxMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -448,15 +616,18 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         mEngineMode = new javax.swing.JMenu();
         mModeEasy = new javax.swing.JRadioButtonMenuItem();
         mModeHard = new javax.swing.JRadioButtonMenuItem();
-        mEngineDepth = new javax.swing.JMenu();
-        mDepth2 = new javax.swing.JRadioButtonMenuItem();
-        mDepth3 = new javax.swing.JRadioButtonMenuItem();
-        mDepth4 = new javax.swing.JRadioButtonMenuItem();
-        mDepth5 = new javax.swing.JRadioButtonMenuItem();
-        mDepth6 = new javax.swing.JRadioButtonMenuItem();
-        mDepth7 = new javax.swing.JRadioButtonMenuItem();
-        mDepth8 = new javax.swing.JRadioButtonMenuItem();
-        mDepth9 = new javax.swing.JRadioButtonMenuItem();
+//        mEngineDepth = new javax.swing.JMenu();
+//        mDepth2 = new javax.swing.JRadioButtonMenuItem();
+//        mDepth3 = new javax.swing.JRadioButtonMenuItem();
+//        mDepth4 = new javax.swing.JRadioButtonMenuItem();
+//        mDepth5 = new javax.swing.JRadioButtonMenuItem();
+//        mDepth6 = new javax.swing.JRadioButtonMenuItem();
+//        mDepth7 = new javax.swing.JRadioButtonMenuItem();
+//        mDepth8 = new javax.swing.JRadioButtonMenuItem();
+//        mDepth9 = new javax.swing.JRadioButtonMenuItem();
+        initDepth();
+        
+        
         mSendWhite = new javax.swing.JMenuItem();
         mSendBlack = new javax.swing.JMenuItem();
         mKillAll = new javax.swing.JMenuItem();
@@ -840,70 +1011,70 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         mOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/application-16.png"))); // NOI18N
         mOptions.setText("Options");
 
-        mTimeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/time-16.png"))); // NOI18N
-        mTimeMenu.setText("Time");
-
-        mUseClock.setText("Use Clock");
-        mUseClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/Alarm-clock-16.png"))); // NOI18N
-        mUseClock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mUseClockActionPerformed(evt);
-            }
-        });
-        mTimeMenu.add(mUseClock);
-
-        mTime.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/calendar_select_day.png"))); // NOI18N
-        mTime.setText("Set Time (min)");
-
-        mTime05.setText("5");
-        mTime05.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mTime05ActionPerformed(evt);
-            }
-        });
-        mTime.add(mTime05);
-
-        mTime10.setText("10");
-        mTime10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mTime10ActionPerformed(evt);
-            }
-        });
-        mTime.add(mTime10);
-
-        mTime15.setText("15");
-        mTime15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mTime15ActionPerformed(evt);
-            }
-        });
-        mTime.add(mTime15);
-
-        mTime20.setText("20");
-        mTime20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mTime20ActionPerformed(evt);
-            }
-        });
-        mTime.add(mTime20);
-
-        mTime25.setText("25");
-        mTime25.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mTime25ActionPerformed(evt);
-            }
-        });
-        mTime.add(mTime25);
-
-        mTime30.setText("30");
-        mTime30.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mTime30ActionPerformed(evt);
-            }
-        });
-        mTime.add(mTime30);
-
-        mTimeMenu.add(mTime);
+//        mTimeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/time-16.png"))); // NOI18N
+//        mTimeMenu.setText("Time");
+//
+//        mUseClock.setText("Use Clock");
+//        mUseClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/Alarm-clock-16.png"))); // NOI18N
+//        mUseClock.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mUseClockActionPerformed(evt);
+//            }
+//        });
+//        mTimeMenu.add(mUseClock);
+//
+//        mTime.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/calendar_select_day.png"))); // NOI18N
+//        mTime.setText("Set Time (min)");
+//
+//        mTime05.setText("5");
+//        mTime05.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mTime05ActionPerformed(evt);
+//            }
+//        });
+//        mTime.add(mTime05);
+//
+//        mTime10.setText("10");
+//        mTime10.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mTime10ActionPerformed(evt);
+//            }
+//        });
+//        mTime.add(mTime10);
+//
+//        mTime15.setText("15");
+//        mTime15.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mTime15ActionPerformed(evt);
+//            }
+//        });
+//        mTime.add(mTime15);
+//
+//        mTime20.setText("20");
+//        mTime20.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mTime20ActionPerformed(evt);
+//            }
+//        });
+//        mTime.add(mTime20);
+//
+//        mTime25.setText("25");
+//        mTime25.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mTime25ActionPerformed(evt);
+//            }
+//        });
+//        mTime.add(mTime25);
+//
+//        mTime30.setText("30");
+//        mTime30.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mTime30ActionPerformed(evt);
+//            }
+//        });
+//        mTime.add(mTime30);
+//
+//        mTimeMenu.add(mTime);
 
         mOptions.add(mTimeMenu);
 
@@ -1012,72 +1183,72 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
 
         mEngineConfig.add(mEngineMode);
 
-        mEngineDepth.setText("Engine Search Depth");
-        mEngineDepth.setToolTipText("");
-
-        mDepth2.setText("2");
-        mDepth2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mDepth2ActionPerformed(evt);
-            }
-        });
-        mEngineDepth.add(mDepth2);
-
-        mDepth3.setText("3");
-        mDepth3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mDepth3ActionPerformed(evt);
-            }
-        });
-        mEngineDepth.add(mDepth3);
-
-        mDepth4.setText("4");
-        mDepth4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mDepth4ActionPerformed(evt);
-            }
-        });
-        mEngineDepth.add(mDepth4);
-
-        mDepth5.setText("5");
-        mDepth5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mDepth5ActionPerformed(evt);
-            }
-        });
-        mEngineDepth.add(mDepth5);
-
-        mDepth6.setText("6");
-        mDepth6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mDepth6ActionPerformed(evt);
-            }
-        });
-        mEngineDepth.add(mDepth6);
-
-        mDepth7.setText("7");
-        mDepth7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mDepth7ActionPerformed(evt);
-            }
-        });
-        mEngineDepth.add(mDepth7);
-
-        mDepth8.setText("8");
-        mDepth8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mDepth8ActionPerformed(evt);
-            }
-        });
-        mEngineDepth.add(mDepth8);
-
-        mDepth9.setText("9");
-        mDepth9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mDepth9ActionPerformed(evt);
-            }
-        });
-        mEngineDepth.add(mDepth9);
+//        mEngineDepth.setText("Engine Search Depth");
+//        mEngineDepth.setToolTipText("");
+//
+//        mDepth2.setText("2");
+//        mDepth2.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mDepth2ActionPerformed(evt);
+//            }
+//        });
+//        mEngineDepth.add(mDepth2);
+//
+//        mDepth3.setText("3");
+//        mDepth3.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mDepth3ActionPerformed(evt);
+//            }
+//        });
+//        mEngineDepth.add(mDepth3);
+//
+//        mDepth4.setText("4");
+//        mDepth4.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mDepth4ActionPerformed(evt);
+//            }
+//        });
+//        mEngineDepth.add(mDepth4);
+//
+//        mDepth5.setText("5");
+//        mDepth5.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mDepth5ActionPerformed(evt);
+//            }
+//        });
+//        mEngineDepth.add(mDepth5);
+//
+//        mDepth6.setText("6");
+//        mDepth6.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mDepth6ActionPerformed(evt);
+//            }
+//        });
+//        mEngineDepth.add(mDepth6);
+//
+//        mDepth7.setText("7");
+//        mDepth7.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mDepth7ActionPerformed(evt);
+//            }
+//        });
+//        mEngineDepth.add(mDepth7);
+//
+//        mDepth8.setText("8");
+//        mDepth8.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mDepth8ActionPerformed(evt);
+//            }
+//        });
+//        mEngineDepth.add(mDepth8);
+//
+//        mDepth9.setText("9");
+//        mDepth9.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                mDepth9ActionPerformed(evt);
+//            }
+//        });
+//        mEngineDepth.add(mDepth9);
 
         mEngineConfig.add(mEngineDepth);
 
