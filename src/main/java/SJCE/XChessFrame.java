@@ -169,42 +169,123 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         verticalSplit.setDividerLocation(borderPanelSize);
         verticalSplit.setDividerSize(0);        
     }
-    
+    /**
+     * 
+     */
+    private void initAkiton() {
+    	
+    	   aktion.enemyTip="";
+           aktion.gameTip="";
+           aktion.uciAllMovesString="";
+           aktion.enginePromotionFig="";
+           aktion.enginePromotionType="";
+           aktion.blackRivalMovesString="";
+           aktion.whiteRivalMovesString="";        
+           aktion.restColorWhite_restColorBlack();
+    }
+    /**
+     * verifie  que les joueurs existes
+     */
+    private void secureNewGame() {
+    	 if(alphaAgent != null) alphaAgent.dispose();
+         if(betaAgent != null) betaAgent.dispose();
+         if (whiteEngineAgent.engineIOwhite!=null) whiteEngineAgent.engineIOwhite.destroy();  // MAKED ON 13-05-16 !!!
+         if (blackEngineAgent.engineIOblack!=null) blackEngineAgent.engineIOblack.destroy();
+    }
+    /**
+     * reinitialise la clock
+     */
+    private void newClock() {
+    	 chessClock.stop();
+         chessClock.setTime(aktion.Time*60000);
+     //chessClock.setTime(chessClock.WHITE_TURN, Actions.Time*60000);
+     //chessClock.setTime(chessClock.BLACK_TURN, Actions.Time*60000);        
+         chessClock.setTurn(ChessClock.WHITE_TURN);
+    }
+    /**
+     * verifie si l un des joueur est humain
+     */
+    private void checkHumanPlayer() {
+    	 if (aktion.whitePlayerCE.equals("Human"))
+             alphaAgent = new UserAgent(frame,"Human","white","human");
+         else
+             alphaAgent = whiteEngineAgent.createEngine(frame,aktion.whitePlayerCE,"white",aktion.whitePlayerTip);
+         //////////////////////////
+         if (aktion.blackPlayerCE.equals("Human"))
+             betaAgent = new UserAgent(frame,"Human","black","human");
+         else
+             betaAgent = blackEngineAgent.createEngine(frame,aktion.blackPlayerCE,"black",aktion.blackPlayerTip);        
+   
+         System.out.println("whitePlayerTip = "+aktion.whitePlayerTip);
+         System.out.println("blackPlayerTip = "+aktion.blackPlayerTip);
+         if (aktion.whitePlayerTip.equals("xboard") && aktion.blackPlayerTip.equals("uci"))
+             aktion.enemyTip="another";
+         if (aktion.whitePlayerTip.equals("xboard") && aktion.blackPlayerTip.equals("xboard"))
+             aktion.enemyTip="like";
+         if (aktion.whitePlayerTip.equals("uci") && aktion.blackPlayerTip.equals("xboard"))
+             aktion.enemyTip="another";
+         if (aktion.whitePlayerTip.equals("uci") && aktion.blackPlayerTip.equals("uci"))
+             aktion.enemyTip="like";        
+         System.out.println("Enemy Type = "+aktion.enemyTip);
+         System.out.println("Depth = "+aktion.Depth);        
+         System.out.println("Time = "+aktion.Time);
+         if (!aktion.whitePlayerCE.equals("Human") && !aktion.blackPlayerCE.equals("Human"))
+             {
+                 aktion.gameTip="EE"; 
+                 frame.bUndoLast.setEnabled(false); 
+                 frame.mUndoLast.setEnabled(false);
+                 if (aktion.useSound.equals("true")) aktion.useSoundSwitch();
+             }
+         if ( aktion.whitePlayerCE.equals("Human") &&  aktion.blackPlayerCE.equals("Human"))
+             aktion.gameTip="HH";        
+         if (aktion.whitePlayerCE.equals("Human") && !aktion.blackPlayerCE.equals("Human"))
+          {
+             aktion.gameTip="HE";
+             ((EngineAgent)betaAgent).addIEngineListener(new EngineAdapter() {
+             @Override
+             public void dataPrinted(EngineEvent e) {
+                 outputArea.setText(outputArea.getText() + "[OUT] " + e.getData() + "\n");
+             }
+             @Override
+             public void dataEntered(EngineEvent e) {
+                 outputArea.setText(outputArea.getText() + "[IN] " + e.getData() + "\n");
+             }
+             });
+          } 
+         if (!aktion.whitePlayerCE.equals("Human") && aktion.blackPlayerCE.equals("Human"))
+          {
+             aktion.gameTip="EH";             
+             ((EngineAgent)alphaAgent).addIEngineListener(new EngineAdapter() {
+             @Override
+             public void dataPrinted(EngineEvent e) {
+                 outputArea.setText(outputArea.getText() + "[OUT] " + e.getData() + "\n");
+             }
+             @Override
+             public void dataEntered(EngineEvent e) {
+                 outputArea.setText(outputArea.getText() + "[IN] " + e.getData() + "\n");
+             }
+             });
+          }
+    }
+    /**
+     * lance une nouvelle partie
+     * @param agent1 joueur 1
+     * @param agent2 joueur 2
+     */
     public void newGame(int agent1, int agent2) {
         //boardUI.setVisible(true);
         //aktion.deleteLogFile ("log/Bagatur.log");
-        aktion.enemyTip="";
-        aktion.gameTip="";
-        aktion.uciAllMovesString="";
-        aktion.enginePromotionFig="";
-        aktion.enginePromotionType="";
-        aktion.blackRivalMovesString="";
-        aktion.whiteRivalMovesString="";        
-        aktion.restColorWhite_restColorBlack();
+    	initAkiton();
         loadBoardTheme();
-        if(alphaAgent != null) alphaAgent.dispose();
-        if(betaAgent != null) betaAgent.dispose();
-        if (whiteEngineAgent.engineIOwhite!=null) whiteEngineAgent.engineIOwhite.destroy();  // MAKED ON 13-05-16 !!!
-        if (blackEngineAgent.engineIOblack!=null) blackEngineAgent.engineIOblack.destroy();
+        secureNewGame();
+        
     //aktion.killAllEngines();
         outputArea.setText("");
-        chessClock.stop();
-        chessClock.setTime(aktion.Time*60000);
-    //chessClock.setTime(chessClock.WHITE_TURN, Actions.Time*60000);
-    //chessClock.setTime(chessClock.BLACK_TURN, Actions.Time*60000);        
-        chessClock.setTurn(ChessClock.WHITE_TURN);
+        newClock();
         boardUI.setBoard(Utility.INITIAL_BOARD);
         moveListUI.clear();
         ////////////////////
-        if (aktion.whitePlayerCE.equals("Human"))
-            alphaAgent = new UserAgent(frame,"Human","white","human");
-        else
-            alphaAgent = whiteEngineAgent.createEngine(frame,aktion.whitePlayerCE,"white",aktion.whitePlayerTip);
-        //////////////////////////
-        if (aktion.blackPlayerCE.equals("Human"))
-            betaAgent = new UserAgent(frame,"Human","black","human");
-        else
-            betaAgent = blackEngineAgent.createEngine(frame,aktion.blackPlayerCE,"black",aktion.blackPlayerTip);        
+        checkHumanPlayer();
         /////////////////////////
         alphaAgent.setOpponentAgent(betaAgent);
         alphaAgent.setTurn(chessClock.WHITE_TURN);
@@ -212,56 +293,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         betaAgent.setTurn(chessClock.BLACK_TURN);
         alphaAgent.newGame();
         betaAgent.newGame();
-        System.out.println("whitePlayerTip = "+aktion.whitePlayerTip);
-        System.out.println("blackPlayerTip = "+aktion.blackPlayerTip);
-        if (aktion.whitePlayerTip.equals("xboard") && aktion.blackPlayerTip.equals("uci"))
-            aktion.enemyTip="another";
-        if (aktion.whitePlayerTip.equals("xboard") && aktion.blackPlayerTip.equals("xboard"))
-            aktion.enemyTip="like";
-        if (aktion.whitePlayerTip.equals("uci") && aktion.blackPlayerTip.equals("xboard"))
-            aktion.enemyTip="another";
-        if (aktion.whitePlayerTip.equals("uci") && aktion.blackPlayerTip.equals("uci"))
-            aktion.enemyTip="like";        
-        System.out.println("Enemy Type = "+aktion.enemyTip);
-        System.out.println("Depth = "+aktion.Depth);        
-        System.out.println("Time = "+aktion.Time);
-        if (!aktion.whitePlayerCE.equals("Human") && !aktion.blackPlayerCE.equals("Human"))
-            {
-                aktion.gameTip="EE"; 
-                frame.bUndoLast.setEnabled(false); 
-                frame.mUndoLast.setEnabled(false);
-                if (aktion.useSound.equals("true")) aktion.useSoundSwitch();
-            }
-        if ( aktion.whitePlayerCE.equals("Human") &&  aktion.blackPlayerCE.equals("Human"))
-            aktion.gameTip="HH";        
-        if (aktion.whitePlayerCE.equals("Human") && !aktion.blackPlayerCE.equals("Human"))
-         {
-            aktion.gameTip="HE";
-            ((EngineAgent)betaAgent).addIEngineListener(new EngineAdapter() {
-            @Override
-            public void dataPrinted(EngineEvent e) {
-                outputArea.setText(outputArea.getText() + "[OUT] " + e.getData() + "\n");
-            }
-            @Override
-            public void dataEntered(EngineEvent e) {
-                outputArea.setText(outputArea.getText() + "[IN] " + e.getData() + "\n");
-            }
-            });
-         } 
-        if (!aktion.whitePlayerCE.equals("Human") && aktion.blackPlayerCE.equals("Human"))
-         {
-            aktion.gameTip="EH";             
-            ((EngineAgent)alphaAgent).addIEngineListener(new EngineAdapter() {
-            @Override
-            public void dataPrinted(EngineEvent e) {
-                outputArea.setText(outputArea.getText() + "[OUT] " + e.getData() + "\n");
-            }
-            @Override
-            public void dataEntered(EngineEvent e) {
-                outputArea.setText(outputArea.getText() + "[IN] " + e.getData() + "\n");
-            }
-            });
-         }
+      
         System.out.println("Game Type = "+aktion.gameTip);        
         loadBoardTheme();
         // RUN WHITE ENGINES
@@ -380,22 +412,27 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         BoardThemeSelect bts = new BoardThemeSelect(frame,true);
         bts.setVisible(true);
     }
+    
+   private void initVariableMtime() {
+	   mTime = new javax.swing.JMenu();
+       mTime05 = new javax.swing.JRadioButtonMenuItem();
+       mTime10 = new javax.swing.JRadioButtonMenuItem();
+       mTime15 = new javax.swing.JRadioButtonMenuItem();
+       mTime20 = new javax.swing.JRadioButtonMenuItem();
+       mTime25 = new javax.swing.JRadioButtonMenuItem();
+       mTime30 = new javax.swing.JRadioButtonMenuItem();
+       mTimeMenu = new javax.swing.JMenu();
+       mUseClock = new javax.swing.JCheckBoxMenuItem();
+       bcomboTime = new javax.swing.JComboBox();
+       bUseClock = new javax.swing.JToggleButton();
+	   
+   }
     /**
      * initialise le chrono
      */
     private void initMtime() {
     	
-    	  mTime = new javax.swing.JMenu();
-          mTime05 = new javax.swing.JRadioButtonMenuItem();
-          mTime10 = new javax.swing.JRadioButtonMenuItem();
-          mTime15 = new javax.swing.JRadioButtonMenuItem();
-          mTime20 = new javax.swing.JRadioButtonMenuItem();
-          mTime25 = new javax.swing.JRadioButtonMenuItem();
-          mTime30 = new javax.swing.JRadioButtonMenuItem();
-          mTimeMenu = new javax.swing.JMenu();
-          mUseClock = new javax.swing.JCheckBoxMenuItem();
-          bcomboTime = new javax.swing.JComboBox();
-          bUseClock = new javax.swing.JToggleButton();
+    	initVariableMtime();
           
           
           mTimeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/16x16/time-16.png"))); // NOI18N
@@ -471,35 +508,44 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
                   bcomboTimeActionPerformed(evt);
               }
           });
-          
-          bUseClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/clock-plus-24.png"))); // NOI18N
-          bUseClock.setToolTipText("Use Clock");
-          bUseClock.setFocusable(false);
-          bUseClock.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-          bUseClock.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-          bUseClock.addActionListener(new java.awt.event.ActionListener() {
-              public void actionPerformed(java.awt.event.ActionEvent evt) {
-                  bUseClockActionPerformed(evt);
-              }
-          });
+          initClockButton();
     }
+    
+    private void initClockButton() {
+    	
+        
+        bUseClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/clock-plus-24.png"))); // NOI18N
+        bUseClock.setToolTipText("Use Clock");
+        bUseClock.setFocusable(false);
+        bUseClock.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bUseClock.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bUseClock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bUseClockActionPerformed(evt);
+            }
+        });	
+    }
+    private void initVariableDepth(){
+ 	   mEngineDepth = new javax.swing.JMenu();
+       mDepth2 = new javax.swing.JRadioButtonMenuItem();
+       mDepth3 = new javax.swing.JRadioButtonMenuItem();
+       mDepth4 = new javax.swing.JRadioButtonMenuItem();
+       mDepth5 = new javax.swing.JRadioButtonMenuItem();
+       mDepth6 = new javax.swing.JRadioButtonMenuItem();
+       mDepth7 = new javax.swing.JRadioButtonMenuItem();
+       mDepth8 = new javax.swing.JRadioButtonMenuItem();
+       mDepth9 = new javax.swing.JRadioButtonMenuItem();
+       
+       mEngineDepth.setText("Engine Search Depth");
+       mEngineDepth.setToolTipText("");
+    }
+    
     /**
-     * fenetre intiisalisant la  profondeur
+     * fenetre intisalisant la  profondeur
      */
     private void initDepth() {
     	
-    	   mEngineDepth = new javax.swing.JMenu();
-           mDepth2 = new javax.swing.JRadioButtonMenuItem();
-           mDepth3 = new javax.swing.JRadioButtonMenuItem();
-           mDepth4 = new javax.swing.JRadioButtonMenuItem();
-           mDepth5 = new javax.swing.JRadioButtonMenuItem();
-           mDepth6 = new javax.swing.JRadioButtonMenuItem();
-           mDepth7 = new javax.swing.JRadioButtonMenuItem();
-           mDepth8 = new javax.swing.JRadioButtonMenuItem();
-           mDepth9 = new javax.swing.JRadioButtonMenuItem();
-           
-           mEngineDepth.setText("Engine Search Depth");
-           mEngineDepth.setToolTipText("");
+    	initVariableDepth();
 
            mDepth2.setText("2");
            mDepth2.addActionListener(new java.awt.event.ActionListener() {
@@ -568,7 +614,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
            
     }
     
-    private void initWire() {
+    private void initVariableWire() {
     	   verticalSplit = new javax.swing.JSplitPane();
            scrollOutputArea = new javax.swing.JScrollPane();
            outputArea = new javax.swing.JTextArea();
@@ -576,7 +622,11 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
            sidePanel = new javax.swing.JPanel();
            scrollMoveList = new javax.swing.JScrollPane();
            borderPanel = new javax.swing.JPanel();
-           
+    	
+    }
+    private void initWire() {
+    	
+    	initVariableWire();
 
            verticalSplit.setDividerLocation(415);
            verticalSplit.setDividerSize(0);
@@ -718,7 +768,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
     	
     }
     
-    private void initBoard() {
+    private void initBoardVariable() {
     	 jToolBar2 = new javax.swing.JToolBar();
          jToolBar1 = new javax.swing.JToolBar();
          jButton3 = new javax.swing.JButton();
@@ -732,159 +782,172 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
          bAbout = new javax.swing.JButton();
          jToolBar3 = new javax.swing.JToolBar();
          
+    }
+    
+    private void initJtoolBar1() {
+        jToolBar1.setFloatable(false);
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/log-24-blue.png"))); // NOI18N
+        jButton3.setToolTipText("Show Game Log in separate window");
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton3);
+
+        bUndoLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/undo-red-24.png"))); // NOI18N
+        bUndoLast.setToolTipText("Undo Last One Move");
+        bUndoLast.setFocusable(false);
+        bUndoLast.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bUndoLast.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bUndoLast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bUndoLastActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(bUndoLast);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/knight-black-24.png"))); // NOI18N
+        jButton1.setToolTipText("Select Black Player Chess Engine");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton1);
+
+        bSelectWhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/knight-white-24.png"))); // NOI18N
+        bSelectWhite.setToolTipText("Select White Player Chess Engine");
+        bSelectWhite.setFocusable(false);
+        bSelectWhite.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bSelectWhite.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bSelectWhite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSelectWhiteActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(bSelectWhite);
+
+        bChangeSkin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/skin_color_chooser-24.png"))); // NOI18N
+        bChangeSkin.setToolTipText("Change Skin");
+        bChangeSkin.setFocusable(false);
+        bChangeSkin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bChangeSkin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bChangeSkin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bChangeSkinActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(bChangeSkin);
+
+        bBoardTheme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/color-swatch-24.png"))); // NOI18N
+        bBoardTheme.setToolTipText("Select Board Theme");
+        bBoardTheme.setFocusable(false);
+        bBoardTheme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bBoardTheme.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bBoardTheme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBoardThemeActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(bBoardTheme);
+
+        bLinks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/x-b-24.png"))); // NOI18N
+        bLinks.setToolTipText("Xboard Engine Links & Ratings");
+        bLinks.setFocusable(false);
+        bLinks.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bLinks.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bLinks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bLinksActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(bLinks);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/U-blue-24.png"))); // NOI18N
+        jButton2.setToolTipText("Uci Engines Links & Ratings");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton2);
+
+        bAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/info-book-green.png"))); // NOI18N
+        bAbout.setToolTipText("About");
+        bAbout.setFocusable(false);
+        bAbout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bAbout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAboutActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(bAbout);
+    }
+    
+   private void  initJtoolBar3Button(){
+        jToolBar3.setFloatable(false);
+
+        bNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/new.png"))); // NOI18N
+        bNew.setToolTipText("New Game");
+        bNew.setFocusable(false);
+        bNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNewActionPerformed(evt);
+            }
+        });
+        jToolBar3.add(bNew);
+
+        bKillAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/stop-red.png"))); // NOI18N
+        bKillAll.setToolTipText("Kill All Engines and reset Board");
+        bKillAll.setFocusable(false);
+        bKillAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bKillAll.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bKillAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bKillAllActionPerformed(evt);
+            }
+        });
+        jToolBar3.add(bKillAll);
+
+        bSaveCfg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/floppy_disk_green.png"))); // NOI18N
+        bSaveCfg.setToolTipText("Save Config");
+        bSaveCfg.setFocusable(false);
+        bSaveCfg.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bSaveCfg.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bSaveCfg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSaveCfgActionPerformed(evt);
+            }
+        });
+        jToolBar3.add(bSaveCfg);
+    }
+    private void initBoard() {
+    	
+    	initBoardVariable();
+    	initJtoolBar1();
          jToolBar2.setFloatable(false);
          jToolBar2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-         jToolBar1.setFloatable(false);
 
-         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/log-24-blue.png"))); // NOI18N
-         jButton3.setToolTipText("Show Game Log in separate window");
-         jButton3.setFocusable(false);
-         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton3.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton3ActionPerformed(evt);
-             }
-         });
-         jToolBar1.add(jButton3);
-
-         bUndoLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/undo-red-24.png"))); // NOI18N
-         bUndoLast.setToolTipText("Undo Last One Move");
-         bUndoLast.setFocusable(false);
-         bUndoLast.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bUndoLast.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         bUndoLast.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 bUndoLastActionPerformed(evt);
-             }
-         });
-         jToolBar1.add(bUndoLast);
-
-         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/knight-black-24.png"))); // NOI18N
-         jButton1.setToolTipText("Select Black Player Chess Engine");
-         jButton1.setFocusable(false);
-         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton1.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton1ActionPerformed(evt);
-             }
-         });
-         jToolBar1.add(jButton1);
-
-         bSelectWhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/knight-white-24.png"))); // NOI18N
-         bSelectWhite.setToolTipText("Select White Player Chess Engine");
-         bSelectWhite.setFocusable(false);
-         bSelectWhite.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bSelectWhite.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         bSelectWhite.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 bSelectWhiteActionPerformed(evt);
-             }
-         });
-         jToolBar1.add(bSelectWhite);
-
-         bChangeSkin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/skin_color_chooser-24.png"))); // NOI18N
-         bChangeSkin.setToolTipText("Change Skin");
-         bChangeSkin.setFocusable(false);
-         bChangeSkin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bChangeSkin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         bChangeSkin.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 bChangeSkinActionPerformed(evt);
-             }
-         });
-         jToolBar1.add(bChangeSkin);
-
-         bBoardTheme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/color-swatch-24.png"))); // NOI18N
-         bBoardTheme.setToolTipText("Select Board Theme");
-         bBoardTheme.setFocusable(false);
-         bBoardTheme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bBoardTheme.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         bBoardTheme.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 bBoardThemeActionPerformed(evt);
-             }
-         });
-         jToolBar1.add(bBoardTheme);
-
-         bLinks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/x-b-24.png"))); // NOI18N
-         bLinks.setToolTipText("Xboard Engine Links & Ratings");
-         bLinks.setFocusable(false);
-         bLinks.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bLinks.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         bLinks.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 bLinksActionPerformed(evt);
-             }
-         });
-         jToolBar1.add(bLinks);
-
-         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/U-blue-24.png"))); // NOI18N
-         jButton2.setToolTipText("Uci Engines Links & Ratings");
-         jButton2.setFocusable(false);
-         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton2.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton2ActionPerformed(evt);
-             }
-         });
-         jToolBar1.add(jButton2);
-
-         bAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/info-book-green.png"))); // NOI18N
-         bAbout.setToolTipText("About");
-         bAbout.setFocusable(false);
-         bAbout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bAbout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         bAbout.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 bAboutActionPerformed(evt);
-             }
-         });
-         jToolBar1.add(bAbout);
 
          jToolBar2.add(jToolBar1);
 
-         jToolBar3.setFloatable(false);
 
-         bNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/new.png"))); // NOI18N
-         bNew.setToolTipText("New Game");
-         bNew.setFocusable(false);
-         bNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         bNew.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 bNewActionPerformed(evt);
-             }
-         });
-         jToolBar3.add(bNew);
-
-         bKillAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/stop-red.png"))); // NOI18N
-         bKillAll.setToolTipText("Kill All Engines and reset Board");
-         bKillAll.setFocusable(false);
-         bKillAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bKillAll.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         bKillAll.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 bKillAllActionPerformed(evt);
-             }
-         });
-         jToolBar3.add(bKillAll);
-
-         bSaveCfg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/floppy_disk_green.png"))); // NOI18N
-         bSaveCfg.setToolTipText("Save Config");
-         bSaveCfg.setFocusable(false);
-         bSaveCfg.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bSaveCfg.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         bSaveCfg.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 bSaveCfgActionPerformed(evt);
-             }
-         });
-         jToolBar3.add(bSaveCfg);
-         
+         initJtoolBar3Button();
          
     }
     /**

@@ -372,43 +372,7 @@ public abstract class EngineAgent extends Agent {
     public void setChessClock(ChessClock chessClock) {
         this.chessClock = chessClock;
     }
-    
-    public String readLine() throws IOException {
-        String line = "";
-        //try {
-            if (this.colorCE.equals("white"))
-                line = engineIOwhite.readLine().toLowerCase();
-            else 
-                line = engineIOblack.readLine().toLowerCase();
-        //} catch (NullPointerException ne) { }
-        if(line.length()>0) frame.outputArea.append("<read from "+colorCE.toUpperCase()+">: "+line+"\n");
-        if(!(line!= null)||line.length()==0||line.startsWith("info")) return null;
-                //||line.startsWith("info")) return null;        
-        if (line.contains("bestmove")&&(aktion.whiteRivalMovesString.endsWith(line.substring(9))||aktion.blackRivalMovesString.endsWith(line.substring(9))))
-         {
-            line="";
-            aktion.sendEngineCmd("white","quit");
-            aktion.sendEngineCmd("black","quit");
-            //chessClock.stop();
-            new Msg_Thread(colorCE.toUpperCase()+" SAY: end game !");
-         }
-        if ( (line.contains("bestmove") && ( line.contains("can't move")||line.contains("nomove")||line.contains("0000")||line.contains("null")||line.contains("none")||line.contains("a1a1")) ) || line.contains("resign")||line.contains("mates")||line.contains("mated")||line.contains("black checkmate")||line.contains("white checkmate")||line.contains("computer wins")||line.contains("stalemate")||(line.contains("1/2")&&(line.contains("move rule")||line.contains("moves rule")||line.contains("repetition")))||line.contains("{checkmate}")||line.contains("game over"))
-         {
-            aktion.sendEngineCmd("white","quit");
-            aktion.sendEngineCmd("black","quit");
-            //chessClock.stop();
-            new Msg_Thread(colorCE.toUpperCase()+" SAY: "+line);
-         }
-        aktion.enginePromotionType="";
-        if (this.ceTip.equals("uci")) {
-            if (line.contains("bestmove")) 
-                line=line.replaceAll("bestmove","move");
-            if (line.contains("move") && line.contains("ponder")) { 
-                String[] bf = line.trim().split("\\s+");
-                line=bf[0] + " " + bf[1];
-            }
-        }
-        if (line.contains("my move is:")) line=line.replaceAll("my move is:","move");
+    private void readLineMove(String line) {
         if (line.contains("move")) {
             if (line.endsWith("n") && line.length()==10)
                 { 
@@ -464,6 +428,44 @@ public abstract class EngineAgent extends Agent {
                 System.out.println("QueenSide Castle Zero-Zero-Zero = "+line);
             } 
         }
+    }
+    public String readLine() throws IOException {
+        String line = "";
+        //try {
+            if (this.colorCE.equals("white"))
+                line = engineIOwhite.readLine().toLowerCase();
+            else 
+                line = engineIOblack.readLine().toLowerCase();
+        //} catch (NullPointerException ne) { }
+        if(line.length()>0) frame.outputArea.append("<read from "+colorCE.toUpperCase()+">: "+line+"\n");
+        if(!(line!= null)||line.length()==0||line.startsWith("info")) return null;
+                //||line.startsWith("info")) return null;        
+        if (line.contains("bestmove")&&(aktion.whiteRivalMovesString.endsWith(line.substring(9))||aktion.blackRivalMovesString.endsWith(line.substring(9))))
+         {
+            line="";
+            aktion.sendEngineCmd("white","quit");
+            aktion.sendEngineCmd("black","quit");
+            //chessClock.stop();
+            new Msg_Thread(colorCE.toUpperCase()+" SAY: end game !");
+         }
+        if ( (line.contains("bestmove") && ( line.contains("can't move")||line.contains("nomove")||line.contains("0000")||line.contains("null")||line.contains("none")||line.contains("a1a1")) ) || line.contains("resign")||line.contains("mates")||line.contains("mated")||line.contains("black checkmate")||line.contains("white checkmate")||line.contains("computer wins")||line.contains("stalemate")||(line.contains("1/2")&&(line.contains("move rule")||line.contains("moves rule")||line.contains("repetition")))||line.contains("{checkmate}")||line.contains("game over"))
+         {
+            aktion.sendEngineCmd("white","quit");
+            aktion.sendEngineCmd("black","quit");
+            //chessClock.stop();
+            new Msg_Thread(colorCE.toUpperCase()+" SAY: "+line);
+         }
+        aktion.enginePromotionType="";
+        if (this.ceTip.equals("uci")) {
+            if (line.contains("bestmove")) 
+                line=line.replaceAll("bestmove","move");
+            if (line.contains("move") && line.contains("ponder")) { 
+                String[] bf = line.trim().split("\\s+");
+                line=bf[0] + " " + bf[1];
+            }
+        }
+        if (line.contains("my move is:")) line=line.replaceAll("my move is:","move");
+        readLineMove(line);
         fireDataPrinted(new EngineEvent(this, line));
         return line;
     }
