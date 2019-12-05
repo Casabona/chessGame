@@ -972,7 +972,9 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
          
          bUseSound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/sound-add-icon.png"))); // NOI18N
          bUseSound.setToolTipText("Use Sound");
-         initButton(bUseSound);
+         bUseSound.setFocusable(false);
+         bUseSound.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+         bUseSound.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
          bUseSound.addActionListener(new java.awt.event.ActionListener() {
              public void actionPerformed(java.awt.event.ActionEvent evt) {
                  bUseSoundActionPerformed(evt);
