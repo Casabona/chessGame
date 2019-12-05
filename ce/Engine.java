@@ -928,6 +928,7 @@ private void refreshBoardCmd(int square) {
 				thinkThread1_3();
 	}
 		}
+	}
 	private void finishSearch() {
 		if (s1.getLastRunFinished() && !s2.getLastRunFinished())
 		{
