@@ -1073,7 +1073,9 @@ private void refreshBoardCmd(int square) {
 				{
 					alpha = s1.getBestValue();
 					thinkThread1_3();
-	}
+				}
+			}
+		}
 	private void StartSearch() {
 		s1 = new Search(p, alpha, beta, maxDepth, "1\'",
 				startTime, xboard, post, computerWhite);
