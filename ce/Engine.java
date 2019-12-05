@@ -1300,6 +1300,71 @@ private void refreshBoardCmd(int square) {
 			}
 		}
 	}
+	
+	private void finishTread() {
+		if (s1.getLastRunFinished() && !s2.getLastRunFinished())
+		{
+			if (s1.getBestValue() == middle1)
+			{
+				bestMove = s1.getBestMove();
+				e = s1.getBestValue();
+				break;
+			}
+			else
+				break;
+		}
+		else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
+		{
+			if (s2.getBestValue() == middle2)
+			{
+				bestMove = s2.getBestMove();
+				e = s2.getBestValue();
+				break;
+			}
+			else
+				break;
+		}
+		else if (!s1.getLastRunFinished() && !s2.getLastRunFinished())
+		{
+			break;
+		}
+		else if (s1.getBestValue() == middle1)
+		// s1.getLastRunFinished() && s2.getLastRunFinished()
+		{
+			bestMove = s1.getBestMove();
+			e = s1.getBestValue();
+			break;
+		}
+		else if (s2.getBestValue() == middle2)
+		{
+			bestMove = s2.getBestMove();
+			e = s2.getBestValue();
+			break;
+		}
+		else if (s1.getBestValue() <= middle1 - 1)
+		{
+			beta = s1.getBestValue();
+			middle1 = alpha + (beta - alpha) / 3;
+			middle2 = alpha + 2 * (beta - alpha) / 3;
+		}
+		else if (s2.getBestValue() >= middle2 + 1)
+		{
+			alpha = s2.getBestValue();
+			middle1 = alpha + (beta - alpha) / 3;
+			middle2 = alpha + 2 * (beta - alpha) / 3;
+		}
+		else if (s1.getBestValue() >= middle1 + 1 && s2.getBestValue() <= middle2 - 1)
+		{
+			alpha = s1.getBestValue();
+			beta = s2.getBestValue();
+			middle1 = alpha + (beta - alpha) / 3;
+			middle2 = alpha + 2 * (beta - alpha) / 3;
+		}
+		else
+		{
+			threadOutput((threads 6));
+		}
+	}
 	/**
 	 *  Makes the next move using iterative deepening for thread 6
 	 */
@@ -1328,68 +1393,7 @@ private void refreshBoardCmd(int square) {
 						s1.join();
 						s2.join();
 	
-						if (s1.getLastRunFinished() && !s2.getLastRunFinished())
-						{
-							if (s1.getBestValue() == middle1)
-							{
-								bestMove = s1.getBestMove();
-								e = s1.getBestValue();
-								break;
-							}
-							else
-								break;
-						}
-						else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
-						{
-							if (s2.getBestValue() == middle2)
-							{
-								bestMove = s2.getBestMove();
-								e = s2.getBestValue();
-								break;
-							}
-							else
-								break;
-						}
-						else if (!s1.getLastRunFinished() && !s2.getLastRunFinished())
-						{
-							break;
-						}
-						else if (s1.getBestValue() == middle1)
-						// s1.getLastRunFinished() && s2.getLastRunFinished()
-						{
-							bestMove = s1.getBestMove();
-							e = s1.getBestValue();
-							break;
-						}
-						else if (s2.getBestValue() == middle2)
-						{
-							bestMove = s2.getBestMove();
-							e = s2.getBestValue();
-							break;
-						}
-						else if (s1.getBestValue() <= middle1 - 1)
-						{
-							beta = s1.getBestValue();
-							middle1 = alpha + (beta - alpha) / 3;
-							middle2 = alpha + 2 * (beta - alpha) / 3;
-						}
-						else if (s2.getBestValue() >= middle2 + 1)
-						{
-							alpha = s2.getBestValue();
-							middle1 = alpha + (beta - alpha) / 3;
-							middle2 = alpha + 2 * (beta - alpha) / 3;
-						}
-						else if (s1.getBestValue() >= middle1 + 1 && s2.getBestValue() <= middle2 - 1)
-						{
-							alpha = s1.getBestValue();
-							beta = s2.getBestValue();
-							middle1 = alpha + (beta - alpha) / 3;
-							middle2 = alpha + 2 * (beta - alpha) / 3;
-						}
-						else
-						{
-							threadOutput((threads 6));
-						}
+						finishTread();
 					}
 	
 					if (e >= Search.CHECKMATE_VALUE)
