@@ -201,237 +201,94 @@ public class CElinksU extends javax.swing.JDialog {
         jButton72.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar4.add(jButton72);
     }
-    
+    private void initButtonJtoolBar1(javax.swing.JButton button) {
+    	button.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+    	button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    	button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    	button.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 jButton32ActionPerformed(evt);
+             }
+         });
+    }
     private void initJtoolBar1() {
     	 jToolBar1.setFloatable(false);
          jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
          jButton32.setText("<html><a href=\"http://bagaturchess.sourceforge.net/\">Bagatur v1.4c = http://bagaturchess.sourceforge.net/</a></html>");
-         jButton32.setFocusable(false);
-         jButton32.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton32.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton32.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton32.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton32ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton32);
          jToolBar1.add(jButton32);
 
          jButton36.setText("<html><a href=\"https://code.google.com/p/calculonx/\">Calculon v0.4.2 = https://code.google.com/p/calculonx/</a></html>");
-         jButton36.setFocusable(false);
-         jButton36.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton36.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton36.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton36.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton36ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton36);
          jToolBar1.add(jButton36);
 
          jButton35.setText("<html><a href=\"https://github.com/albertoruibal/carballo/\">Carballo v1.7 = https://github.com/albertoruibal/carballo/</a></html>");
-         jButton35.setFocusable(false);
-         jButton35.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton35.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton35.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton35.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton35ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton35);
          jToolBar1.add(jButton35);
 
          jButton22.setText("<html><a href=\"http://web.comhem.se/petero2home/javachess/index.html\">Cuckoo v1.12 = http://web.comhem.se/petero2home/javachess/index.html</a></html>");
-         jButton22.setFocusable(false);
-         jButton22.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton22.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton22.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton22.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton22ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton22);
          jToolBar1.add(jButton22);
 
          jButton4.setText("<html><a href=\"http://kirr.homeunix.org/chess/engines/Jim%20Ablett/EDEN/\">Eden v0.0.13 = http://kirr.homeunix.org/chess/engines/Jim%20Ablett/EDEN/</a></html>");
-         jButton4.setFocusable(false);
-         jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton4.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton4ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton4);
          jToolBar1.add(jButton4);
 
          jButton34.setText("<html><a href=\"http://www.stuckardt.de/index.php/schachengine-fischerle.html\">Fischerle v0.9.70 SE 32bit = http://www.stuckardt.de/index.php/schachengine-fischerle.html</a></html>");
-         jButton34.setFocusable(false);
-         jButton34.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton34.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton34.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton34.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton34ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton34);
          jToolBar1.add(jButton34);
 
          jButton20.setText("<html><a href=\"https://github.com/fluxroot/flux/releases\">Flux v2.2.1 = https://github.com/fluxroot/flux/releases</a></html>");
-         jButton20.setFocusable(false);
-         jButton20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton20.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton20.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton20.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton20ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton20);
          jToolBar1.add(jButton20);
 
          jButton3.setText("<html><a href=\"https://code.google.com/archive/p/magnumchess/downloads\">Magnum v4.0 = https://code.google.com/archive/p/magnumchess/downloads</a></html>");
-         jButton3.setFocusable(false);
-         jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton3.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton3ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton3);
          jToolBar1.add(jButton3);
 
          jButton33.setText("<html><a href=\"http://mediocrechess.sourceforge.net/\">Mediocre v0.5 = http://mediocrechess.sourceforge.net/</a></html>");
-         jButton33.setFocusable(false);
-         jButton33.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton33.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton33.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton33.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton33ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton33);
          jToolBar1.add(jButton33);
 
          jButton27.setText("<html><a href=\"https://github.com/jwilson82/presbyter\">Presbyter v1.3.0 = https://github.com/jwilson82/presbyter</a></html>");
-         jButton27.setFocusable(false);
-         jButton27.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton27.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton27.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton27.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton27ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton27);
          jToolBar1.add(jButton27);
 
          jButton28.setText("<html><a href=\"https://github.com/rahular/phoenix\">Phoenix-Cuckoo v1.13a9 = https://github.com/rahular/phoenix</a></html>");
-         jButton28.setFocusable(false);
-         jButton28.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton28.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton28.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton28.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton28ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton28);
          jToolBar1.add(jButton28);
 
          jButton31.setText("<html><a href=\"https://github.com/fluxroot/pulse/releases/\">Pulse v1.6.1 = https://github.com/fluxroot/pulse/releases/</a></html>");
-         jButton31.setFocusable(false);
-         jButton31.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton31.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton31.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton31.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton31ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton31);
          jToolBar1.add(jButton31);
 
          jButton29.setText("<html><a href=\"http://www.rivalchess.com/downloads/\">Rival build 0094 = http://www.rivalchess.com/downloads/</a></html>");
-         jButton29.setFocusable(false);
-         jButton29.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton29.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton29.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton29.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton29ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton29);
          jToolBar1.add(jButton29);
 
          jButton30.setText("<html><a href=\"https://github.com/Zaloum/\">Rumney v0.2.1 = https://github.com/Zaloum/</a></html>");
-         jButton30.setFocusable(false);
-         jButton30.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton30.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton30.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton30.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton30ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton30);
          jToolBar1.add(jButton30);
 
          jButton12.setText("<html><a href=\"https://github.com/micaherne/unidexter/\">Unidexter v0.0.1= https://github.com/micaherne/unidexter/</a></html>");
-         jButton12.setFocusable(false);
-         jButton12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton12.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton12.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton12ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton12);
          jToolBar1.add(jButton12);
 
          jButton16.setText("<html><a href=\"https://github.com/krummi/ChessEngine/\">Ziggy v0.7 = https://github.com/krummi/ChessEngine/</a></html>");
-         jButton16.setFocusable(false);
-         jButton16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton16.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton16.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton16.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton16ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton16);
          jToolBar1.add(jButton16);
 
          jButton17.setText("<html><a href=\"https://github.com/sandermvdb/chess22k/\">Chess22k v1.5 = https://github.com/sandermvdb/chess22k</a></html>");
-         jButton17.setFocusable(false);
-         jButton17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton17.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton17.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton17.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton17ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton17);
          jToolBar1.add(jButton17);
 
          jButton23.setText("<html><a href=\"https://github.com/eliucs/kasparov/\">Kasparov Chess v1.0.0 = https://github.com/eliucs/kasparov/</a></html>");
-         jButton23.setFocusable(false);
-         jButton23.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton23.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton23.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton23.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton23ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton23);
          jToolBar1.add(jButton23);
 
          jButton24.setText("<html><a href=\"http://computer-chess.org/doku.php?id=computer_chess:wiki:lists:chess_engine_list\">Koedem v1.1 = http://computer-chess.org/doku.php?id=computer_chess:wiki:lists:chess_engine_list</a></html>");
-         jButton24.setFocusable(false);
-         jButton24.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-         jButton24.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         jButton24.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-         jButton24.addActionListener(new java.awt.event.ActionListener() {
-             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                 jButton24ActionPerformed(evt);
-             }
-         });
+         initButtonJtoolBar1(jButton24);
          jToolBar1.add(jButton24);
     }
     
