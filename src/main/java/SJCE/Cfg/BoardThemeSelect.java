@@ -20,64 +20,74 @@ public class BoardThemeSelect extends javax.swing.JDialog {
         lwhiteFon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/themes/fon/"+comboFon.getSelectedItem().toString()+"/ws.png")));
         lblackFon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/themes/fon/"+comboFon.getSelectedItem().toString()+"/bs.png")));        
     }
+private void initButton() {
+	  jToolBar1 = new javax.swing.JToolBar();
+      jToolBar2 = new javax.swing.JToolBar();
+      lwhiteFig = new javax.swing.JLabel();
+      jSeparator1 = new javax.swing.JToolBar.Separator();
+      lblackFig = new javax.swing.JLabel();
+      comboFig = new javax.swing.JComboBox<>();
+      jToolBar3 = new javax.swing.JToolBar();
+      jToolBar4 = new javax.swing.JToolBar();
+      lwhiteFon = new javax.swing.JLabel();
+      lblackFon = new javax.swing.JLabel();
+      comboFon = new javax.swing.JComboBox<>();
+      bOk = new javax.swing.JButton();
+      bCancel = new javax.swing.JButton();
+}
 
+private void initToolBar1() {
+    jToolBar1.setBorder(javax.swing.BorderFactory.createTitledBorder("Piece"));
+    jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+    jToolBar2.setBorder(javax.swing.BorderFactory.createTitledBorder("Example"));
+    jToolBar2.setFloatable(false);
+
+    lwhiteFig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/themes/fig/alpha/wg.png"))); // NOI18N
+    jToolBar2.add(lwhiteFig);
+    jToolBar2.add(jSeparator1);
+
+    lblackFig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/themes/fig/alpha/bg.png"))); // NOI18N
+    jToolBar2.add(lblackFig);
+
+    jToolBar1.add(jToolBar2);
+
+    comboFig.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "white-black", "white-yellow", "white-green", "white-red", "yellow-green", "yellow-red", "cyan-red" }));
+    comboFig.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            comboFigActionPerformed(evt);
+        }
+    });
+    jToolBar1.add(comboFig);
+}
+
+private void initToolBar3() {
+	  jToolBar3.setBorder(javax.swing.BorderFactory.createTitledBorder("Board"));
+      jToolBar3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+      jToolBar4.setBorder(javax.swing.BorderFactory.createTitledBorder("Example"));
+      jToolBar4.setFloatable(false);
+
+      lwhiteFon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/themes/fon/sea-green/ws.png"))); // NOI18N
+      jToolBar4.add(lwhiteFon);
+
+      lblackFon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/themes/fon/sea-green/bs.png"))); // NOI18N
+      jToolBar4.add(lblackFon);
+
+      jToolBar3.add(jToolBar4);
+}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToolBar1 = new javax.swing.JToolBar();
-        jToolBar2 = new javax.swing.JToolBar();
-        lwhiteFig = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JToolBar.Separator();
-        lblackFig = new javax.swing.JLabel();
-        comboFig = new javax.swing.JComboBox<>();
-        jToolBar3 = new javax.swing.JToolBar();
-        jToolBar4 = new javax.swing.JToolBar();
-        lwhiteFon = new javax.swing.JLabel();
-        lblackFon = new javax.swing.JLabel();
-        comboFon = new javax.swing.JComboBox<>();
-        bOk = new javax.swing.JButton();
-        bCancel = new javax.swing.JButton();
+      initButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Board Theme ");
 
-        jToolBar1.setBorder(javax.swing.BorderFactory.createTitledBorder("Piece"));
-        jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        initToolBar1();
 
-        jToolBar2.setBorder(javax.swing.BorderFactory.createTitledBorder("Example"));
-        jToolBar2.setFloatable(false);
-
-        lwhiteFig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/themes/fig/alpha/wg.png"))); // NOI18N
-        jToolBar2.add(lwhiteFig);
-        jToolBar2.add(jSeparator1);
-
-        lblackFig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/themes/fig/alpha/bg.png"))); // NOI18N
-        jToolBar2.add(lblackFig);
-
-        jToolBar1.add(jToolBar2);
-
-        comboFig.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "white-black", "white-yellow", "white-green", "white-red", "yellow-green", "yellow-red", "cyan-red" }));
-        comboFig.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboFigActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(comboFig);
-
-        jToolBar3.setBorder(javax.swing.BorderFactory.createTitledBorder("Board"));
-        jToolBar3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        jToolBar4.setBorder(javax.swing.BorderFactory.createTitledBorder("Example"));
-        jToolBar4.setFloatable(false);
-
-        lwhiteFon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/themes/fon/sea-green/ws.png"))); // NOI18N
-        jToolBar4.add(lwhiteFon);
-
-        lblackFon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/themes/fon/sea-green/bs.png"))); // NOI18N
-        jToolBar4.add(lblackFon);
-
-        jToolBar3.add(jToolBar4);
+        initToolBar3();
 
         comboFon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "white-green", "white-magenta", "white-cyan", "yellow-red", "yellow-green", "cyan-magenta", "bisque-orange", "forest", "tree" }));
         comboFon.addActionListener(new java.awt.event.ActionListener() {
