@@ -82,252 +82,231 @@ private void initButton() {
 
 }
 
+private void initButtonToolBar5(javax.swing.JButton button) {
+	button.setFocusable(false);
+	button.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+	button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+	button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+	button.addActionListener(new java.awt.event.ActionListener() {
+	        public void actionPerformed(java.awt.event.ActionEvent evt) {
+	            jButton18ActionPerformed(evt);
+	        }
+	    });
+}
 private void initJtoolBar5() {
     jToolBar5.setFloatable(false);
     jToolBar5.setOrientation(javax.swing.SwingConstants.VERTICAL);
     jToolBar5.setAlignmentX(0.5F);
 
     jButton18.setText("<html><a href=\"http://kirr.homeunix.org/chess/engines/Jim%20Ablett/ALF/\">Alf v1.09 = http://kirr.homeunix.org/chess/engines/Jim%20Ablett/ALF/</a></html>");
-    jButton18.setFocusable(false);
-    jButton18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton18.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton18.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton18.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton18ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton18);
     jToolBar5.add(jButton18);
 
-    jButton10.setText("<html><a href=\"http://animatschess.sourceforge.net/\">Animats r23 = http://animatschess.sourceforge.net/</a></html>");
-    jButton10.setFocusable(false);
-    jButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton10.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton10ActionPerformed(evt);
-        }
-    });
+   
     jToolBar5.add(jButton10);
 
     jButton19.setText("<html><a href=\"http://computer-chess.org/doku.php?id=computer_chess:wiki:download:engine_download_list\">Arabian Knight v1.55 = http://computer-chess.org/</a></html>");
-    jButton19.setFocusable(false);
-    jButton19.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton19.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton19.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton19.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton19ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton19);
     jToolBar5.add(jButton19);
 
     jButton5.setText("<html><a href=\"http://bremboce.cisana.com/\">BremboCE v0.6.2 = http://bremboce.cisana.com/</a></html>");
-    jButton5.setFocusable(false);
-    jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton5.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton5ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton5);
     jToolBar5.add(jButton5);
 
     jButton17.setText("<html><a href=\"http://cavechess.sourceforge.net/\">CaveChess r61 = http://cavechess.sourceforge.net/</a></html>");
-    jButton17.setFocusable(false);
-    jButton17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton17.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton17.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton17.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton17ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton17);
     jToolBar5.add(jButton17);
 
     jButton21.setText("<html><a href=\"http://kirr.homeunix.org/chess/engines/Jim%20Ablett/CUPCAKE/\">CupCake v11c = http://kirr.homeunix.org/chess/engines/Jim%20Ablett/CUPCAKE/</a></html>");
-    jButton21.setFocusable(false);
-    jButton21.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton21.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton21.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton21.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton21ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton21);
     jToolBar5.add(jButton21);
 
     jButton15.setText("<html><a href=\"https://github.com/alexandersoto/chess-bot\">ChessBot = https://github.com/alexandersoto/chess-bot</a></html>");
-    jButton15.setFocusable(false);
-    jButton15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton15.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton15ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton15);
     jToolBar5.add(jButton15);
 
     jButton8.setText("<html><a href=\"https://www.vanheusden.com/DeepBrutePos/\">DeepBrutePos v2.1 = https://www.vanheusden.com/DeepBrutePos/</a></html>");
-    jButton8.setFocusable(false);
-    jButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton8.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton8ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton8);
     jToolBar5.add(jButton8);
 
     jButton23.setText("<html><a href=\"http://kirr.homeunix.org/chess/engines/Jim%20Ablett/FRANK-WALTER/\">Frank Walter v1.08 = http://kirr.homeunix.org/chess/engines/Jim%20Ablett/FRANK-WALTER/</a></html>");
-    jButton23.setFocusable(false);
-    jButton23.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton23.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton23.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton23.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton23ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton23);
     jToolBar5.add(jButton23);
 
     jButton1.setText("<html><a href=\"http://frittle.sourceforge.net/\">Frittle v1.0 = http://frittle.sourceforge.net/</a></html>");
-    jButton1.setFocusable(false);
-    jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton1ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton1);
     jToolBar5.add(jButton1);
 
     jButton6.setText("<html><a href=\"https://github.com/dagaren/gladiator-chess\">Gladiator v0.0.6 = https://github.com/dagaren/gladiator-chess</a></html>");
-    jButton6.setFocusable(false);
-    jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton6.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton6ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton6);
     jToolBar5.add(jButton6);
 
     jButton13.setText("<html><a href=\"http://www.forthgo.com/chessbox/\">GNU chess 5.0.7 = ChessBox_Gnu4j v1.02 = http://www.forthgo.com/chessbox/</a></html>");
-    jButton13.setFocusable(false);
-    jButton13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton13.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton13ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton13);
     jToolBar5.add(jButton13);
 
     jButton26.setText("<html><a href=\"http://jchecs.free.fr/\">jChecs v0.1.0 = http://jchecs.free.fr/</a></html>");
-    jButton26.setFocusable(false);
-    jButton26.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton26.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton26.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton26.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton26ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton26);
     jToolBar5.add(jButton26);
 
     jButton9.setText("<html><a href=\"https://github.com/bugyvlad/javalin\">Javalin v1.3.0 = https://github.com/bugyvlad/javalin</a></html>");
-    jButton9.setFocusable(false);
-    jButton9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton9.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton9ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton9);
     jToolBar5.add(jButton9);
 
     jButton24.setText("<html><a href=\"http://computer-chess.org/\">JChess v1.0 = http://computer-chess.org/</a></html>");
-    jButton24.setFocusable(false);
-    jButton24.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton24.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton24.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton24.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton24ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton24);
     jToolBar5.add(jButton24);
 
     jButton25.setText("<html><a href=\"http://kirr.homeunix.org/chess/engines/Jim%20Ablett/KINGSOUT/\">King's Out v0.2.42 = http://kirr.homeunix.org/chess/engines/Jim%20Ablett/KINGSOUT/</a></html>");
-    jButton25.setFocusable(false);
-    jButton25.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton25.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton25.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton25.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton25ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton25);
     jToolBar5.add(jButton25);
 
     jButton7.setText("<html><a href=\"http://kirr.homeunix.org/chess/engines/Jim%20Ablett/OLITHINK/\">OliThink v5.3.2 = http://kirr.homeunix.org/chess/engines/Jim%20Ablett/OLITHINK/</a></html>");
-    jButton7.setFocusable(false);
-    jButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton7.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton7ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton7);
     jToolBar5.add(jButton7);
 
     jButton14.setText("<html><a href=\"http://talvmenni.sourceforge.net\">Talvmenni v0.0.1 = http://talvmenni.sourceforge.net/</a></html>");
-    jButton14.setFocusable(false);
-    jButton14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton14.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton14.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton14ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton14);
     jToolBar5.add(jButton14);
 
     jButton2.setText("<html><a href=\"http://tiffanys.sourceforge.net/\">Tiffanys v0.5 = http://tiffanys.sourceforge.net/</a></html>");
-    jButton2.setFocusable(false);
-    jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton2.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton2ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton2);
     jToolBar5.add(jButton2);
 
     jButton3.setText("<html><a href=\"http://chess.dubmun.com/\">Tri-OS/cs4210 = http://chess.dubmun.com/</a></html>");
-    jButton3.setFocusable(false);
-    jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton3.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton3ActionPerformed(evt);
-        }
-    });
+    initButtonToolBar5(jButton5);
     jToolBar5.add(jButton3);
 
     jToolBar3.add(jToolBar5);
+}
+
+private void initJbuttonJtoolBar2() {
+	
+}
+private void initJtoolBar2() {
+
+    jToolBar2.setFloatable(false);
+    jToolBar2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+    jButton36.setText(" Rating = 2190");
+    jButton36.setFocusable(false);
+    jButton36.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton36.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton36);
+
+    jButton37.setText(" Rating = ");
+    jButton37.setFocusable(false);
+    jButton37.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton37.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton37);
+
+    jButton38.setText(" Rating = 1860");
+    jButton38.setFocusable(false);
+    jButton38.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton38.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton38);
+
+    jButton39.setText(" Rating = 1771");
+    jButton39.setFocusable(false);
+    jButton39.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton39.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton39);
+
+    jButton40.setText(" Rating = ");
+    jButton40.setFocusable(false);
+    jButton40.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton40.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton40);
+
+    jButton41.setText(" Rating = 1994");
+    jButton41.setFocusable(false);
+    jButton41.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton41.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton41);
+
+    jButton42.setText(" Rating = ");
+    jButton42.setFocusable(false);
+    jButton42.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton42.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton42);
+
+    jButton43.setText(" Rating = ");
+    jButton43.setFocusable(false);
+    jButton43.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton43.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton43);
+
+    jButton45.setText(" Rating = 1988");
+    jButton45.setFocusable(false);
+    jButton45.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton45.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton45);
+
+    jButton46.setText(" Rating = ");
+    jButton46.setFocusable(false);
+    jButton46.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton46.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton46);
+
+    jButton47.setText(" Rating = ");
+    jButton47.setFocusable(false);
+    jButton47.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton47.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton47);
+
+    jButton48.setText(" Rating = 2760");
+    jButton48.setFocusable(false);
+    jButton48.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton48.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton48);
+
+    jButton56.setText(" Rating = 1134");
+    jButton56.setFocusable(false);
+    jButton56.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton56.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton56);
+
+    jButton49.setText(" Rating = ");
+    jButton49.setFocusable(false);
+    jButton49.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton49.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton49);
+
+    jButton50.setText(" Rating = 1375");
+    jButton50.setFocusable(false);
+    jButton50.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton50.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton50);
+
+    jButton51.setText(" Rating = 2059");
+    jButton51.setFocusable(false);
+    jButton51.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton51.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton51);
+
+    jButton52.setText(" Rating = 2380");
+    jButton52.setFocusable(false);
+    jButton52.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton52.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton52);
+
+    jButton53.setText(" Rating = 1450");
+    jButton53.setFocusable(false);
+    jButton53.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton53.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton53);
+
+    jButton54.setText(" Rating = ");
+    jButton54.setFocusable(false);
+    jButton54.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton54.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton54);
+
+    jButton55.setText(" Rating = ");
+    jButton55.setFocusable(false);
+    jButton55.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton55.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar2.add(jButton55);
 }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -355,129 +334,7 @@ private void initJtoolBar5() {
         jToolBar3.setFloatable(false);
 
 initJtoolBar5();
-
-        jToolBar2.setFloatable(false);
-        jToolBar2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        jButton36.setText(" Rating = 2190");
-        jButton36.setFocusable(false);
-        jButton36.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton36.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton36);
-
-        jButton37.setText(" Rating = ");
-        jButton37.setFocusable(false);
-        jButton37.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton37.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton37);
-
-        jButton38.setText(" Rating = 1860");
-        jButton38.setFocusable(false);
-        jButton38.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton38.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton38);
-
-        jButton39.setText(" Rating = 1771");
-        jButton39.setFocusable(false);
-        jButton39.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton39.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton39);
-
-        jButton40.setText(" Rating = ");
-        jButton40.setFocusable(false);
-        jButton40.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton40.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton40);
-
-        jButton41.setText(" Rating = 1994");
-        jButton41.setFocusable(false);
-        jButton41.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton41.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton41);
-
-        jButton42.setText(" Rating = ");
-        jButton42.setFocusable(false);
-        jButton42.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton42.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton42);
-
-        jButton43.setText(" Rating = ");
-        jButton43.setFocusable(false);
-        jButton43.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton43.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton43);
-
-        jButton45.setText(" Rating = 1988");
-        jButton45.setFocusable(false);
-        jButton45.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton45.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton45);
-
-        jButton46.setText(" Rating = ");
-        jButton46.setFocusable(false);
-        jButton46.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton46.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton46);
-
-        jButton47.setText(" Rating = ");
-        jButton47.setFocusable(false);
-        jButton47.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton47.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton47);
-
-        jButton48.setText(" Rating = 2760");
-        jButton48.setFocusable(false);
-        jButton48.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton48.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton48);
-
-        jButton56.setText(" Rating = 1134");
-        jButton56.setFocusable(false);
-        jButton56.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton56.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton56);
-
-        jButton49.setText(" Rating = ");
-        jButton49.setFocusable(false);
-        jButton49.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton49.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton49);
-
-        jButton50.setText(" Rating = 1375");
-        jButton50.setFocusable(false);
-        jButton50.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton50.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton50);
-
-        jButton51.setText(" Rating = 2059");
-        jButton51.setFocusable(false);
-        jButton51.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton51.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton51);
-
-        jButton52.setText(" Rating = 2380");
-        jButton52.setFocusable(false);
-        jButton52.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton52.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton52);
-
-        jButton53.setText(" Rating = 1450");
-        jButton53.setFocusable(false);
-        jButton53.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton53.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton53);
-
-        jButton54.setText(" Rating = ");
-        jButton54.setFocusable(false);
-        jButton54.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton54.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton54);
-
-        jButton55.setText(" Rating = ");
-        jButton55.setFocusable(false);
-        jButton55.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton55.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton55);
+initJtoolBar2();
 
         jToolBar3.add(jToolBar2);
 
