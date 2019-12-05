@@ -1077,6 +1077,7 @@ private void refreshBoardCmd(int square) {
 				}
 			}
 		}
+	}
 	private void StartSearch() {
 		s1 = new Search(p, alpha, beta, maxDepth, "1\'",
 				startTime, xboard, post, computerWhite);
