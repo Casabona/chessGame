@@ -9,7 +9,11 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
-
+/**
+ * gère les liens vers des sites internets en liens
+ * @author minet.adrien
+ *
+ */
 public class CElinksX extends javax.swing.JDialog {
 
     public static final int RET_CANCEL = 0;
