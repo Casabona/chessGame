@@ -936,12 +936,7 @@ private void refreshBoardCmd(int square) {
 					alpha = -Search.INFINITY;
 					beta = e;
 					gamma = Search.INFINITY;
-					s1 = new Search(p, alpha, beta, maxDepth, "1",
-						startTime, xboard, post, computerWhite);
-					s2 = new Search(p, beta, gamma, maxDepth, "2",
-						startTime, xboard, post, computerWhite);
-					s1.start();
-					s2.start();
+					StartSearch();
 					if (maxDepth > 1) // the first loop must be always finished
 					{
 						s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
@@ -1088,16 +1083,19 @@ private void refreshBoardCmd(int square) {
 			}
 		}
 	}
+	private void StartSearch() {
+		s1 = new Search(p, alpha, beta, maxDepth, "1\'",
+				startTime, xboard, post, computerWhite);
+			s2 = new Search(p, beta, gamma, maxDepth, "2\'",
+				startTime, xboard, post, computerWhite);
+			s1.start();
+			s2.start();
+	}
 	private void alpha4() {
 		alpha = -Search.INFINITY;
 		beta = s1.getBestValue() - 2 * SEARCH_MARGIN;
 		gamma = s1.getBestValue();
-		s1 = new Search(p, alpha, beta, maxDepth, "1\'",
-			startTime, xboard, post, computerWhite);
-		s2 = new Search(p, beta, gamma, maxDepth, "2\'",
-			startTime, xboard, post, computerWhite);
-		s1.start();
-		s2.start();
+		StartSearch();
 		if (maxDepth > 1) // the first loop must be always finished
 		{
 			s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
@@ -1162,12 +1160,7 @@ private void refreshBoardCmd(int square) {
 		alpha = s2.getBestValue();
 		beta = s2.getBestValue() + 2 * SEARCH_MARGIN;
 		gamma = Search.INFINITY;
-		s1 = new Search(p, alpha, beta, maxDepth, "1\'",
-			startTime, xboard, post, computerWhite);
-		s2 = new Search(p, beta, gamma, maxDepth, "2\'",
-			startTime, xboard, post, computerWhite);
-		s1.start();
-		s2.start();
+		StartSearch();
 		if (maxDepth > 1) // the first loop must be always finished
 		{
 			s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
@@ -1231,12 +1224,7 @@ private void refreshBoardCmd(int square) {
 		alpha = e - 2 * SEARCH_MARGIN;
 		beta = e;
 		gamma = e + 2 * SEARCH_MARGIN;
-		s1 = new Search(p, alpha, beta, maxDepth, "1",
-			startTime, xboard, post, computerWhite);
-		s2 = new Search(p, beta, gamma, maxDepth, "2",
-		 startTime, xboard, post, computerWhite);
-		s1.start();
-		s2.start();
+		StartSearch();
 		if (maxDepth > 1) // the first loop must be always finished
 		{
 			s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
