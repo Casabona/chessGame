@@ -923,6 +923,53 @@ private void refreshBoardCmd(int square) {
 			}
 		}
 	}
+	
+	private void finishSearch() {
+		if (s1.getLastRunFinished() && !s2.getLastRunFinished())
+		{
+			if (s1.getBestValue() > alpha && s1.getBestValue() < beta)
+			{
+				bestMove = s1.getBestMove();
+				e = s1.getBestValue();
+			}
+			else
+				break;
+		}
+		else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
+		{
+			if (s2.getBestValue() > beta && s2.getBestValue() < gamma)
+			{
+				bestMove = s1.getBestMove();
+				e = s1.getBestValue();
+			}
+			else
+				break;
+		}
+		else if (!s1.getLastRunFinished() && !s2.getLastRunFinished())
+		{
+			break;
+		}
+		else if (s1.getBestValue() > alpha && s1.getBestValue() < beta)
+		// s1.getLastRunFinished() && s2.getLastRunFinished()
+		{
+			bestMove = s1.getBestMove();
+			e = s1.getBestValue();
+		}
+		else if (s2.getBestValue() > beta && s2.getBestValue() < gamma)
+		{
+			bestMove = s2.getBestMove();
+			e = s2.getBestValue();
+		}
+		else if (s1.getBestValue() >= beta && s2.getBestValue() <= beta)
+		{
+			// s1.getBestValue() == beta == s2.getBestValue()
+			bestMove = s1.getBestMove();
+			e = s1.getBestValue();
+		}
+		
+		
+		
+	}
 	/**
 	 *  Makes the next move using iterative deepening for thread 2 
 	 */
@@ -948,48 +995,12 @@ private void refreshBoardCmd(int square) {
 					s1.join();
 					s2.join();
 	
-					if (s1.getLastRunFinished() && !s2.getLastRunFinished())
-					{
-						if (s1.getBestValue() > alpha && s1.getBestValue() < beta)
-						{
-							bestMove = s1.getBestMove();
-							e = s1.getBestValue();
-						}
-						else
-							break;
-					}
-					else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
-					{
-						if (s2.getBestValue() > beta && s2.getBestValue() < gamma)
-						{
-							bestMove = s1.getBestMove();
-							e = s1.getBestValue();
-						}
-						else
-							break;
-					}
-					else if (!s1.getLastRunFinished() && !s2.getLastRunFinished())
-					{
-						break;
-					}
-					else if (s1.getBestValue() > alpha && s1.getBestValue() < beta)
-					// s1.getLastRunFinished() && s2.getLastRunFinished()
-					{
-						bestMove = s1.getBestMove();
-						e = s1.getBestValue();
-					}
-					else if (s2.getBestValue() > beta && s2.getBestValue() < gamma)
-					{
-						bestMove = s2.getBestMove();
-						e = s2.getBestValue();
-					}
-					else if (s1.getBestValue() >= beta && s2.getBestValue() <= beta)
-					{
-						// s1.getBestValue() == beta == s2.getBestValue()
-						bestMove = s1.getBestMove();
-						e = s1.getBestValue();
-					}
-					else
+					
+					finishSearch();
+									
+					
+					if (!(s1.getLastRunFinished() && !s2.getLastRunFinished()))
+					
 					{
 					
 						threadOutput((threads 2));
@@ -1250,44 +1261,7 @@ private void refreshBoardCmd(int square) {
 
 				if (s1.getLastRunFinished() && !s2.getLastRunFinished())
 				{
-					if (s1.getBestValue() > alpha && s1.getBestValue() < beta)
-					{
-						bestMove = s1.getBestMove();
-						e = s1.getBestValue();
-					}
-					else
-						break;
-				}
-				else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
-				{
-					if (s2.getBestValue() > beta && s2.getBestValue() < gamma)
-					{
-						bestMove = s1.getBestMove();
-						e = s1.getBestValue();
-					}
-					else
-						break;
-				}
-				else if (!s1.getLastRunFinished() && !s2.getLastRunFinished())
-				{
-					break;
-				}
-				else if (s1.getBestValue() > alpha && s1.getBestValue() < beta)
-				// s1.getLastRunFinished() && s2.getLastRunFinished()
-				{
-					bestMove = s1.getBestMove();
-					e = s1.getBestValue();
-				}
-				else if (s2.getBestValue() > beta && s2.getBestValue() < gamma)
-				{
-					bestMove = s2.getBestMove();
-					e = s2.getBestValue();
-				}
-				else if (s1.getBestValue() >= beta && s2.getBestValue() <= beta)
-				{
-					// s1.getBestValue() == beta == s2.getBestValue()
-					bestMove = s1.getBestMove();
-					e = s1.getBestValue();
+					finishSearch();
 				}
 				else if (s1.getBestValue() <= alpha) // research needed
 				{
