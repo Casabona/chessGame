@@ -128,6 +128,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
     }
     
     public void MixerInit () {
+    	
         if ((Actions.currentMixer>0)&(Actions.currentMixer<100/3))
           frame.bSoundMixer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/audio_volume_low.png")));   
         if ((Actions.currentMixer>100/3)&(Actions.currentMixer<200/3))
