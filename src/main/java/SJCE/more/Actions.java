@@ -629,7 +629,110 @@ public class Actions {
             exc.printStackTrace(System.out);
         }
     }
-
+private static void whitePlayer() {
+	   if (whitePlayerTip.equals("xboard")) {
+           switch (whitePlayerCE) {
+               case "Alf":
+                   sendEngineCmd("white", "undo");
+                   sendEngineCmd("white", "undo");
+                   break;
+               //case "Animats": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break; 
+               case "ArabianKnight":
+                   sendEngineCmd("white", "undo");
+                   sendEngineCmd("white", "undo");
+                   break;
+               case "BremboCE":
+                   sendEngineCmd("white", "remove");
+                   break;
+               //case "CaveChess": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break; 
+               //case "CupCake": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break;
+               //case "ChessBotX": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break;
+               //case "DeepBrutePos": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break;
+               case "FrankWalter":
+                   sendEngineCmd("white", "undo");
+                   sendEngineCmd("white", "undo");
+                   break;
+               case "Frittle":
+                   sendEngineCmd("white", "undo");
+                   sendEngineCmd("white", "undo");
+                   break;
+               //case "Gladiator": sendEngineCmd("white","remove"); sendEngineCmd("white","remove"); break; 
+               case "GNU Chess":
+                   sendEngineCmd("white", "undo");
+                   sendEngineCmd("white", "undo");
+                   break;
+               //case "Javalin": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break; 
+               //case "Jchess": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break; 
+               case "KingsOut":
+                   sendEngineCmd("white", "remove");
+                   break;
+               case "OliThink":
+                   sendEngineCmd("white", "remove");
+                   break;
+               //case "Talvmenni": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break; 
+               //case "Tiffanys": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break; 
+               case "Tri-OS":
+                   sendEngineCmd("white", "undo");
+                   break;
+               case "jChecs":
+                   sendEngineCmd("white", "undo");
+                   sendEngineCmd("white", "undo");
+                   break;
+           }
+       }
+}
+private static void blackPlayer() {
+	  if (blackPlayerTip.equals("xboard")) {
+          switch (blackPlayerCE) {
+              case "Alf":
+                  sendEngineCmd("black", "undo");
+                  sendEngineCmd("black", "undo");
+                  break;
+              //case "Animats": sendEngineCmd("black","remove"); break;
+              case "ArabianKnight":
+                  sendEngineCmd("black", "undo");
+                  sendEngineCmd("black", "undo");
+                  break;
+              case "BremboCE":
+                  sendEngineCmd("black", "remove");
+                  break;
+              //case "CaveChess": sendEngineCmd("black","undo"); sendEngineCmd("black","undo"); break; 
+              //case "CupCake": sendEngineCmd("black","remove"); break;
+              //case "ChessBotX": sendEngineCmd("black","undo"); sendEngineCmd("black","undo"); break;
+              //case "DeepBrutePos": sendEngineCmd("black","remove"); break;
+              case "FrankWalter":
+                  sendEngineCmd("black", "undo");
+                  sendEngineCmd("black", "undo");
+                  break;
+              case "Frittle":
+                  sendEngineCmd("black", "undo");
+                  sendEngineCmd("black", "undo");
+                  break;
+              //case "Gladiator": sendEngineCmd("black","undo"); sendEngineCmd("black","undo"); break; 
+              case "GNU Chess":
+                  sendEngineCmd("black", "undo");
+                  sendEngineCmd("black", "undo");
+                  break;
+              //case "Javalin": sendEngineCmd("black","remove"); break; 
+              //case "Jchess": sendEngineCmd("black","remove"); break; 
+              case "KingsOut":
+                  sendEngineCmd("black", "remove");
+                  break;
+              case "OliThink":
+                  sendEngineCmd("black", "remove");
+                  break;
+              //case "Talvmenni": sendEngineCmd("black","remove"); break; 
+              //case "Tiffanys": sendEngineCmd("black","remove"); break;
+              case "Tri-OS":
+                  sendEngineCmd("black", "undo");
+                  break;
+              case "jChecs":
+                  sendEngineCmd("black", "undo");
+                  sendEngineCmd("black", "undo");
+                  break;
+          }
+      }
+}
     public static void undoLastMove(Move move, String color) {
 
         if (!gameTip.equals("EE")) {
@@ -643,108 +746,10 @@ public class Actions {
             }
             switch (color) {
                 case "white":
-                    if (whitePlayerTip.equals("xboard")) {
-                        switch (whitePlayerCE) {
-                            case "Alf":
-                                sendEngineCmd("white", "undo");
-                                sendEngineCmd("white", "undo");
-                                break;
-                            //case "Animats": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break; 
-                            case "ArabianKnight":
-                                sendEngineCmd("white", "undo");
-                                sendEngineCmd("white", "undo");
-                                break;
-                            case "BremboCE":
-                                sendEngineCmd("white", "remove");
-                                break;
-                            //case "CaveChess": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break; 
-                            //case "CupCake": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break;
-                            //case "ChessBotX": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break;
-                            //case "DeepBrutePos": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break;
-                            case "FrankWalter":
-                                sendEngineCmd("white", "undo");
-                                sendEngineCmd("white", "undo");
-                                break;
-                            case "Frittle":
-                                sendEngineCmd("white", "undo");
-                                sendEngineCmd("white", "undo");
-                                break;
-                            //case "Gladiator": sendEngineCmd("white","remove"); sendEngineCmd("white","remove"); break; 
-                            case "GNU Chess":
-                                sendEngineCmd("white", "undo");
-                                sendEngineCmd("white", "undo");
-                                break;
-                            //case "Javalin": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break; 
-                            //case "Jchess": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break; 
-                            case "KingsOut":
-                                sendEngineCmd("white", "remove");
-                                break;
-                            case "OliThink":
-                                sendEngineCmd("white", "remove");
-                                break;
-                            //case "Talvmenni": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break; 
-                            //case "Tiffanys": sendEngineCmd("white","undo"); sendEngineCmd("white","undo"); break; 
-                            case "Tri-OS":
-                                sendEngineCmd("white", "undo");
-                                break;
-                            case "jChecs":
-                                sendEngineCmd("white", "undo");
-                                sendEngineCmd("white", "undo");
-                                break;
-                        }
-                    }
+                		whitePlayer();
                     break;
                 case "black":
-                    if (blackPlayerTip.equals("xboard")) {
-                        switch (blackPlayerCE) {
-                            case "Alf":
-                                sendEngineCmd("black", "undo");
-                                sendEngineCmd("black", "undo");
-                                break;
-                            //case "Animats": sendEngineCmd("black","remove"); break;
-                            case "ArabianKnight":
-                                sendEngineCmd("black", "undo");
-                                sendEngineCmd("black", "undo");
-                                break;
-                            case "BremboCE":
-                                sendEngineCmd("black", "remove");
-                                break;
-                            //case "CaveChess": sendEngineCmd("black","undo"); sendEngineCmd("black","undo"); break; 
-                            //case "CupCake": sendEngineCmd("black","remove"); break;
-                            //case "ChessBotX": sendEngineCmd("black","undo"); sendEngineCmd("black","undo"); break;
-                            //case "DeepBrutePos": sendEngineCmd("black","remove"); break;
-                            case "FrankWalter":
-                                sendEngineCmd("black", "undo");
-                                sendEngineCmd("black", "undo");
-                                break;
-                            case "Frittle":
-                                sendEngineCmd("black", "undo");
-                                sendEngineCmd("black", "undo");
-                                break;
-                            //case "Gladiator": sendEngineCmd("black","undo"); sendEngineCmd("black","undo"); break; 
-                            case "GNU Chess":
-                                sendEngineCmd("black", "undo");
-                                sendEngineCmd("black", "undo");
-                                break;
-                            //case "Javalin": sendEngineCmd("black","remove"); break; 
-                            //case "Jchess": sendEngineCmd("black","remove"); break; 
-                            case "KingsOut":
-                                sendEngineCmd("black", "remove");
-                                break;
-                            case "OliThink":
-                                sendEngineCmd("black", "remove");
-                                break;
-                            //case "Talvmenni": sendEngineCmd("black","remove"); break; 
-                            //case "Tiffanys": sendEngineCmd("black","remove"); break;
-                            case "Tri-OS":
-                                sendEngineCmd("black", "undo");
-                                break;
-                            case "jChecs":
-                                sendEngineCmd("black", "undo");
-                                sendEngineCmd("black", "undo");
-                                break;
-                        }
-                    }
+                  blackPlayer();
                     break;
             }
             int source = move.getSource();
