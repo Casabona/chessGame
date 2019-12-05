@@ -887,6 +887,33 @@ private void refreshBoardCmd(int square) {
 
 		bestMove = (short)((bestMove << 3) + (stringMove.charAt(2) - 'a'));
 	}
+	
+	private void thinkThread1_3() {
+		beta = Search.INFINITY;
+		s1 = new Search(p, alpha, beta, maxDepth, "1",
+			startTime, xboard, post, computerWhite);
+		s1.start();
+		if (maxDepth > 1) // the first loop must be always finished
+		{
+			s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+			// max to be sure that the wait time is always positive
+			s1.stopIt();
+		}
+		s1.join();
+
+		if (!s1.getLastRunFinished()) // not enough time
+			break;
+
+		bestMove = s1.getBestMove();
+		e = s1.getBestValue();
+
+		if (e >= Search.CHECKMATE_VALUE)
+			break;
+
+		maxDepth++;
+	}
+}
+	}
 	/**
 	 *  Makes the next move using iterative deepening for thread 1
 	 */
@@ -898,30 +925,7 @@ private void refreshBoardCmd(int square) {
 			// do not start the next iteration if there is not enough time
 			{
 				alpha = -Search.INFINITY;
-				beta = Search.INFINITY;
-				s1 = new Search(p, alpha, beta, maxDepth, "1",
-					startTime, xboard, post, computerWhite);
-				s1.start();
-				if (maxDepth > 1) // the first loop must be always finished
-				{
-					s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-					// max to be sure that the wait time is always positive
-					s1.stopIt();
-				}
-				s1.join();
-
-				if (!s1.getLastRunFinished()) // not enough time
-					break;
-
-				bestMove = s1.getBestMove();
-				e = s1.getBestValue();
-
-				if (e >= Search.CHECKMATE_VALUE)
-					break;
-
-				maxDepth++;
-			}
-		}
+				thinkThread1_3();
 	}
 	
 	private void finishSearch() {
@@ -1068,31 +1072,7 @@ private void refreshBoardCmd(int square) {
 				else if (s1.getBestValue() >= beta) // research needed
 				{
 					alpha = s1.getBestValue();
-					beta = Search.INFINITY;
-					s1 = new Search(p, alpha, beta, maxDepth, "1\'",
-						startTime, xboard, post, computerWhite);
-					s1.start();
-					if (maxDepth > 1) // the first loop must be always finished
-					{
-						s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-						// max to be sure that the wait time is always positive
-						s1.stopIt();
-					}
-					s1.join();
-
-					if (!s1.getLastRunFinished()) // not enough time
-						break;
-
-					bestMove = s1.getBestMove();
-					e = s1.getBestValue();
-				}
-
-				if (e >= Search.CHECKMATE_VALUE)
-					break;
-
-				maxDepth++;
-			}
-		}
+					thinkThread1_3();
 	}
 	private void StartSearch() {
 		s1 = new Search(p, alpha, beta, maxDepth, "1\'",
