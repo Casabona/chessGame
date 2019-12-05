@@ -4,12 +4,19 @@ import static SJCE.XChessFrame.aktion;
 import static SJCE.XChessFrame.boardUI;
 import static SJCE.XChessFrame.borderPanel;
 import static SJCE.XChessFrame.frame;
+/**
+ * Gère l'affichage de la fenêtre
+ * @author minet.adrien
+ *
+ */
 
 public class BoardThemeSelect extends javax.swing.JDialog {
 
     public BoardThemeSelect(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        //sert a afficher la fenêtre avec tout au bon endroit
         initComponents();
+        //permet
         this.setLocationRelativeTo(frame);        
         comboFig.setModel(new javax.swing.DefaultComboBoxModel<>(frame.selectBoardThemeFig));
         comboFon.setModel(new javax.swing.DefaultComboBoxModel<>(frame.selectBoardThemeFon));        
@@ -21,6 +28,7 @@ public class BoardThemeSelect extends javax.swing.JDialog {
         lblackFon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/themes/fon/"+comboFon.getSelectedItem().toString()+"/bs.png")));        
     }
 private void initButton() {
+        //initialise les différents boutons de l'interface
 	  jToolBar1 = new javax.swing.JToolBar();
       jToolBar2 = new javax.swing.JToolBar();
       lwhiteFig = new javax.swing.JLabel();
