@@ -1104,27 +1104,7 @@ private void refreshBoardCmd(int square) {
 
 		if (s1.getLastRunFinished() && !s2.getLastRunFinished())
 		{
-			if (s1.getBestValue() < beta)
-			{
-				bestMove = s1.getBestMove();
-				e = s1.getBestValue();
-			}
-			else
-				break;
-		}
-		else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
-		{
-			if (s2.getBestValue() > beta && s2.getBestValue() <= gamma) // <= !
-			{
-				bestMove = s2.getBestMove();
-				e = s2.getBestValue();
-			}
-			else
-				break;
-		}
-		else if (!s1.getLastRunFinished() && !s2.getLastRunFinished())
-		{
-			break;
+		finishSearch();
 		}
 		else if (s1.getBestValue() < beta)
 		// s1.getLastRunFinished() && s2.getLastRunFinished()
@@ -1335,12 +1315,8 @@ private void refreshBoardCmd(int square) {
 					int middle2 = e + SEARCH_MARGIN;
 					while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0)
 					{
-						s1 = new Search(p, middle1 - 1, middle1 + 1, maxDepth, "1",
-							startTime, xboard, post, computerWhite);
-						s2 = new Search(p, middle2 - 1, middle2 + 1, maxDepth, "2",
-							startTime, xboard, post, computerWhite);
-						s1.start();
-						s2.start();
+						StartSearch();
+						
 						if (maxDepth > 1) // the first loop must be always finished
 						{
 							s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
@@ -1616,6 +1592,39 @@ private void refreshBoardCmd(int square) {
 				" to correct the remaining time.");
 		}
 	}
+	
+	private void bestMove() {
+		if (bestMove > 0)
+		{
+			System.out.println("move " + Position.moveToString(bestMove, computerWhite));
+			log.println("Output:");
+			log.println("move " + Position.moveToString(bestMove, computerWhite));
+
+			p.makeMove(bestMove, Position.WHITE_QUEEN);
+			// if it is a promotion, then it must be a queen
+			Search.storeHashCode(p.getHashCode());
+
+			moveOfWhite = !moveOfWhite;
+		}
+		else if (bestMove == Search.CHECKMATE)
+		{
+			if (!xboard)
+			{
+				System.out.println("Checkmate");
+				log.println("Output:");
+				log.println("Checkmate");
+			}
+		}
+		else if (bestMove == Search.STALEMATE)
+		{
+			if (!xboard)
+			{
+				System.out.println("Stalemate");
+				log.println("Output:");
+				log.println("Stalemate");
+			}
+		}	
+	}
 	/**
 	 * Makes the next move using iterative deepening.
 	 * @throws InterruptedException It might be thrown by the Thread.join method.
@@ -1674,30 +1683,7 @@ private void refreshBoardCmd(int square) {
 		else
 			timeLeft -= (moveTime + 500) / 1000;
 
-		if (bestMove > 0)
-		{
-			System.out.println("move " + Position.moveToString(bestMove, computerWhite));
-			log.println("Output:");
-			log.println("move " + Position.moveToString(bestMove, computerWhite));
-		}
-		else if (bestMove == Search.CHECKMATE)
-		{
-			if (!xboard)
-			{
-				System.out.println("Checkmate");
-				log.println("Output:");
-				log.println("Checkmate");
-			}
-		}
-		else if (bestMove == Search.STALEMATE)
-		{
-			if (!xboard)
-			{
-				System.out.println("Stalemate");
-				log.println("Output:");
-				log.println("Stalemate");
-			}
-		}
+		
 
 		long calculationTime = System.currentTimeMillis() - startTime;
 		if (!xboard)
@@ -1707,14 +1693,7 @@ private void refreshBoardCmd(int square) {
 			log.println("Elapsed time: " + Long.toString(calculationTime) + "ms");
 		}
 
-		if (bestMove > 0)
-		{
-			p.makeMove(bestMove, Position.WHITE_QUEEN);
-			// if it is a promotion, then it must be a queen
-			Search.storeHashCode(p.getHashCode());
-
-			moveOfWhite = !moveOfWhite;
-		}
+		
 
 		Search.clearTT();
 
