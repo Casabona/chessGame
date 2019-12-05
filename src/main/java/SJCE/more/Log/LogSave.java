@@ -10,7 +10,11 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-
+/**
+ * gère la sauvegarde du log dans un fichier au choix
+ * @author minet.adrien
+ *
+ */
 public class LogSave {
 
     public static String putf = "", putd = "";
@@ -27,6 +31,7 @@ public class LogSave {
         fc.setAcceptAllFileFilterUsed(false);
         fc.setDialogType(JFileChooser.SAVE_DIALOG);
         if (fc.showDialog(logFrame, "Save Log") == JFileChooser.APPROVE_OPTION) {
+        	//si l'utilisateur indique qu'il veut bien save les logs
             try {
                 fullFileName = fc.getSelectedFile().getPath();
                 File outputfile = new File(fullFileName + ".log");
@@ -35,6 +40,7 @@ public class LogSave {
             } catch (IOException ex) {
                 Logger.getLogger(LogSave.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
+            	//dans le cas d'une impossibilité de sauvegarde des logs, on tente de fermer le fichier
                 if (writeFile != null) {
                     try {
                         writeFile.close();

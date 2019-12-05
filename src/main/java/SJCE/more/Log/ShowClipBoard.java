@@ -3,7 +3,11 @@ package SJCE.more.Log;
 import static SJCE.XChessFrame.frame;
 import static SJCE.XChessFrame.logFrame;
 import javax.swing.ImageIcon;
-
+/**
+ * permet d'indiquer l'emplacement de sauvegarde des logs
+ * @author minet.adrien
+ *
+ */
 public class ShowClipBoard extends javax.swing.JDialog {
     public ShowClipBoard(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

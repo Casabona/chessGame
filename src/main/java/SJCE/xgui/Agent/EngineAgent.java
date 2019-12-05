@@ -22,6 +22,11 @@ import javax.swing.JOptionPane;
 
         //  readLine() and writeLine() !!!!!!!!!!!!!!!!!!!!!
 
+/**
+ * gère les appels des différentes IA par rapport au moteur du jeu
+ * @author minet.adrien
+ *
+ */
 public abstract class EngineAgent extends Agent {
     //public static EngineIO engineIO; // PUBLIC STATIC ON 13-05-16 !!!
     public static EngineIO engineIOblack;
