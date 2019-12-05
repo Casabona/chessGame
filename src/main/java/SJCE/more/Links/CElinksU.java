@@ -86,84 +86,109 @@ public class CElinksU extends javax.swing.JDialog {
     	button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
     	button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
     }
+    
+    private void initRating() {
+    	jButton55.setText(" Rating = 2323");
+    	  jButton1.setText(" Rating = 1750");
+    	  jButton56.setText(" Rating = 2455");
+    	  jButton57.setText(" Rating = 2588");
+    	  jButton44.setText(" Rating = 1372");
+    	  jButton58.setText(" Rating = 2294");
+    	  jButton59.setText(" Rating = 2347"); 
+    	  jButton61.setText(" Rating = ");       	    
+    	  jButton62.setText(" Rating = 2319");
+    	  jButton63.setText(" Rating = ");
+    	  jButton64.setText(" Rating = 2546");
+    	  jButton65.setText(" Rating = 1706");
+    	  jButton66.setText(" Rating = 1968");
+    	  jButton67.setText(" Rating = ");
+    	  jButton68.setText(" Rating = ");
+    	  jButton69.setText(" Rating = 1706");
+    	  jButton70.setText(" Rating = 2400");
+    	  jButton71.setText(" Rating = ");
+    	  jButton72.setText(" Rating = ");
+    	  
+    	  
+    	  
+    }
     private void initJtoolBar4() {
-    	
+    	initRating();
         jToolBar4.setFloatable(false);
         jToolBar4.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jButton55.setText(" Rating = 2323");
+        
         initButtonJtoolBar4(jButton55);
         jToolBar4.add(jButton55);
 
-        jButton1.setText(" Rating = 1750");
+      
         initButtonJtoolBar4(jButton1);
         jToolBar4.add(jButton1);
 
-        jButton56.setText(" Rating = 2455");
+       
         initButtonJtoolBar4(jButton56);
         jToolBar4.add(jButton56);
 
-        jButton57.setText(" Rating = 2588");
+        
         initButtonJtoolBar4(jButton57);
         jToolBar4.add(jButton57);
 
-        jButton44.setText(" Rating = 1372");
+    
         initButtonJtoolBar4(jButton44);
         jToolBar4.add(jButton44);
 
-        jButton58.setText(" Rating = 2294");
+       
         initButtonJtoolBar4(jButton58);
         jToolBar4.add(jButton58);
 
-        jButton59.setText(" Rating = 2347");
+      
         initButtonJtoolBar4(jButton59);
         jToolBar4.add(jButton59);
 
-        jButton61.setText(" Rating = ");
+        
         initButtonJtoolBar4(jButton61);
         jToolBar4.add(jButton61);
 
-        jButton62.setText(" Rating = 2319");
+        
         initButtonJtoolBar4(jButton62);
         jToolBar4.add(jButton62);
 
-        jButton63.setText(" Rating = ");
+        
         initButtonJtoolBar4(jButton63);
         jToolBar4.add(jButton63);
 
-        jButton64.setText(" Rating = 2546");
+        
         initButtonJtoolBar4(jButton64);
         jToolBar4.add(jButton64);
 
-        jButton65.setText(" Rating = 1706");
+        
         initButtonJtoolBar4(jButton65);
         jToolBar4.add(jButton65);
 
-        jButton66.setText(" Rating = 1968");
+        
         initButtonJtoolBar4(jButton66);
         jToolBar4.add(jButton66);
 
-        jButton67.setText(" Rating = ");
+        
         initButtonJtoolBar4(jButton67);
         jToolBar4.add(jButton67);
 
-        jButton68.setText(" Rating = ");
+        
         initButtonJtoolBar4(jButton68);
         jToolBar4.add(jButton68);
 
-        jButton69.setText(" Rating = 1706");
+        
         initButtonJtoolBar4(jButton69);
         jToolBar4.add(jButton69);
 
-        jButton70.setText(" Rating = 2400");
+        
         initButtonJtoolBar4(jButton70);
         jToolBar4.add(jButton70);
 
-        jButton71.setText(" Rating = ");
+        
         initButtonJtoolBar4(jButton71);
         jToolBar4.add(jButton71);
 
-        jButton72.setText(" Rating = ");
+        
         initButtonJtoolBar4(jButton72);
         jToolBar4.add(jButton72);
     }
@@ -177,83 +202,107 @@ public class CElinksU extends javax.swing.JDialog {
              }
          });
     }
+    
+    private void initLinks() {
+    	   jButton32.setText("<html><a href=\"http://bagaturchess.sourceforge.net/\">Bagatur v1.4c = http://bagaturchess.sourceforge.net/</a></html>");
+    	   jButton36.setText("<html><a href=\"https://code.google.com/p/calculonx/\">Calculon v0.4.2 = https://code.google.com/p/calculonx/</a></html>");
+    	   jButton35.setText("<html><a href=\"https://github.com/albertoruibal/carballo/\">Carballo v1.7 = https://github.com/albertoruibal/carballo/</a></html>");
+    	   jButton22.setText("<html><a href=\"http://web.comhem.se/petero2home/javachess/index.html\">Cuckoo v1.12 = http://web.comhem.se/petero2home/javachess/index.html</a></html>");
+    	   jButton4.setText("<html><a href=\"http://kirr.homeunix.org/chess/engines/Jim%20Ablett/EDEN/\">Eden v0.0.13 = http://kirr.homeunix.org/chess/engines/Jim%20Ablett/EDEN/</a></html>");
+           jButton34.setText("<html><a href=\"http://www.stuckardt.de/index.php/schachengine-fischerle.html\">Fischerle v0.9.70 SE 32bit = http://www.stuckardt.de/index.php/schachengine-fischerle.html</a></html>");
+           jButton20.setText("<html><a href=\"https://github.com/fluxroot/flux/releases\">Flux v2.2.1 = https://github.com/fluxroot/flux/releases</a></html>");
+           jButton3.setText("<html><a href=\"https://code.google.com/archive/p/magnumchess/downloads\">Magnum v4.0 = https://code.google.com/archive/p/magnumchess/downloads</a></html>");
+           jButton33.setText("<html><a href=\"http://mediocrechess.sourceforge.net/\">Mediocre v0.5 = http://mediocrechess.sourceforge.net/</a></html>");
+           jButton27.setText("<html><a href=\"https://github.com/jwilson82/presbyter\">Presbyter v1.3.0 = https://github.com/jwilson82/presbyter</a></html>");
+           jButton28.setText("<html><a href=\"https://github.com/rahular/phoenix\">Phoenix-Cuckoo v1.13a9 = https://github.com/rahular/phoenix</a></html>");
+           jButton31.setText("<html><a href=\"https://github.com/fluxroot/pulse/releases/\">Pulse v1.6.1 = https://github.com/fluxroot/pulse/releases/</a></html>");
+           jButton29.setText("<html><a href=\"http://www.rivalchess.com/downloads/\">Rival build 0094 = http://www.rivalchess.com/downloads/</a></html>");
+           jButton30.setText("<html><a href=\"https://github.com/Zaloum/\">Rumney v0.2.1 = https://github.com/Zaloum/</a></html>");
+           jButton12.setText("<html><a href=\"https://github.com/micaherne/unidexter/\">Unidexter v0.0.1= https://github.com/micaherne/unidexter/</a></html>");
+           jButton16.setText("<html><a href=\"https://github.com/krummi/ChessEngine/\">Ziggy v0.7 = https://github.com/krummi/ChessEngine/</a></html>");
+           jButton17.setText("<html><a href=\"https://github.com/sandermvdb/chess22k/\">Chess22k v1.5 = https://github.com/sandermvdb/chess22k</a></html>");
+           jButton23.setText("<html><a href=\"https://github.com/eliucs/kasparov/\">Kasparov Chess v1.0.0 = https://github.com/eliucs/kasparov/</a></html>");
+           jButton24.setText("<html><a href=\"http://computer-chess.org/doku.php?id=computer_chess:wiki:lists:chess_engine_list\">Koedem v1.1 = http://computer-chess.org/doku.php?id=computer_chess:wiki:lists:chess_engine_list</a></html>");
+           
+    }
     private void initJtoolBar1() {
+    	initLinks();
     	 jToolBar1.setFloatable(false);
          jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-         jButton32.setText("<html><a href=\"http://bagaturchess.sourceforge.net/\">Bagatur v1.4c = http://bagaturchess.sourceforge.net/</a></html>");
+      
          initButtonJtoolBar1(jButton32);
          jToolBar1.add(jButton32);
 
-         jButton36.setText("<html><a href=\"https://code.google.com/p/calculonx/\">Calculon v0.4.2 = https://code.google.com/p/calculonx/</a></html>");
+       
          initButtonJtoolBar1(jButton36);
          jToolBar1.add(jButton36);
 
-         jButton35.setText("<html><a href=\"https://github.com/albertoruibal/carballo/\">Carballo v1.7 = https://github.com/albertoruibal/carballo/</a></html>");
+        
          initButtonJtoolBar1(jButton35);
          jToolBar1.add(jButton35);
 
-         jButton22.setText("<html><a href=\"http://web.comhem.se/petero2home/javachess/index.html\">Cuckoo v1.12 = http://web.comhem.se/petero2home/javachess/index.html</a></html>");
+        
          initButtonJtoolBar1(jButton22);
          jToolBar1.add(jButton22);
 
-         jButton4.setText("<html><a href=\"http://kirr.homeunix.org/chess/engines/Jim%20Ablett/EDEN/\">Eden v0.0.13 = http://kirr.homeunix.org/chess/engines/Jim%20Ablett/EDEN/</a></html>");
+        
          initButtonJtoolBar1(jButton4);
          jToolBar1.add(jButton4);
 
-         jButton34.setText("<html><a href=\"http://www.stuckardt.de/index.php/schachengine-fischerle.html\">Fischerle v0.9.70 SE 32bit = http://www.stuckardt.de/index.php/schachengine-fischerle.html</a></html>");
+
          initButtonJtoolBar1(jButton34);
          jToolBar1.add(jButton34);
 
-         jButton20.setText("<html><a href=\"https://github.com/fluxroot/flux/releases\">Flux v2.2.1 = https://github.com/fluxroot/flux/releases</a></html>");
+       
          initButtonJtoolBar1(jButton20);
          jToolBar1.add(jButton20);
 
-         jButton3.setText("<html><a href=\"https://code.google.com/archive/p/magnumchess/downloads\">Magnum v4.0 = https://code.google.com/archive/p/magnumchess/downloads</a></html>");
+        
          initButtonJtoolBar1(jButton3);
          jToolBar1.add(jButton3);
 
-         jButton33.setText("<html><a href=\"http://mediocrechess.sourceforge.net/\">Mediocre v0.5 = http://mediocrechess.sourceforge.net/</a></html>");
+      
          initButtonJtoolBar1(jButton33);
          jToolBar1.add(jButton33);
 
-         jButton27.setText("<html><a href=\"https://github.com/jwilson82/presbyter\">Presbyter v1.3.0 = https://github.com/jwilson82/presbyter</a></html>");
+
          initButtonJtoolBar1(jButton27);
          jToolBar1.add(jButton27);
 
-         jButton28.setText("<html><a href=\"https://github.com/rahular/phoenix\">Phoenix-Cuckoo v1.13a9 = https://github.com/rahular/phoenix</a></html>");
+
          initButtonJtoolBar1(jButton28);
          jToolBar1.add(jButton28);
 
-         jButton31.setText("<html><a href=\"https://github.com/fluxroot/pulse/releases/\">Pulse v1.6.1 = https://github.com/fluxroot/pulse/releases/</a></html>");
+     
          initButtonJtoolBar1(jButton31);
          jToolBar1.add(jButton31);
 
-         jButton29.setText("<html><a href=\"http://www.rivalchess.com/downloads/\">Rival build 0094 = http://www.rivalchess.com/downloads/</a></html>");
+
          initButtonJtoolBar1(jButton29);
          jToolBar1.add(jButton29);
 
-         jButton30.setText("<html><a href=\"https://github.com/Zaloum/\">Rumney v0.2.1 = https://github.com/Zaloum/</a></html>");
+
          initButtonJtoolBar1(jButton30);
          jToolBar1.add(jButton30);
 
-         jButton12.setText("<html><a href=\"https://github.com/micaherne/unidexter/\">Unidexter v0.0.1= https://github.com/micaherne/unidexter/</a></html>");
+         
          initButtonJtoolBar1(jButton12);
          jToolBar1.add(jButton12);
 
-         jButton16.setText("<html><a href=\"https://github.com/krummi/ChessEngine/\">Ziggy v0.7 = https://github.com/krummi/ChessEngine/</a></html>");
+      
          initButtonJtoolBar1(jButton16);
          jToolBar1.add(jButton16);
 
-         jButton17.setText("<html><a href=\"https://github.com/sandermvdb/chess22k/\">Chess22k v1.5 = https://github.com/sandermvdb/chess22k</a></html>");
+       
          initButtonJtoolBar1(jButton17);
          jToolBar1.add(jButton17);
 
-         jButton23.setText("<html><a href=\"https://github.com/eliucs/kasparov/\">Kasparov Chess v1.0.0 = https://github.com/eliucs/kasparov/</a></html>");
+       
          initButtonJtoolBar1(jButton23);
          jToolBar1.add(jButton23);
 
-         jButton24.setText("<html><a href=\"http://computer-chess.org/doku.php?id=computer_chess:wiki:lists:chess_engine_list\">Koedem v1.1 = http://computer-chess.org/doku.php?id=computer_chess:wiki:lists:chess_engine_list</a></html>");
+     
          initButtonJtoolBar1(jButton24);
          jToolBar1.add(jButton24);
     }
