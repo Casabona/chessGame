@@ -785,13 +785,18 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
          jToolBar3 = new javax.swing.JToolBar();
          
     }
-    
+    private void initButton(javax.swing.JButton button) {
+    	button.setFocusable(false);
+    	button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    	button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+       
+            
+    	
+    }
     private void initBoardTheme() {
     	  bChangeSkin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/skin_color_chooser-24.png"))); // NOI18N
           bChangeSkin.setToolTipText("Change Skin");
-          bChangeSkin.setFocusable(false);
-          bChangeSkin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-          bChangeSkin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+          initButton(bChangeSkin);
           bChangeSkin.addActionListener(new java.awt.event.ActionListener() {
               public void actionPerformed(java.awt.event.ActionEvent evt) {
                   bChangeSkinActionPerformed(evt);
@@ -800,9 +805,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
           
           bBoardTheme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/color-swatch-24.png"))); // NOI18N
           bBoardTheme.setToolTipText("Select Board Theme");
-          bBoardTheme.setFocusable(false);
-          bBoardTheme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-          bBoardTheme.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+          initButton(bBoardTheme);
           bBoardTheme.addActionListener(new java.awt.event.ActionListener() {
               public void actionPerformed(java.awt.event.ActionEvent evt) {
                   bBoardThemeActionPerformed(evt);
@@ -814,9 +817,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
     	initBoardTheme();
          bUndoLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/undo-red-24.png"))); // NOI18N
          bUndoLast.setToolTipText("Undo Last One Move");
-         bUndoLast.setFocusable(false);
-         bUndoLast.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bUndoLast.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         initButton(bUndoLast);
          bUndoLast.addActionListener(new java.awt.event.ActionListener() {
              public void actionPerformed(java.awt.event.ActionEvent evt) {
                  bUndoLastActionPerformed(evt);
@@ -826,9 +827,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
          
          bSelectWhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/knight-white-24.png"))); // NOI18N
          bSelectWhite.setToolTipText("Select White Player Chess Engine");
-         bSelectWhite.setFocusable(false);
-         bSelectWhite.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bSelectWhite.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         initButton(bSelectWhite);
          bSelectWhite.addActionListener(new java.awt.event.ActionListener() {
              public void actionPerformed(java.awt.event.ActionEvent evt) {
                  bSelectWhiteActionPerformed(evt);
@@ -839,9 +838,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
          
          bLinks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/x-b-24.png"))); // NOI18N
          bLinks.setToolTipText("Xboard Engine Links & Ratings");
-         bLinks.setFocusable(false);
-         bLinks.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bLinks.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         initButton(bLinks);
          bLinks.addActionListener(new java.awt.event.ActionListener() {
              public void actionPerformed(java.awt.event.ActionEvent evt) {
                  bLinksActionPerformed(evt);
@@ -852,9 +849,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
          
          bAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/info-book-green.png"))); // NOI18N
          bAbout.setToolTipText("About");
-         bAbout.setFocusable(false);
-         bAbout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bAbout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         initButton(bAbout);
          bAbout.addActionListener(new java.awt.event.ActionListener() {
              public void actionPerformed(java.awt.event.ActionEvent evt) {
                  bAboutActionPerformed(evt);
@@ -866,9 +861,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/U-blue-24.png"))); // NOI18N
         jButton2.setToolTipText("Uci Engines Links & Ratings");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButton(jButton2);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -877,9 +870,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/knight-black-24.png"))); // NOI18N
         jButton1.setToolTipText("Select Black Player Chess Engine");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButton(jButton1);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -888,9 +879,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/log-24-blue.png"))); // NOI18N
         jButton3.setToolTipText("Show Game Log in separate window");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButton(jButton3);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -921,9 +910,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
 
         bNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/new.png"))); // NOI18N
         bNew.setToolTipText("New Game");
-        bNew.setFocusable(false);
-        bNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButton(bNew);
         bNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bNewActionPerformed(evt);
@@ -933,9 +920,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
 
         bKillAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/stop-red.png"))); // NOI18N
         bKillAll.setToolTipText("Kill All Engines and reset Board");
-        bKillAll.setFocusable(false);
-        bKillAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bKillAll.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButton(bKillAll);
         bKillAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bKillAllActionPerformed(evt);
@@ -945,9 +930,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
 
         bSaveCfg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/floppy_disk_green.png"))); // NOI18N
         bSaveCfg.setToolTipText("Save Config");
-        bSaveCfg.setFocusable(false);
-        bSaveCfg.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bSaveCfg.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButton(bSaveCfg);
         bSaveCfg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bSaveCfgActionPerformed(evt);
@@ -980,9 +963,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
          
          bSoundMixer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/audio_volume_high.png"))); // NOI18N
          bSoundMixer.setToolTipText("Sound Volume");
-         bSoundMixer.setFocusable(false);
-         bSoundMixer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bSoundMixer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         initButton(bSoundMixer);
          bSoundMixer.addActionListener(new java.awt.event.ActionListener() {
              public void actionPerformed(java.awt.event.ActionEvent evt) {
                  bSoundMixerActionPerformed(evt);
@@ -991,9 +972,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
          
          bUseSound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/sound-add-icon.png"))); // NOI18N
          bUseSound.setToolTipText("Use Sound");
-         bUseSound.setFocusable(false);
-         bUseSound.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bUseSound.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         initButton(bUseSound);
          bUseSound.addActionListener(new java.awt.event.ActionListener() {
              public void actionPerformed(java.awt.event.ActionEvent evt) {
                  bUseSoundActionPerformed(evt);
@@ -1059,9 +1038,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
          
          bSendWhite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/send-white-24-green.png"))); // NOI18N
          bSendWhite.setToolTipText("Send Command to White CE");
-         bSendWhite.setFocusable(false);
-         bSendWhite.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bSendWhite.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         initButton(bSendWhite);
          bSendWhite.addActionListener(new java.awt.event.ActionListener() {
              public void actionPerformed(java.awt.event.ActionEvent evt) {
                  bSendWhiteActionPerformed(evt);
@@ -1070,9 +1047,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
          
          bSendBlack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/send-black-24-right.png"))); // NOI18N
          bSendBlack.setToolTipText("Send Command to Black CE");
-         bSendBlack.setFocusable(false);
-         bSendBlack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-         bSendBlack.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+         initButton(bSendBlack);
          bSendBlack.addActionListener(new java.awt.event.ActionListener() {
              public void actionPerformed(java.awt.event.ActionEvent evt) {
                  bSendBlackActionPerformed(evt);
