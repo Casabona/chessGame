@@ -81,124 +81,90 @@ public class CElinksU extends javax.swing.JDialog {
 
     	
     }
-    
+    private void initButtonJtoolBar4(javax.swing.JButton button) {
+    	button.setFocusable(false);
+    	button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    	button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    }
     private void initJtoolBar4() {
     	
         jToolBar4.setFloatable(false);
         jToolBar4.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jButton55.setText(" Rating = 2323");
-        jButton55.setFocusable(false);
-        jButton55.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton55.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton55);
         jToolBar4.add(jButton55);
 
         jButton1.setText(" Rating = 1750");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton1);
         jToolBar4.add(jButton1);
 
         jButton56.setText(" Rating = 2455");
-        jButton56.setFocusable(false);
-        jButton56.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton56.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton56);
         jToolBar4.add(jButton56);
 
         jButton57.setText(" Rating = 2588");
-        jButton57.setFocusable(false);
-        jButton57.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton57.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton57);
         jToolBar4.add(jButton57);
 
         jButton44.setText(" Rating = 1372");
-        jButton44.setFocusable(false);
-        jButton44.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton44.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton44);
         jToolBar4.add(jButton44);
 
         jButton58.setText(" Rating = 2294");
-        jButton58.setFocusable(false);
-        jButton58.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton58.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton58);
         jToolBar4.add(jButton58);
 
         jButton59.setText(" Rating = 2347");
-        jButton59.setFocusable(false);
-        jButton59.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton59.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton59);
         jToolBar4.add(jButton59);
 
         jButton61.setText(" Rating = ");
-        jButton61.setFocusable(false);
-        jButton61.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton61.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton61);
         jToolBar4.add(jButton61);
 
         jButton62.setText(" Rating = 2319");
-        jButton62.setFocusable(false);
-        jButton62.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton62.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton62);
         jToolBar4.add(jButton62);
 
         jButton63.setText(" Rating = ");
-        jButton63.setFocusable(false);
-        jButton63.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton63.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton63);
         jToolBar4.add(jButton63);
 
         jButton64.setText(" Rating = 2546");
-        jButton64.setFocusable(false);
-        jButton64.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton64.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton64);
         jToolBar4.add(jButton64);
 
         jButton65.setText(" Rating = 1706");
-        jButton65.setFocusable(false);
-        jButton65.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton65.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton65);
         jToolBar4.add(jButton65);
 
         jButton66.setText(" Rating = 1968");
-        jButton66.setFocusable(false);
-        jButton66.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton66.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton66);
         jToolBar4.add(jButton66);
 
         jButton67.setText(" Rating = ");
-        jButton67.setFocusable(false);
-        jButton67.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton67.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton67);
         jToolBar4.add(jButton67);
 
         jButton68.setText(" Rating = ");
-        jButton68.setFocusable(false);
-        jButton68.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton68.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton68);
         jToolBar4.add(jButton68);
 
         jButton69.setText(" Rating = 1706");
-        jButton69.setFocusable(false);
-        jButton69.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton69.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton69);
         jToolBar4.add(jButton69);
 
         jButton70.setText(" Rating = 2400");
-        jButton70.setFocusable(false);
-        jButton70.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton70.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton70);
         jToolBar4.add(jButton70);
 
         jButton71.setText(" Rating = ");
-        jButton71.setFocusable(false);
-        jButton71.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton71.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton71);
         jToolBar4.add(jButton71);
 
         jButton72.setText(" Rating = ");
-        jButton72.setFocusable(false);
-        jButton72.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton72.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        initButtonJtoolBar4(jButton72);
         jToolBar4.add(jButton72);
     }
     private void initButtonJtoolBar1(javax.swing.JButton button) {
