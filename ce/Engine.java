@@ -515,7 +515,149 @@ public class Engine extends java.lang.Object
 		out.println(result);
 		out.close();
 	}
-
+private void refreshBoardCmd(int square) {
+	while (square >= 0)
+	{
+		switch (position.charAt(index))
+		{
+			case 'P' :
+				p.setPiece(square, Position.WHITE_PAWN);
+				index++;
+				square++;
+				if (square % 8 == 0)
+					square -= 16; // e.g. after 63 is 64 and the next comes 48 - line by line
+				break;
+			case 'N' :
+				p.setPiece(square, Position.WHITE_KNIGHT);
+				index++;
+				square++;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case 'B' :
+				p.setPiece(square, Position.WHITE_BISHOP);
+				index++;
+				square++;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case 'R' :
+				p.setPiece(square, Position.WHITE_ROOK);
+				index++;
+				square++;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case 'Q' :
+				p.setPiece(square, Position.WHITE_QUEEN);
+				index++;
+				square++;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case 'K' :
+				p.setPiece(square, Position.WHITE_KING);
+				index++;
+				square++;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case 'p' :
+				p.setPiece(square, Position.BLACK_PAWN);
+				index++;
+				square++;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case 'n' :
+				p.setPiece(square, Position.BLACK_KNIGHT);
+				index++;
+				square++;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case 'b' :
+				p.setPiece(square, Position.BLACK_BISHOP);
+				index++;
+				square++;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case 'r' :
+				p.setPiece(square, Position.BLACK_ROOK);
+				index++;
+				square++;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case 'q' :
+				p.setPiece(square, Position.BLACK_QUEEN);
+				index++;
+				square++;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case 'k' :
+				p.setPiece(square, Position.BLACK_KING);
+				index++;
+				square++;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case '1' :
+				index++;
+				square++;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case '2' :
+				index++;
+				square += 2;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case '3' :
+				index++;
+				square += 3;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case '4' :
+				index++;
+				square += 4;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case '5' :
+				index++;
+				square += 5;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case '6' :
+				index++;
+				square += 6;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case '7' :
+				index++;
+				square += 7;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case '8' :
+				index++;
+				square += 8;
+				if (square % 8 == 0)
+					square -= 16;
+				break;
+			case '/' :
+				index++;
+				break;
+		}
+	}
+}
 	/**
 	 * Realizes the setboard command.
 	 * @param position The input position.
@@ -559,147 +701,7 @@ public class Engine extends java.lang.Object
 
 		int index = 0;
 		int square = 56;
-		while (square >= 0)
-		{
-			switch (position.charAt(index))
-			{
-				case 'P' :
-					p.setPiece(square, Position.WHITE_PAWN);
-					index++;
-					square++;
-					if (square % 8 == 0)
-						square -= 16; // e.g. after 63 is 64 and the next comes 48 - line by line
-					break;
-				case 'N' :
-					p.setPiece(square, Position.WHITE_KNIGHT);
-					index++;
-					square++;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case 'B' :
-					p.setPiece(square, Position.WHITE_BISHOP);
-					index++;
-					square++;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case 'R' :
-					p.setPiece(square, Position.WHITE_ROOK);
-					index++;
-					square++;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case 'Q' :
-					p.setPiece(square, Position.WHITE_QUEEN);
-					index++;
-					square++;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case 'K' :
-					p.setPiece(square, Position.WHITE_KING);
-					index++;
-					square++;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case 'p' :
-					p.setPiece(square, Position.BLACK_PAWN);
-					index++;
-					square++;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case 'n' :
-					p.setPiece(square, Position.BLACK_KNIGHT);
-					index++;
-					square++;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case 'b' :
-					p.setPiece(square, Position.BLACK_BISHOP);
-					index++;
-					square++;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case 'r' :
-					p.setPiece(square, Position.BLACK_ROOK);
-					index++;
-					square++;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case 'q' :
-					p.setPiece(square, Position.BLACK_QUEEN);
-					index++;
-					square++;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case 'k' :
-					p.setPiece(square, Position.BLACK_KING);
-					index++;
-					square++;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case '1' :
-					index++;
-					square++;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case '2' :
-					index++;
-					square += 2;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case '3' :
-					index++;
-					square += 3;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case '4' :
-					index++;
-					square += 4;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case '5' :
-					index++;
-					square += 5;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case '6' :
-					index++;
-					square += 6;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case '7' :
-					index++;
-					square += 7;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case '8' :
-					index++;
-					square += 8;
-					if (square % 8 == 0)
-						square -= 16;
-					break;
-				case '/' :
-					index++;
-					break;
-			}
-		}
+		refreshBoardCmd(square)
 
 		if (!xboard)
 			displayCmd();
@@ -879,7 +881,9 @@ public class Engine extends java.lang.Object
 
 		bestMove = (short)((bestMove << 3) + (stringMove.charAt(2) - 'a'));
 	}
-	
+	/**
+	 *  Makes the next move using iterative deepening for thread 1
+	 */
 	private thinkThread1() {
 		if (numberOfThreads == 1) // one thread, standard search
 		{
@@ -913,7 +917,9 @@ public class Engine extends java.lang.Object
 			}
 		}
 	}
-
+	/**
+	 *  Makes the next move using iterative deepening for thread 2 
+	 */
 	private thinkThread2() {
 		
 		 if (numberOfThreads == 2) // two threads, normal search
@@ -997,7 +1003,9 @@ public class Engine extends java.lang.Object
 			}
 		
 	}
-	
+	/**
+	 *  Makes the next move using iterative deepening for thread 3
+	 */
 	private void thinkThread3() {
 		if (numberOfThreads == 3) // one thread, aspiration search
 		{
@@ -1075,7 +1083,171 @@ public class Engine extends java.lang.Object
 			}
 		}
 	}
+	private void alpha4() {
+		alpha = -Search.INFINITY;
+		beta = s1.getBestValue() - 2 * SEARCH_MARGIN;
+		gamma = s1.getBestValue();
+		s1 = new Search(p, alpha, beta, maxDepth, "1\'",
+			startTime, xboard, post, computerWhite);
+		s2 = new Search(p, beta, gamma, maxDepth, "2\'",
+			startTime, xboard, post, computerWhite);
+		s1.start();
+		s2.start();
+		if (maxDepth > 1) // the first loop must be always finished
+		{
+			s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+			s2.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+			// max to be sure that the wait time is always positive
+			s1.stopIt();
+			s2.stopIt();
+		}
+		s1.join();
+		s2.join();
+
+		if (s1.getLastRunFinished() && !s2.getLastRunFinished())
+		{
+			if (s1.getBestValue() < beta)
+			{
+				bestMove = s1.getBestMove();
+				e = s1.getBestValue();
+			}
+			else
+				break;
+		}
+		else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
+		{
+			if (s2.getBestValue() > beta && s2.getBestValue() <= gamma) // <= !
+			{
+				bestMove = s2.getBestMove();
+				e = s2.getBestValue();
+			}
+			else
+				break;
+		}
+		else if (!s1.getLastRunFinished() && !s2.getLastRunFinished())
+		{
+			break;
+		}
+		else if (s1.getBestValue() < beta)
+		// s1.getLastRunFinished() && s2.getLastRunFinished()
+		{
+			bestMove = s1.getBestMove();
+			e = s1.getBestValue();
+		}
+		else if (s2.getBestValue() > beta)
+		{
+			bestMove = s2.getBestMove();
+			e = s2.getBestValue();
+		}
+		else if (s1.getBestValue() >= beta && s2.getBestValue() <= beta)
+		{
+			// s1.getBestValue() == beta == s2.getBestValue()
+			bestMove = s1.getBestMove();
+			e = s1.getBestValue();
+		}
+		else
+		{
+			System.out.println("Should not have happend (threads 4, 1)!");
+			log.println("Output:");
+			log.println("Should not have happend (threads 4, 1)!");
+		}
+	}
 	
+	private void gamma4() {
+		
+		alpha = s2.getBestValue();
+		beta = s2.getBestValue() + 2 * SEARCH_MARGIN;
+		gamma = Search.INFINITY;
+		s1 = new Search(p, alpha, beta, maxDepth, "1\'",
+			startTime, xboard, post, computerWhite);
+		s2 = new Search(p, beta, gamma, maxDepth, "2\'",
+			startTime, xboard, post, computerWhite);
+		s1.start();
+		s2.start();
+		if (maxDepth > 1) // the first loop must be always finished
+		{
+			s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+			s2.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+			// max to be sure that the wait time is always positive
+			s1.stopIt();
+			s2.stopIt();
+		}
+		s1.join();
+		s2.join();
+
+		if (s1.getLastRunFinished() && !s2.getLastRunFinished())
+		{
+			if (s1.getBestValue() >= alpha && s1.getBestValue() < beta) // >= !
+			{
+				bestMove = s1.getBestMove();
+				e = s1.getBestValue();
+			}
+			else
+				break;
+		}
+		else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
+		{
+			if (s2.getBestValue() > beta)
+			{
+				bestMove = s2.getBestMove();
+				e = s2.getBestValue();
+			}
+			else
+				break;
+		}
+		else if (!s1.getLastRunFinished() && !s2.getLastRunFinished())
+		{
+			break;
+		}
+		else if (s1.getBestValue() < beta)
+		// s1.getLastRunFinished() && s2.getLastRunFinished()
+		{
+			bestMove = s1.getBestMove();
+			e = s1.getBestValue();
+		}
+		else if (s2.getBestValue() > beta)
+		{
+			bestMove = s2.getBestMove();
+			e = s2.getBestValue();
+		}
+		else if (s1.getBestValue() >= beta && s2.getBestValue() <= beta)
+		{
+			// s1.getBestValue() == beta == s2.getBestValue()
+			bestMove = s1.getBestMove();
+			e = s1.getBestValue();
+		}
+		else
+		{
+			System.out.println("Should not have happend (threads 4, 2)!");
+			log.println("Output:");
+			log.println("Should not have happend (threads 4, 2)!");
+		}
+	}
+	
+	private void initThread4() {
+		alpha = e - 2 * SEARCH_MARGIN;
+		beta = e;
+		gamma = e + 2 * SEARCH_MARGIN;
+		s1 = new Search(p, alpha, beta, maxDepth, "1",
+			startTime, xboard, post, computerWhite);
+		s2 = new Search(p, beta, gamma, maxDepth, "2",
+		 startTime, xboard, post, computerWhite);
+		s1.start();
+		s2.start();
+		if (maxDepth > 1) // the first loop must be always finished
+		{
+			s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+			s2.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
+			// max to be sure that the wait time is always positive
+			s1.stopIt();
+			s2.stopIt();
+		}
+		s1.join();
+		s2.join();
+	}
+	/**
+	 *  Makes the next move using iterative deepening for thread 4
+	 */
 	private void thingThread4() {
 		if (numberOfThreads == 4) // two threads, parallel aspiration search
 
@@ -1083,25 +1255,7 @@ public class Engine extends java.lang.Object
 			while (3 * moveTime / 4 - (System.currentTimeMillis() - startTime) > 0 ||
 				maxDepth == 1)
 			{
-				alpha = e - 2 * SEARCH_MARGIN;
-				beta = e;
-				gamma = e + 2 * SEARCH_MARGIN;
-				s1 = new Search(p, alpha, beta, maxDepth, "1",
-					startTime, xboard, post, computerWhite);
-				s2 = new Search(p, beta, gamma, maxDepth, "2",
-				 startTime, xboard, post, computerWhite);
-				s1.start();
-				s2.start();
-				if (maxDepth > 1) // the first loop must be always finished
-				{
-					s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-					s2.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-					// max to be sure that the wait time is always positive
-					s1.stopIt();
-					s2.stopIt();
-				}
-				s1.join();
-				s2.join();
+				initThread4();
 
 				if (s1.getLastRunFinished() && !s2.getLastRunFinished())
 				{
@@ -1146,143 +1300,11 @@ public class Engine extends java.lang.Object
 				}
 				else if (s1.getBestValue() <= alpha) // research needed
 				{
-					alpha = -Search.INFINITY;
-					beta = s1.getBestValue() - 2 * SEARCH_MARGIN;
-					gamma = s1.getBestValue();
-					s1 = new Search(p, alpha, beta, maxDepth, "1\'",
-						startTime, xboard, post, computerWhite);
-					s2 = new Search(p, beta, gamma, maxDepth, "2\'",
-						startTime, xboard, post, computerWhite);
-					s1.start();
-					s2.start();
-					if (maxDepth > 1) // the first loop must be always finished
-					{
-						s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-						s2.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-						// max to be sure that the wait time is always positive
-						s1.stopIt();
-						s2.stopIt();
-					}
-					s1.join();
-					s2.join();
-
-					if (s1.getLastRunFinished() && !s2.getLastRunFinished())
-					{
-						if (s1.getBestValue() < beta)
-						{
-							bestMove = s1.getBestMove();
-							e = s1.getBestValue();
-						}
-						else
-							break;
-					}
-					else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
-					{
-						if (s2.getBestValue() > beta && s2.getBestValue() <= gamma) // <= !
-						{
-							bestMove = s2.getBestMove();
-							e = s2.getBestValue();
-						}
-						else
-							break;
-					}
-					else if (!s1.getLastRunFinished() && !s2.getLastRunFinished())
-					{
-						break;
-					}
-					else if (s1.getBestValue() < beta)
-					// s1.getLastRunFinished() && s2.getLastRunFinished()
-					{
-						bestMove = s1.getBestMove();
-						e = s1.getBestValue();
-					}
-					else if (s2.getBestValue() > beta)
-					{
-						bestMove = s2.getBestMove();
-						e = s2.getBestValue();
-					}
-					else if (s1.getBestValue() >= beta && s2.getBestValue() <= beta)
-					{
-						// s1.getBestValue() == beta == s2.getBestValue()
-						bestMove = s1.getBestMove();
-						e = s1.getBestValue();
-					}
-					else
-					{
-						System.out.println("Should not have happend (threads 4, 1)!");
-						log.println("Output:");
-						log.println("Should not have happend (threads 4, 1)!");
-					}
+					alpha4();
 				}
 				else if (s2.getBestValue() >= gamma) // research needed
 				{
-					alpha = s2.getBestValue();
-					beta = s2.getBestValue() + 2 * SEARCH_MARGIN;
-					gamma = Search.INFINITY;
-					s1 = new Search(p, alpha, beta, maxDepth, "1\'",
-						startTime, xboard, post, computerWhite);
-					s2 = new Search(p, beta, gamma, maxDepth, "2\'",
-						startTime, xboard, post, computerWhite);
-					s1.start();
-					s2.start();
-					if (maxDepth > 1) // the first loop must be always finished
-					{
-						s1.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-						s2.join(Math.max(moveTime - (System.currentTimeMillis() - startTime), 1));
-						// max to be sure that the wait time is always positive
-						s1.stopIt();
-						s2.stopIt();
-					}
-					s1.join();
-					s2.join();
-
-					if (s1.getLastRunFinished() && !s2.getLastRunFinished())
-					{
-						if (s1.getBestValue() >= alpha && s1.getBestValue() < beta) // >= !
-						{
-							bestMove = s1.getBestMove();
-							e = s1.getBestValue();
-						}
-						else
-							break;
-					}
-					else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
-					{
-						if (s2.getBestValue() > beta)
-						{
-							bestMove = s2.getBestMove();
-							e = s2.getBestValue();
-						}
-						else
-							break;
-					}
-					else if (!s1.getLastRunFinished() && !s2.getLastRunFinished())
-					{
-						break;
-					}
-					else if (s1.getBestValue() < beta)
-					// s1.getLastRunFinished() && s2.getLastRunFinished()
-					{
-						bestMove = s1.getBestMove();
-						e = s1.getBestValue();
-					}
-					else if (s2.getBestValue() > beta)
-					{
-						bestMove = s2.getBestMove();
-						e = s2.getBestValue();
-					}
-					else if (s1.getBestValue() >= beta && s2.getBestValue() <= beta)
-					{
-						// s1.getBestValue() == beta == s2.getBestValue()
-						bestMove = s1.getBestMove();
-						e = s1.getBestValue();
-					}
-					else
-					{
-						System.out.println("Should not have happend (threads 4, 2)!");
-						log.println("Output:");
-						log.println("Should not have happend (threads 4, 2)!");
-					}
+					gamma4();
 				}
 				else
 				{
@@ -1298,7 +1320,9 @@ public class Engine extends java.lang.Object
 			}
 		}
 	}
-	
+	/**
+	 *  Makes the next move using iterative deepening for thread 5
+	 */
 	private void thingThread5() {
 		if (numberOfThreads == 5) // one thread, binary alphabeta
 		{
@@ -1349,7 +1373,9 @@ public class Engine extends java.lang.Object
 			}
 		}
 	}
-	
+	/**
+	 *  Makes the next move using iterative deepening for thread 6
+	 */
 	private void thingThread6() {
 		 if (numberOfThreads == 6) // two threads, triple alphabeta
 			{
@@ -1452,7 +1478,9 @@ public class Engine extends java.lang.Object
 				}
 			}
 	}
-	
+	/**
+	 *  Makes the next move using iterative deepening for thread 7
+	 */
 	private void thingThread7() {
 		if (numberOfThreads == 7) // one thread, sequencial search
 		{
@@ -1519,7 +1547,9 @@ public class Engine extends java.lang.Object
 			}
 		}
 	}
-	
+	/**
+	 *  Makes the next move using iterative deepening for thread 8
+	 */
 	private void thingThread8() {
 		 if (numberOfThreads == 8) // two threads, standard search with parallel window search
 		{
@@ -1631,7 +1661,6 @@ public class Engine extends java.lang.Object
 			thingThread7()
 			thingThread8();
 			
-		
 		}
 
 		numberOfMoves++;
