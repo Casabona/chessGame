@@ -725,6 +725,12 @@ private void refreshBoardCmd(int square) {
 	{
 		timeLeft = 60 * minutes + seconds;
 	}
+	
+	private void threadOutput(String messageThread) {
+		System.out.println("Should not have happend "+messageThread+"!");
+		log.println("Output:");
+		log.println("Should not have happend "+messageThread+"!");
+	}
 
 	/**
 	 * Realizes the threads command.
@@ -990,9 +996,8 @@ private void refreshBoardCmd(int square) {
 					}
 					else
 					{
-						System.out.println("Should not have happend (threads 2)!");
-						log.println("Output:");
-						log.println("Should not have happend (threads 2)!");
+					
+						threadOutput((threads 2));
 					}
 	
 					if (e >= Search.CHECKMATE_VALUE)
@@ -1147,9 +1152,8 @@ private void refreshBoardCmd(int square) {
 		}
 		else
 		{
-			System.out.println("Should not have happend (threads 4, 1)!");
-			log.println("Output:");
-			log.println("Should not have happend (threads 4, 1)!");
+	
+			threadOutput((threads 4, 1));
 		}
 	}
 	
@@ -1218,9 +1222,8 @@ private void refreshBoardCmd(int square) {
 		}
 		else
 		{
-			System.out.println("Should not have happend (threads 4, 2)!");
-			log.println("Output:");
-			log.println("Should not have happend (threads 4, 2)!");
+
+			threadOutput((threads 4, 2));
 		}
 	}
 	
@@ -1308,9 +1311,7 @@ private void refreshBoardCmd(int square) {
 				}
 				else
 				{
-					System.out.println("Should not have happend (threads 4, 3)!");
-					log.println("Output:");
-					log.println("Should not have happend (threads 4, 3)!");
+					threadOutput((threads 4, 3));
 				}
 
 				if (e >= Search.CHECKMATE_VALUE)
@@ -1465,9 +1466,7 @@ private void refreshBoardCmd(int square) {
 						}
 						else
 						{
-							System.out.println("Should not have happend (threads 6)!");
-							log.println("Output:");
-							log.println("Should not have happend (threads 6)!");
+							threadOutput((threads 6));
 						}
 					}
 	
@@ -1478,6 +1477,8 @@ private void refreshBoardCmd(int square) {
 				}
 			}
 	}
+	
+	private Searh
 	/**
 	 *  Makes the next move using iterative deepening for thread 7
 	 */
@@ -1534,9 +1535,7 @@ private void refreshBoardCmd(int square) {
 					}
 					else
 					{
-						System.out.println("Should not have happend (threads 7)!");
-						log.println("Output:");
-						log.println("Should not have happend (threads 7)!");
+						threadOutput((threads 7));
 					}
 				}
 
