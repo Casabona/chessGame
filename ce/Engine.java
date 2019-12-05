@@ -119,6 +119,85 @@ public class Engine extends java.lang.Object
 			threadsCmd(4);
 */
 	}
+	private void gaming() {
+		if (command[0].equals("black") && numberOfItems == 1)
+			// it is move of black
+			blackCmd();
+		else if (command[0].equals("display") && numberOfItems == 1)
+			// display the current chessboard
+			displayCmd();
+		else if (command[0].equals("force") && numberOfItems == 1)
+			// stop playing
+			forceCmd();
+		else if (command[0].equals("go") && numberOfItems == 1)
+			// play with the color on move
+			goCmd();
+		else if (command[0].equals("level") && numberOfItems == 4)
+			// set clocks
+			levelCmd(Integer.parseInt(command[1]), Integer.parseInt(command[2]),
+				Integer.parseInt(command[3]));
+		else if (command[0].equals("new") && numberOfItems == 1)
+			// start a new game
+			newCmd();
+		else if (command[0].equals("nopost") && numberOfItems == 1)
+			// stop displaying thinking output
+			nopostCmd();
+		else if (command[0].equals("operator") && numberOfItems == 2)
+			// some time for the operator
+			operatorCmd(Integer.parseInt(command[1]));
+		else if (command[0].equals("ponder") && numberOfItems == 2)
+			// change ponder indicator
+			ponderCmd(command[1]);
+		else if (command[0].equals("post") && numberOfItems == 1)
+			// start displaying thinking output
+			postCmd();
+		else if (command[0].equals("savegame") && numberOfItems == 3)
+			// save the current game
+			savegameCmd(Integer.parseInt(command[1]), command[2]);
+		else if (command[0].equals("setboard") &&
+			(numberOfItems == 7 || numberOfItems == 8))
+			// set the position by reading the given fen
+			// for now ignore the 50 moves rule
+			if (numberOfItems == 7)
+				setboardCmd(command[1], command[2], command[3], command[4],
+					Integer.parseInt(command[6]));
+			else // numberOfItems == 8
+				setboardCmd(command[1] + command[2], command[3], command[4], command[5],
+					Integer.parseInt(command[7]));
+		else if (command[0].equals("time") && numberOfItems == 2)
+			// how much time the engine has to the next time control
+			timeCmd(Integer.parseInt(command[1]));
+		else if (command[0].equals("time") && numberOfItems == 3)
+			// how much time the engine has to the next time control
+			timeCmd(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
+		else if (command[0].equals("threads") && numberOfItems == 2)
+			// set number of threads
+			threadsCmd(Integer.parseInt(command[1]));
+		else if (command[0].equals("white") && numberOfItems == 1)
+			// it is move of white
+			whiteCmd();
+		else if (isMove(command[0]) && numberOfItems == 1)
+			// it is a move
+			moveCmd(command[0]);
+		else if (!xboard)
+		{
+			if (numberOfItems > 0)
+			{
+				System.out.print("Bad command: " + command[0]);
+				log.println("Output:");
+				log.print("Bad command: " + command[0]);
+				for (int i = 1; i < numberOfItems; i++)
+				{
+					System.out.print(' ' + command[i]);
+					log.print(' ' + command[i]);
+				}
+				System.out.println();
+				log.println();
+			}
+		}
+
+		numberOfItems = getCommand(st, command);
+	}
 
 	/**
 	 * The program starts here.
@@ -147,7 +226,7 @@ public class Engine extends java.lang.Object
 			numberOfItems = getCommand(st, command);
 		}
 
-		if (!xboard)
+		else(!xboard)
 		{
 			System.out.println("JChess ver. 1.0, Copyright (c) 2001-2002 Tomasz Michniewski");
 			log.println("Output:");
@@ -156,83 +235,7 @@ public class Engine extends java.lang.Object
 
 		while (!command[0].equals("quit"))
 		{
-			if (command[0].equals("black") && numberOfItems == 1)
-				// it is move of black
-				blackCmd();
-			else if (command[0].equals("display") && numberOfItems == 1)
-				// display the current chessboard
-				displayCmd();
-			else if (command[0].equals("force") && numberOfItems == 1)
-				// stop playing
-				forceCmd();
-			else if (command[0].equals("go") && numberOfItems == 1)
-				// play with the color on move
-				goCmd();
-			else if (command[0].equals("level") && numberOfItems == 4)
-				// set clocks
-				levelCmd(Integer.parseInt(command[1]), Integer.parseInt(command[2]),
-					Integer.parseInt(command[3]));
-			else if (command[0].equals("new") && numberOfItems == 1)
-				// start a new game
-				newCmd();
-			else if (command[0].equals("nopost") && numberOfItems == 1)
-				// stop displaying thinking output
-				nopostCmd();
-			else if (command[0].equals("operator") && numberOfItems == 2)
-				// some time for the operator
-				operatorCmd(Integer.parseInt(command[1]));
-			else if (command[0].equals("ponder") && numberOfItems == 2)
-				// change ponder indicator
-				ponderCmd(command[1]);
-			else if (command[0].equals("post") && numberOfItems == 1)
-				// start displaying thinking output
-				postCmd();
-			else if (command[0].equals("savegame") && numberOfItems == 3)
-				// save the current game
-				savegameCmd(Integer.parseInt(command[1]), command[2]);
-			else if (command[0].equals("setboard") &&
-				(numberOfItems == 7 || numberOfItems == 8))
-				// set the position by reading the given fen
-				// for now ignore the 50 moves rule
-				if (numberOfItems == 7)
-					setboardCmd(command[1], command[2], command[3], command[4],
-						Integer.parseInt(command[6]));
-				else // numberOfItems == 8
-					setboardCmd(command[1] + command[2], command[3], command[4], command[5],
-						Integer.parseInt(command[7]));
-			else if (command[0].equals("time") && numberOfItems == 2)
-				// how much time the engine has to the next time control
-				timeCmd(Integer.parseInt(command[1]));
-			else if (command[0].equals("time") && numberOfItems == 3)
-				// how much time the engine has to the next time control
-				timeCmd(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
-			else if (command[0].equals("threads") && numberOfItems == 2)
-				// set number of threads
-				threadsCmd(Integer.parseInt(command[1]));
-			else if (command[0].equals("white") && numberOfItems == 1)
-				// it is move of white
-				whiteCmd();
-			else if (isMove(command[0]) && numberOfItems == 1)
-				// it is a move
-				moveCmd(command[0]);
-			else if (!xboard)
-			{
-				if (numberOfItems > 0)
-				{
-					System.out.print("Bad command: " + command[0]);
-					log.println("Output:");
-					log.print("Bad command: " + command[0]);
-					for (int i = 1; i < numberOfItems; i++)
-					{
-						System.out.print(' ' + command[i]);
-						log.print(' ' + command[i]);
-					}
-					System.out.println();
-					log.println();
-				}
-			}
-
-			numberOfItems = getCommand(st, command);
+			gaming();
 		}
 
 		stopThinking();
@@ -1301,7 +1304,7 @@ private void refreshBoardCmd(int square) {
 		}
 	}
 	
-	private void finishTread() {
+	private void threadSecurity() {
 		if (s1.getLastRunFinished() && !s2.getLastRunFinished())
 		{
 			if (s1.getBestValue() == middle1)
@@ -1312,6 +1315,24 @@ private void refreshBoardCmd(int square) {
 			}
 			else
 				break;
+		}
+		else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
+		{
+			if (s2.getBestValue() == middle2)
+			{
+				bestMove = s2.getBestMove();
+				e = s2.getBestValue();
+				break;
+			}
+			else
+				break;
+		}
+	}
+	
+	private void finishTread() {
+		if (s1.getLastRunFinished() && !s2.getLastRunFinished())
+		{
+			threadSecurity();
 		}
 		else if (!s1.getLastRunFinished() && s2.getLastRunFinished())
 		{
