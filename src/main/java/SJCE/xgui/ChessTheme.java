@@ -12,7 +12,11 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-
+/**
+ * gère l'affichage des images des pièces sur le plateau
+ * @author minet.adrien
+ *
+ */
 public class ChessTheme {
 
  private String themePathFig;

@@ -6,6 +6,11 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+/**
+ * gère le moteur du jeu, principalement pour l'arrêt
+ * @author minet.adrien
+ *
+ */
 public class EngineIO {
  private Process process;
  private BufferedReader reader;
