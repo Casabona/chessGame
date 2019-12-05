@@ -1559,6 +1559,63 @@ private void refreshBoardCmd(int square) {
 			}
 		}
 	}
+	
+	private void verificationPlay() {
+		if (ponder)
+		{
+			Position pTmp = p.duplicatePosition();
+			pTmp.invertPosition();
+			if (numberOfThreads % 2 == 1)
+			{
+				s1 = new Search(pTmp, -Search.INFINITY, Search.INFINITY, maxDepth + 1, "1\"",
+					startTime, xboard, post, !computerWhite);
+				s1.start();
+			}
+			else
+			{
+				s1 = new Search(pTmp, -Search.INFINITY, e, maxDepth + 1, "1\"",
+					startTime, xboard, post, !computerWhite);
+				s2 = new Search(pTmp, e, Search.INFINITY, maxDepth + 1, "2\"",
+					startTime, xboard, post, !computerWhite);
+				s1.start();
+				s2.start();
+			}
+		}
+
+		if (!computerWhite)
+			p.invertPosition();
+
+		if (!xboard)
+			displayCmd();
+		
+		stringMove = Position.moveToString(bestMove, computerWhite);
+		if (computerWhite)
+		{
+			gamePGN += ' ' + Integer.toString(moveNumber) + ". " + stringMove;
+			openingMoves += stringMove;
+		}
+		else
+		{
+			gamePGN += ' ' + stringMove;
+			moveNumber++;
+			openingMoves += stringMove;
+		}
+
+		if (!xboard)
+		{
+			System.out.println("On my clock is: " +
+				Integer.toString(timeLeft / 60) + "min. " +
+				Integer.toString(timeLeft - 60 * (timeLeft / 60)) + "s.");
+			System.out.println("If there is a difference use the time command" +
+				" to correct the remaining time.");
+			log.println("Output:");
+			log.println("On my clock is: " +
+				Integer.toString(timeLeft / 60) + "min. " +
+				Integer.toString(timeLeft - 60 * (timeLeft / 60)) + "s.");
+			log.println("If there is a difference use the time command" +
+				" to correct the remaining time.");
+		}
+	}
 	/**
 	 * Makes the next move using iterative deepening.
 	 * @throws InterruptedException It might be thrown by the Thread.join method.
@@ -1661,60 +1718,9 @@ private void refreshBoardCmd(int square) {
 
 		Search.clearTT();
 
-		if (ponder)
-		{
-			Position pTmp = p.duplicatePosition();
-			pTmp.invertPosition();
-			if (numberOfThreads % 2 == 1)
-			{
-				s1 = new Search(pTmp, -Search.INFINITY, Search.INFINITY, maxDepth + 1, "1\"",
-					startTime, xboard, post, !computerWhite);
-				s1.start();
-			}
-			else
-			{
-				s1 = new Search(pTmp, -Search.INFINITY, e, maxDepth + 1, "1\"",
-					startTime, xboard, post, !computerWhite);
-				s2 = new Search(pTmp, e, Search.INFINITY, maxDepth + 1, "2\"",
-					startTime, xboard, post, !computerWhite);
-				s1.start();
-				s2.start();
-			}
-		}
+		verificationPlay();
 
-		if (!computerWhite)
-			p.invertPosition();
-
-		if (!xboard)
-			displayCmd();
-
-		stringMove = Position.moveToString(bestMove, computerWhite);
-		if (computerWhite)
-		{
-			gamePGN += ' ' + Integer.toString(moveNumber) + ". " + stringMove;
-			openingMoves += stringMove;
-		}
-		else
-		{
-			gamePGN += ' ' + stringMove;
-			moveNumber++;
-			openingMoves += stringMove;
-		}
-
-		if (!xboard)
-		{
-			System.out.println("On my clock is: " +
-				Integer.toString(timeLeft / 60) + "min. " +
-				Integer.toString(timeLeft - 60 * (timeLeft / 60)) + "s.");
-			System.out.println("If there is a difference use the time command" +
-				" to correct the remaining time.");
-			log.println("Output:");
-			log.println("On my clock is: " +
-				Integer.toString(timeLeft / 60) + "min. " +
-				Integer.toString(timeLeft - 60 * (timeLeft / 60)) + "s.");
-			log.println("If there is a difference use the time command" +
-				" to correct the remaining time.");
-		}
+		
 	}
 
 	/**
