@@ -93,6 +93,20 @@ public abstract class EngineAgent extends Agent {
     public String Javalin = "Javalin v1.3.1, create by Mănica Vlad Bogdan\nhttps://github.com/bugyvlad/javalin\n";
     public String Gladiator = "Gladiator v0.0.7, create by David Garcinuño Enríquez\nhttps://github.com/dagaren/gladiator-chess\n";
     public String FairyPrincess = "Fairy Princess java xboard chess engine\nhttps://github.com/mihaio07/FairyPrincess\n";
+    public String Jchess = "JChess v1.0, created by Tomasz Michniewski - Poland\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/JCHESS/\nhttp://computer-chess.org/doku.php?id=computer_chess:wiki:download:engine_download_list\n";
+    public String Tiffanys = "Tiffanys v0.5, create by Bernhard von Gunten\nhttp://tiffanys.sourceforge.net\n";
+    public String Animats= "Animats revision 23, create by Stuart Allen\nhttp://animatschess.sourceforge.net/\n";
+    public String ArabianKnight = "ArabianKnight v1.55, create by Marcin Gardyjan\nhttp://computer-chess.org/doku.php?id=computer_chess:wiki:download:engine_download_list\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/ARABIAN%20KNIGHT/\n";
+    public String Cuckoo = "Cuckoo v1.12, created by Peter Osterlund, see\nhttp://web.comhem.se/petero2home/javachess/index.html\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/CUCKOO/\n";
+    public String Phoenix = "Phoenix-Cuckoo v1.13a9, create by Rahul A R\nhttps://github.com/rahular/phoenix\n";
+    public String Bagatur = "Bagatur v1.4c, create by Krasimir Topchiyski\nhttp://bagaturchess.sourceforge.net\nhttps://sites.google.com/site/bagaturchess/\nhttps://github.com/bagaturchess/\n";
+    public String ChessBotX = "ChessBotX v1.02, created by Alexander Soto/Roman Koldaev, see:\nhttps://github.com/alexandersoto/chess-bot\nhttp://alexander.soto.io/chess-bot\n";
+    public String DeepBrutePos = "DeepBrutePos v2.1, create by Folkert van Heusden\nhttps://www.vanheusden.com/DeepBrutePos/\n";
+    public String Fisherle = "Fischerle v0.9.70 SE 32bit, created by Roland Stuckardt\nhttp://www.stuckardt.de/index.php/schachengine-fischerle.html\n";
+    public String jChecs = "jChecs v0.1.0.1, create by David Cotton\nhttp://jchecs.free.fr/\nhttp://jchecs.sourceforge.net/\n";
+    //public String Tri-Os = "Tri-OS CS4210's Java xboard Chess Engine\nsee please: http://chess.dubmun.com/\n";
+    
+    
     public EngineAgent(IChessContext context, String goEngine, String colorCE, String ceTip) 
      {
         super(context, goEngine, colorCE, ceTip);
@@ -104,6 +118,27 @@ public abstract class EngineAgent extends Agent {
         }
         //System.out.println(aktion.mainEngine);
         //var test = this.getClass().getField()
+        if (this.goEngine=="GNU Chess" || this.goEngine== "Tri-Os") {
+			Field f1 = null;
+			try {
+				f1 = this.getClass().getField(this.goEngine);
+	        	String s1= "";
+	        	//this.getClass().getF
+	            frame.outputArea.append((String) f1.get(s1));
+			} catch (NoSuchFieldException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
         switch (this.goEngine) {
             /*case "Chess22k": 
                 frame.outputArea.append("Chess22k v1.5, created by Sander Maassen van den Brink (Dutch)\nhttps://github.com/sandermvdb/chess22k\n");
@@ -220,30 +255,40 @@ public abstract class EngineAgent extends Agent {
             case "FairyPrincess": 
                 frame.outputArea.append("Fairy Princess java xboard chess engine\nhttps://github.com/mihaio07/FairyPrincess\n");
                 this.runEngineIO("java -jar ./ce/FairyPrincess.jar"); 
-                break;*/
-                
-            case "Cuckoo":  
-                frame.outputArea.append("Cuckoo v1.12, created by Peter Osterlund, see\nhttp://web.comhem.se/petero2home/javachess/index.html");
-                frame.outputArea.append("\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/CUCKOO/\n");
-                this.runEngineIO("java -jar ./ce/cuckoo112.jar txt"); 
-                break;              
+                break;                
+        	case "Jchess":  
+        		frame.outputArea.append("JChess v1.0, created by Tomasz Michniewski - Poland\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/JCHESS/\nhttp://computer-chess.org/doku.php?id=computer_chess:wiki:download:engine_download_list\n");
+        		this.runEngineIO("java -jar ./ce/Jchess.jar"); 
+        		break;*/                 
+        	case "Tiffanys": 
+        		//frame.outputArea.append("Tiffanys v0.5, create by Bernhard von Gunten\nhttp://tiffanys.sourceforge.net\n");
+        		this.runEngineIO("java -jar ./ce/Tiffanys.jar xboard"); 
+        		break;              
             case "Animats": 
-                frame.outputArea.append("Animats revision 23, create by Stuart Allen\nhttp://animatschess.sourceforge.net/\n");                
+            	//frame.outputArea.append("Animats revision 23, create by Stuart Allen\nhttp://animatschess.sourceforge.net/\n");                
                 this.runEngineIO("java -jar ./ce/AnimatsCE.jar xboard");
-                break; 
-            case "ArabianKnight":
-                frame.outputArea.append("ArabianKnight v1.55, create by Marcin Gardyjan\n"); 
-                frame.outputArea.append("http://computer-chess.org/doku.php?id=computer_chess:wiki:download:engine_download_list\n");
-                frame.outputArea.append("http://kirr.homeunix.org/chess/engines/Jim%20Ablett/ARABIAN%20KNIGHT/\n");
-                runEngineIO("java -jar ./ce/ArabianKnight.jar xboard"); 
                 break;
+            case "ArabianKnight":
+            	//frame.outputArea.append("ArabianKnight v1.55, create by Marcin Gardyjan\nhttp://computer-chess.org/doku.php?id=computer_chess:wiki:download:engine_download_list\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/ARABIAN%20KNIGHT/\n");
+                runEngineIO("java -jar ./ce/ArabianKnight.jar xboard"); 
+                break; 
+        		
+            case "Cuckoo":  
+            	//frame.outputArea.append("Cuckoo v1.12, created by Peter Osterlund, see\nhttp://web.comhem.se/petero2home/javachess/index.html\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/CUCKOO/\n");
+                this.runEngineIO("java -jar ./ce/cuckoo112.jar txt"); 
+                break; 
+            case "Phoenix": 
+            	//frame.outputArea.append("Phoenix-Cuckoo v1.13a9, create by Rahul A R\nhttps://github.com/rahular/phoenix\n");
+                this.runEngineIO("java -jar ./ce/github_rahular_phoenix.jar txt"); 
+                break;
+                
             case "Bagatur":
-                frame.outputArea.append("Bagatur v1.4c, create by Krasimir Topchiyski\nhttp://bagaturchess.sourceforge.net\nhttps://sites.google.com/site/bagaturchess/\nhttps://github.com/bagaturchess/\n");
+            	//frame.outputArea.append("Bagatur v1.4c, create by Krasimir Topchiyski\nhttp://bagaturchess.sourceforge.net\nhttps://sites.google.com/site/bagaturchess/\nhttps://github.com/bagaturchess/\n");
                 runEngineIO("java -jar ./ce/Bagatur_1.4c.jar"+forBagatur);
                 //System.out.println("java -jar ./lib/Bagatur_1.4.jar"+forBagatur);
                 break;  
             case "ChessBotX":
-                frame.outputArea.append("ChessBotX v1.02, created by Alexander Soto/Roman Koldaev, see:\nhttps://github.com/alexandersoto/chess-bot\nhttp://alexander.soto.io/chess-bot\n");
+            	//frame.outputArea.append("ChessBotX v1.02, created by Alexander Soto/Roman Koldaev, see:\nhttps://github.com/alexandersoto/chess-bot\nhttp://alexander.soto.io/chess-bot\n");
                 if (aktion.Depth<5)
                     this.runEngineIO("java -jar ./ce/ChessBotX.jar easy"); 
                 if (aktion.Depth==5)
@@ -254,66 +299,32 @@ public abstract class EngineAgent extends Agent {
                     this.runEngineIO("java -jar ./ce/ChessBotX.jar ultra");                 
                 break;               
             case "DeepBrutePos":
-                frame.outputArea.append("DeepBrutePos v2.1, create by Folkert van Heusden\nhttps://www.vanheusden.com/DeepBrutePos/\n");
+            	//frame.outputArea.append("DeepBrutePos v2.1, create by Folkert van Heusden\nhttps://www.vanheusden.com/DeepBrutePos/\n");
                 this.runEngineIO("java -jar ./ce/DeepBrutePos-2.1.jar --io-mode xboard --depth "+aktion.Depth); 
                 break;                
             case "Fischerle": 
-                frame.outputArea.append("Fischerle v0.9.70 SE 32bit, created by Roland Stuckardt\nhttp://www.stuckardt.de/index.php/schachengine-fischerle.html\n");
+            	//frame.outputArea.append("Fischerle v0.9.70 SE 32bit, created by Roland Stuckardt\nhttp://www.stuckardt.de/index.php/schachengine-fischerle.html\n");
                 this.runEngineIO("java -jar ./ce/Fischerle.jar uci 32bit"); 
                 break; 
-            case "GNU Chess": 
-                frame.outputArea.append("Chessbox_gnu4j version 1.02 - is a port of GNU Chess 5.0.7 from C to Java.\nCreated by Xan Gregg. See: http://www.forthgo.com/chessbox/,\n");
-                frame.outputArea.append("http://kirr.homeunix.org/chess/engines/Jim%20Ablett/GNUCHESS/\n");
+            case "GNU Chess": //impossible a remettre avec le reste a cause de l'espace
+                frame.outputArea.append("Chessbox_gnu4j version 1.02 - is a port of GNU Chess 5.0.7 from C to Java.\nCreated by Xan Gregg. See: http://www.forthgo.com/chessbox/,\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/GNUCHESS/\n");
                 this.runEngineIO("java -jar ./ce/chessbox_gnu4j.jar");
                         //new EngineIO("java -cp ./lib/chessbox_gnu4j.jar org.chessbox.gnu4j.Main");
-                break;                
-            case "Jchess":  
-                frame.outputArea.append("JChess v1.0, created by Tomasz Michniewski - Poland\n");
-                frame.outputArea.append("http://kirr.homeunix.org/chess/engines/Jim%20Ablett/JCHESS/\n");
-                frame.outputArea.append("http://computer-chess.org/doku.php?id=computer_chess:wiki:download:engine_download_list\n");
-                this.runEngineIO("java -jar ./ce/Jchess-1.0.jar"); 
                 break;
             case "jChecs": 
-                frame.outputArea.append("jChecs v0.1.0.1, create by David Cotton\nhttp://jchecs.free.fr/\nhttp://jchecs.sourceforge.net/\n");
+            	//frame.outputArea.append("jChecs v0.1.0.1, create by David Cotton\nhttp://jchecs.free.fr/\nhttp://jchecs.sourceforge.net/\n");
                 this.runEngineIO("java -jar ./ce/jchecs_v0.1.0.1.jar "+aktion.jchecsEngineTip); 
                 //System.out.println("java -jar ./lib/jchecs_v0.1.0.1.jar "+aktion.jchecsEngineTip);
-                break; 
-            case "Phoenix": 
-                frame.outputArea.append("Phoenix-Cuckoo v1.13a9, create by Rahul A R\nhttps://github.com/rahular/phoenix\n");
-                this.runEngineIO("java -jar ./ce/github_rahular_phoenix.jar txt"); 
-                break;                 
-            case "Tiffanys": 
-                frame.outputArea.append("Tiffanys v0.5, create by Bernhard von Gunten\nhttp://tiffanys.sourceforge.net\n");
-                this.runEngineIO("java -jar ./ce/Tiffanys.jar xboard"); 
-                break; 
-            case "Tri-OS": 
+                break;
+            case "Tri-OS": //impossible a remettre avec le reste a cause du tiret
                 frame.outputArea.append("Tri-OS CS4210's Java xboard Chess Engine\nsee please: http://chess.dubmun.com/\n");
                 this.runEngineIO("java -jar ./ce/Tri-OS_CS4210.jar -d 5");
                         //+aktion.Depth); 
                 break;
             default:
-            	String engine_ = this.goEngine;
-			Field f1 = null;
-			try {
-				f1 = this.getClass().getField(engine_);
-            	String s1= "";
-            	//this.getClass().getF
-                frame.outputArea.append((String) f1.get(s1));
-			} catch (NoSuchFieldException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
                 this.runEngineIO("java -jar ./ce/"+this.goEngine+".jar");
             	break;
+           
 //case "Luzhin": this.engineIO = 
 //new EngineIO("java -cp ./lib/*:luzhin.jar luzhin.WinBoardLuzhin"); break;             
         }
