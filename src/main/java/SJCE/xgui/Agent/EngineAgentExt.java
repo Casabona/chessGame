@@ -56,12 +56,6 @@ public class EngineAgentExt extends EngineAgent {
                     writeLine("sd " + aktion.Depth);
                     writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
                     writeLine("post");
-                    break; 
-                case "BremboCE":
-                    //writeLine(aktion.Mode); - not support
-                    writeLine("sd " + aktion.Depth);
-                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
-                    writeLine("post");
                     break;                     
                 case "CupCake":
                     writeLine(aktion.Mode);
@@ -70,19 +64,68 @@ public class EngineAgentExt extends EngineAgent {
                     writeLine("post");
                     writeLine("new");
                     break; 
+                case "DeepBrutePos":
+                    writeLine(aktion.Mode);
+                    writeLine("sd " + aktion.Depth);
+                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
+                    writeLine("post");
+                    break;                   
+                case "Frittle":
+                    writeLine(aktion.Mode);
+                    writeLine("sd " + aktion.Depth);
+                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
+                    writeLine("post");
+                    break;    
+                case "FrankWalter":
+                    writeLine(aktion.Mode);
+                    writeLine("sd " + aktion.Depth);
+                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
+                    writeLine("post");
+                    break;
+                case "Javalin":
+                    writeLine(aktion.Mode);
+                    writeLine("sd " + aktion.Depth);
+                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
+                    writeLine("post");
+                    break;                   
+                case "KingsOut":
+                    writeLine(aktion.Mode);
+                    writeLine("sd " + aktion.Depth);
+                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");               
+                    writeLine("post");
+                    break;
+                case "KennyClassIQ":
+                    writeLine(aktion.Mode);
+                    writeLine("sd " + aktion.Depth);
+                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");
+                    writeLine("post");
+                    break; 
+                case "OliThink":
+                    writeLine(aktion.Mode);
+                    writeLine("sd " + aktion.Depth);
+                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
+                    writeLine("post");
+                    break;    
+                case "Talvmenni":
+                    writeLine(aktion.Mode);
+                    writeLine("sd " + aktion.Depth);
+                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
+                    writeLine("post");
+                    break;
+                    
+                case "BremboCE":
+                    //writeLine(aktion.Mode); - not support
+                    writeLine("sd " + aktion.Depth);
+                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
+                    writeLine("post");
+                    break; 
                 case "CaveChess":
                     //writeLine(aktion.Mode);
                     writeLine("sd " + aktion.Depth);
                     //writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
                     //writeLine("post");
                     break;
-                // ChessBotX not support any cmd  
-                case "DeepBrutePos":
-                    writeLine(aktion.Mode);
-                    writeLine("sd " + aktion.Depth);
-                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
-                    writeLine("post");
-                    break;                    
+                // ChessBotX not support any cmd                   
                 case "FairyPrincess":
                     //writeLine(aktion.Mode);
                     //writeLine("depth " + aktion.Depth);
@@ -90,19 +133,7 @@ public class EngineAgentExt extends EngineAgent {
                     writeLine("time "+6000*aktion.Time);
                     //writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");
                     //writeLine("post");
-                    break;                     
-                case "Frittle":
-                    writeLine(aktion.Mode);
-                    writeLine("sd " + aktion.Depth);
-                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
-                    writeLine("post");
-                    break;
-                case "FrankWalter":
-                    writeLine(aktion.Mode);
-                    writeLine("sd " + aktion.Depth);
-                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
-                    writeLine("post");
-                    break;
+                    break;   
                 case "Gladiator":
                     writeLine(aktion.Mode);
                     writeLine("sd " + aktion.Depth);
@@ -116,12 +147,6 @@ public class EngineAgentExt extends EngineAgent {
                     writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");
                     writeLine("post");
                     break;  
-                case "Javalin":
-                    writeLine(aktion.Mode);
-                    writeLine("sd " + aktion.Depth);
-                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
-                    writeLine("post");
-                    break; 
                 case "Jchess":
                     // NOT SUPPORT writeLine(aktion.Mode);
                     // NOT SUPPORT writeLine("sd " + aktion.Depth);
@@ -131,36 +156,10 @@ public class EngineAgentExt extends EngineAgent {
                 case "jChecs":
                     writeLine(aktion.Mode); 
                     writeLine("sd " + aktion.Depth);
-                    break;                    
-                case "KingsOut":
-                    writeLine(aktion.Mode);
-                    writeLine("sd " + aktion.Depth);
-                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");
-                    //writeLine("time "+60*aktion.Time);                    
-                    writeLine("post");
-                    break;
-                case "KennyClassIQ":
-                    writeLine(aktion.Mode);
-                    writeLine("sd " + aktion.Depth);
-                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");
-                    //writeLine("time "+6000*aktion.Time);
-                    writeLine("post");
-                    break; 
-                case "OliThink":
-                    writeLine(aktion.Mode);
-                    writeLine("sd " + aktion.Depth);
-                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
-                    writeLine("post");
-                    break;                    
+                    break;                  
                 case "Tiffanys":
                     //writeLine("new");
                     writeLine(aktion.Mode);
-                    break;
-                case "Talvmenni":
-                    writeLine(aktion.Mode);
-                    writeLine("sd " + aktion.Depth);
-                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
-                    writeLine("post");
                     break;
                 case "Tri-OS":
                     //writeLine(aktion.Mode); // don't support
