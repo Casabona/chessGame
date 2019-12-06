@@ -14,6 +14,7 @@ import SJCE.xgui.JList.MoveListUI;
 import SJCE.xgui.JPanel.ChessClock;
 import SJCE.xgui.Move;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,6 +64,35 @@ public abstract class EngineAgent extends Agent {
     public String ceTip;
     public String goEngine;
     public String colorCE;
+    public String Chess22k = "Chess22k v1.5, created by Sander Maassen van den Brink (Dutch)\nhttps://github.com/sandermvdb/chess22k\n";
+    public String Koedem = "Koedem v1.1, created by Kolja Kühn (Germany)\nhttp://computer-chess.org/doku.php?id=computer_chess:wiki:lists:chess_engine_list\n";
+    public String Alf = "Alf v1.09, create by Casper Berg\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/ALF/\n";
+    public String CaveChess = "Cave release 62, created by \nhttp://cavechess.sourceforge.net\n";
+    public String Carballo = "Carballo v1.7, created by Alberto Alonso Ruibal\nhttp://www.alonsoruibal.com/\nhttps://github.com/albertoruibal/carballo/\n";
+    public String Calculon = "CalculonX v0.4.2, create by Barry Smith\nhttps://code.google.com/p/calculonx/\nhttps://github.com/BarrySW19/CalculonX/\nhttp://computer-chess.org/lib/exe/fetch.php?media=computer_chess:wiki:download:calculon-r258-pn.zip\n";
+    public String BremboCE = "BremboCE v0.6.2, create by Gianluca Cisana\nhttp://bremboce.cisana.com/download_en.php\n";
+    public String CupCake = "Cupcake v11, created by Dan Honeycutt\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/CUPCAKE/\n";
+    public String Eden = "Eden v0.0.13, created by Nicolai Czempin\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/EDEN/\n";
+    public String Pulse = "Pulse v1.6.1, created by Phokham Nonava\nhttps://github.com/fluxroot/pulse/releases/\nhttp://www.fluxchess.com/pulse/download/\n";
+    public String Rival = "Rival build 0094, written by Russell Newman and Chris Moreton\nhttps://github.com/Netsensia/rival-chess-android-engine\nhttp://www.rivalchess.com/downloads/\n";
+    public String Rumney = "Rumney Chess v0.2.1\nhttps://github.com/Zaloum/\n";
+    public String Talvmenni = "Talvmenni v0.0.1\nhttp://talvmenni.sourceforge.net\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/TALVMENNI/\n";
+    public String Flux = "Flux v2.2.1, created by Phokham Nonava\nhttps://github.com/fluxroot/flux/releases/\n";
+    public String Frittle = "Frittle v1.0, create by Rohan Padhye\nhttp://frittle.sourceforge.net\n";
+    public String FrankWalter = "FrankWalter v1.0.8, create by Laurens Winkelhagen\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/FRANK-WALTER/\n";
+    public String Kasparov = "Kasparov Chess v1.0.0, create by Eric Liu\nhttps://github.com/eliucs/kasparov\n";
+    public String KennyClassIQ = "http://kennyclassiq.sourceforge.net/\nhttps://github.com/artfuldev/KennyClassIQ/\n";
+    public String KingsOut = "KingsOut v0.2.42, create by Bernd Nuernberger\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/KINGSOUT/\n";
+    public String Krudo = "Krudo v0.14b\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/KRUDO/\nhttp://www.g-sei.org/krudo/\n";
+    public String Magnum = "Magnum v4.0, create by Eric Stock\nhttps://code.google.com/archive/p/magnumchess/downloads\n";
+    public String Mediocre = "Mediocre v0.5, create by Jonatan Pettersson\nhttp://mediocrechess.blogspot.no/\nhttp://mediocrechess.sourceforge.net/\n";
+    public String OliThink = "OliThink v5.3.2, create by Oliver Brausch\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/OLITHINK/\n";
+    public String Presbyter = "Presbyter v1.3.0, create by Jefferson Wilson\nhttps://github.com/jwilson82/presbyter\n";
+    public String Unidexter = "Unidexter v0.0.1, create by Michael Aherne\nhttp://computer-chess.org/lib/exe/fetch.php?media=computer_chess:wiki:download:unidexter-f5fb866-pn.jar\nhttps://github.com/micaherne/unidexter/\n";
+    public String Ziggy = "Ziggy v0.7, create by Hrafn Eiríksson\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/ZIGGY/\nhttps://github.com/krummi/ChessEngine/\n";
+    public String Javalin = "Javalin v1.3.1, create by Mănica Vlad Bogdan\nhttps://github.com/bugyvlad/javalin\n";
+    public String Gladiator = "Gladiator v0.0.7, create by David Garcinuño Enríquez\nhttps://github.com/dagaren/gladiator-chess\n";
+    public String FairyPrincess = "Fairy Princess java xboard chess engine\nhttps://github.com/mihaio07/FairyPrincess\n";
     public EngineAgent(IChessContext context, String goEngine, String colorCE, String ceTip) 
      {
         super(context, goEngine, colorCE, ceTip);
@@ -73,19 +103,130 @@ public abstract class EngineAgent extends Agent {
             forBagatur=forBagatur+argsBagatur1cpu[i];
         }
         //System.out.println(aktion.mainEngine);
+        //var test = this.getClass().getField()
         switch (this.goEngine) {
-            case "Chess22k": 
+            /*case "Chess22k": 
                 frame.outputArea.append("Chess22k v1.5, created by Sander Maassen van den Brink (Dutch)\nhttps://github.com/sandermvdb/chess22k\n");
-                this.runEngineIO("java -jar ./ce/chess22k-1.5.jar"); 
+                this.runEngineIO("java -jar ./ce/chess22k.jar"); 
                 break;   
             case "Koedem": 
                 frame.outputArea.append("Koedem v1.1, created by Kolja Kühn (Germany)\nhttp://computer-chess.org/doku.php?id=computer_chess:wiki:lists:chess_engine_list\n");
-                this.runEngineIO("java -jar ./ce/Koedem-1.1.jar"); 
+                this.runEngineIO("java -jar ./ce/Koedem.jar"); 
                 break;                 
             case "Alf": 
                 frame.outputArea.append("Alf v1.09, create by Casper Berg\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/ALF/\n");                
-                this.runEngineIO("java -jar ./ce/Alf109.jar");
-                break;            
+                this.runEngineIO("java -jar ./ce/Alf.jar");
+                break;                
+            case "CaveChess":  
+                frame.outputArea.append("Cave release 62, created by \nhttp://cavechess.sourceforge.net\n");
+                this.runEngineIO("java -jar ./ce/CaveChess.jar"); 
+                break; 
+            case "Carballo":  
+                frame.outputArea.append("Carballo v1.7, created by Alberto Alonso Ruibal\nhttp://www.alonsoruibal.com/\nhttps://github.com/albertoruibal/carballo/\n");
+                this.runEngineIO("java -jar ./ce/Carballo.jar"); 
+                break;
+            case "Calculon":  
+                frame.outputArea.append("CalculonX v0.4.2, create by Barry Smith\nhttps://code.google.com/p/calculonx/\nhttps://github.com/BarrySW19/CalculonX/\nhttp://computer-chess.org/lib/exe/fetch.php?media=computer_chess:wiki:download:calculon-r258-pn.zip\n");
+                this.runEngineIO("java -jar ./ce/Calculon.jar"); 
+                break;                
+            case "BremboCE":
+                frame.outputArea.append("BremboCE v0.6.2, create by Gianluca Cisana\nhttp://bremboce.cisana.com/download_en.php\n");
+                this.runEngineIO("java -jar ./ce/BremboCE.jar"); 
+                break;                 
+            case "CupCake":  
+                frame.outputArea.append("Cupcake v11, created by Dan Honeycutt\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/CUPCAKE/\n");
+                this.runEngineIO("java -jar ./ce/CupCake.jar"); 
+                break;
+            case "Eden":
+                frame.outputArea.append("Eden v0.0.13, created by Nicolai Czempin\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/EDEN/\n");
+                this.runEngineIO("java -jar ./ce/Eden.jar"); 
+                break;   
+            case "Pulse": 
+                frame.outputArea.append("Pulse v1.6.1, created by Phokham Nonava\nhttps://github.com/fluxroot/pulse/releases/\nhttp://www.fluxchess.com/pulse/download/\n");
+                this.runEngineIO("java -jar ./ce/Pulse.jar"); 
+                break;                  
+            case "Rival": 
+                frame.outputArea.append("Rival build 0094, written by Russell Newman and Chris Moreton\nhttps://github.com/Netsensia/rival-chess-android-engine\nhttp://www.rivalchess.com/downloads/\n");
+                this.runEngineIO("java -jar ./ce/Rival.jar"); 
+                break;
+            case "Rumney": 
+                frame.outputArea.append("Rumney Chess v0.2.1\nhttps://github.com/Zaloum/\n");
+                this.runEngineIO("java -jar ./ce/Rumney.jar"); 
+                break;                 
+            case "Talvmenni": 
+                frame.outputArea.append("Talvmenni v0.0.1\nhttp://talvmenni.sourceforge.net\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/TALVMENNI/\n");
+                this.runEngineIO("java -jar ./ce/Talvmenni.jar"); 
+                break;                
+            case "Flux": 
+                frame.outputArea.append("Flux v2.2.1, created by Phokham Nonava\nhttps://github.com/fluxroot/flux/releases/\n");
+                this.runEngineIO("java -jar ./ce/Flux.jar"); 
+                break;                
+            case "Frittle": 
+                frame.outputArea.append("Frittle v1.0, create by Rohan Padhye\nhttp://frittle.sourceforge.net\n");
+                this.runEngineIO("java -jar ./ce/Frittle.jar"); 
+                break;
+            case "FrankWalter":  
+                frame.outputArea.append("FrankWalter v1.0.8, create by Laurens Winkelhagen\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/FRANK-WALTER/\n");
+                this.runEngineIO("java -jar ./ce/FrankWalter.jar"); 
+                break;
+            case "Kasparov": 
+                frame.outputArea.append("Kasparov Chess v1.0.0, create by Eric Liu\nhttps://github.com/eliucs/kasparov\n");
+                this.runEngineIO("java -jar ./ce/Kasparov.jar");
+                break;                 
+            case "KennyClassIQ": 
+                frame.outputArea.append("http://kennyclassiq.sourceforge.net/\nhttps://github.com/artfuldev/KennyClassIQ/\n");
+                this.runEngineIO("java -jar ./ce/KennyClassIQ.jar"); 
+                break;                  
+            case "KingsOut": 
+                frame.outputArea.append("KingsOut v0.2.42, create by Bernd Nuernberger\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/KINGSOUT/\n");
+                this.runEngineIO("java -jar ./ce/KingsOut.jar"); 
+                break; 
+            case "Krudo": 
+                frame.outputArea.append("Krudo v0.14b\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/KRUDO/\nhttp://www.g-sei.org/krudo/\n");
+                this.runEngineIO("java -jar ./ce/Krudo.jar"); 
+                break; 
+            case "Magnum": 
+                frame.outputArea.append("Magnum v4.0, create by Eric Stock\nhttps://code.google.com/archive/p/magnumchess/downloads\n");
+                this.runEngineIO("java -jar ./ce/Magnum.jar");
+                break; 
+            case "Mediocre": 
+                frame.outputArea.append("Mediocre v0.5, create by Jonatan Pettersson\nhttp://mediocrechess.blogspot.no/\nhttp://mediocrechess.sourceforge.net/\n");
+                this.runEngineIO("java -jar ./ce/Mediocre.jar");
+                break;                
+            case "OliThink": 
+                frame.outputArea.append("OliThink v5.3.2, create by Oliver Brausch\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/OLITHINK/\n");
+                this.runEngineIO("java -jar ./ce/OliThink.jar"); 
+                break; 
+            case "Presbyter": 
+                frame.outputArea.append("Presbyter v1.3.0, create by Jefferson Wilson\nhttps://github.com/jwilson82/presbyter\n");
+                this.runEngineIO("java -jar ./ce/Presbyter.jar"); 
+                break;                
+            case "Unidexter": 
+                frame.outputArea.append("Unidexter v0.0.1, create by Michael Aherne\nhttp://computer-chess.org/lib/exe/fetch.php?media=computer_chess:wiki:download:unidexter-f5fb866-pn.jar\nhttps://github.com/micaherne/unidexter/\n");
+                this.runEngineIO("java -jar ./ce/Unidexter.jar"); 
+                break; 
+            case "Ziggy": 
+                frame.outputArea.append("Ziggy v0.7, create by Hrafn Eiríksson\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/ZIGGY/\nhttps://github.com/krummi/ChessEngine/\n");
+                this.runEngineIO("java -jar ./ce/Ziggy.jar"); 
+                break; 
+            case "Javalin": 
+                frame.outputArea.append("Javalin v1.3.1, create by Mănica Vlad Bogdan\nhttps://github.com/bugyvlad/javalin\n");
+                this.runEngineIO("java -jar ./ce/Javalin.jar"); 
+                break; 
+            case "Gladiator": 
+                frame.outputArea.append("Gladiator v0.0.7, create by David Garcinuño Enríquez\nhttps://github.com/dagaren/gladiator-chess\n");
+                this.runEngineIO("java -jar ./ce/Gladiator.jar"); 
+                break; 
+            case "FairyPrincess": 
+                frame.outputArea.append("Fairy Princess java xboard chess engine\nhttps://github.com/mihaio07/FairyPrincess\n");
+                this.runEngineIO("java -jar ./ce/FairyPrincess.jar"); 
+                break;*/
+                
+            case "Cuckoo":  
+                frame.outputArea.append("Cuckoo v1.12, created by Peter Osterlund, see\nhttp://web.comhem.se/petero2home/javachess/index.html");
+                frame.outputArea.append("\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/CUCKOO/\n");
+                this.runEngineIO("java -jar ./ce/cuckoo112.jar txt"); 
+                break;              
             case "Animats": 
                 frame.outputArea.append("Animats revision 23, create by Stuart Allen\nhttp://animatschess.sourceforge.net/\n");                
                 this.runEngineIO("java -jar ./ce/AnimatsCE.jar xboard");
@@ -100,23 +241,7 @@ public abstract class EngineAgent extends Agent {
                 frame.outputArea.append("Bagatur v1.4c, create by Krasimir Topchiyski\nhttp://bagaturchess.sourceforge.net\nhttps://sites.google.com/site/bagaturchess/\nhttps://github.com/bagaturchess/\n");
                 runEngineIO("java -jar ./ce/Bagatur_1.4c.jar"+forBagatur);
                 //System.out.println("java -jar ./lib/Bagatur_1.4.jar"+forBagatur);
-                break;                
-            case "BremboCE":
-                frame.outputArea.append("BremboCE v0.6.2, create by Gianluca Cisana\nhttp://bremboce.cisana.com/download_en.php\n");
-                this.runEngineIO("java -jar ./ce/Bremboce.jar"); 
-                break;
-            case "Calculon":  
-                frame.outputArea.append("CalculonX v0.4.2, create by Barry Smith\nhttps://code.google.com/p/calculonx/\nhttps://github.com/BarrySW19/CalculonX/\nhttp://computer-chess.org/lib/exe/fetch.php?media=computer_chess:wiki:download:calculon-r258-pn.zip\n");
-                this.runEngineIO("java -jar ./ce/code_google_com_archive_p_calculonx.jar"); 
                 break;  
-            case "Carballo":  
-                frame.outputArea.append("Carballo v1.7, created by Alberto Alonso Ruibal\nhttp://www.alonsoruibal.com/\nhttps://github.com/albertoruibal/carballo/\n");
-                this.runEngineIO("java -jar ./ce/carballo-1.7.jar"); 
-                break;                 
-            case "CaveChess":  
-                frame.outputArea.append("Cave release 62, created by \nhttp://cavechess.sourceforge.net\n");
-                this.runEngineIO("java -jar ./ce/CaveChess_62.jar"); 
-                break;
             case "ChessBotX":
                 frame.outputArea.append("ChessBotX v1.02, created by Alexander Soto/Roman Koldaev, see:\nhttps://github.com/alexandersoto/chess-bot\nhttp://alexander.soto.io/chess-bot\n");
                 if (aktion.Depth<5)
@@ -127,49 +252,14 @@ public abstract class EngineAgent extends Agent {
                     this.runEngineIO("java -jar ./ce/ChessBotX.jar hard");                 
                 if (aktion.Depth>6)
                     this.runEngineIO("java -jar ./ce/ChessBotX.jar ultra");                 
-                break;                 
-            case "CupCake":  
-                frame.outputArea.append("Cupcake v11, created by Dan Honeycutt\n");
-                frame.outputArea.append("http://kirr.homeunix.org/chess/engines/Jim%20Ablett/CUPCAKE/\n");
-                this.runEngineIO("java -jar ./ce/cupcake.jar"); 
-                break; 
-            case "Cuckoo":  
-                frame.outputArea.append("Cuckoo v1.12, created by Peter Osterlund, see\nhttp://web.comhem.se/petero2home/javachess/index.html");
-                frame.outputArea.append("\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/CUCKOO/\n");
-                this.runEngineIO("java -jar ./ce/cuckoo112.jar txt"); 
-                break;                
+                break;               
             case "DeepBrutePos":
                 frame.outputArea.append("DeepBrutePos v2.1, create by Folkert van Heusden\nhttps://www.vanheusden.com/DeepBrutePos/\n");
                 this.runEngineIO("java -jar ./ce/DeepBrutePos-2.1.jar --io-mode xboard --depth "+aktion.Depth); 
-                break;
-            case "Eden":
-                frame.outputArea.append("Eden v0.0.13, created by Nicolai Czempin\n");
-                frame.outputArea.append("http://kirr.homeunix.org/chess/engines/Jim%20Ablett/EDEN/\n");
-                this.runEngineIO("java -jar ./ce/eden-0013.jar"); 
-                break; 
-            case "FairyPrincess": 
-                frame.outputArea.append("Fairy Princess java xboard chess engine\nhttps://github.com/mihaio07/FairyPrincess\n");
-                this.runEngineIO("java -jar ./ce/github_mihaio07_FairyPrincess.jar"); 
                 break;                
             case "Fischerle": 
                 frame.outputArea.append("Fischerle v0.9.70 SE 32bit, created by Roland Stuckardt\nhttp://www.stuckardt.de/index.php/schachengine-fischerle.html\n");
                 this.runEngineIO("java -jar ./ce/Fischerle.jar uci 32bit"); 
-                break;                
-            case "Flux": 
-                frame.outputArea.append("Flux v2.2.1, created by Phokham Nonava\nhttps://github.com/fluxroot/flux/releases/\n");
-                this.runEngineIO("java -jar ./ce/Flux-2.2.1.jar"); 
-                break;                
-            case "Frittle": 
-                frame.outputArea.append("Frittle v1.0, create by Rohan Padhye\nhttp://frittle.sourceforge.net\n");
-                this.runEngineIO("java -jar ./ce/Frittle-1.0.jar"); 
-                break;
-            case "FrankWalter":  
-                frame.outputArea.append("FrankWalter v1.0.8, create by Laurens Winkelhagen\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/FRANK-WALTER/\n");
-                this.runEngineIO("java -jar ./ce/FrankWalter.jar"); 
-                break; 
-            case "Gladiator": 
-                frame.outputArea.append("Gladiator v0.0.7, create by David Garcinuño Enríquez\nhttps://github.com/dagaren/gladiator-chess\n");
-                this.runEngineIO("java -jar ./ce/gladiator_v0.0.7.jar"); 
                 break; 
             case "GNU Chess": 
                 frame.outputArea.append("Chessbox_gnu4j version 1.02 - is a port of GNU Chess 5.0.7 from C to Java.\nCreated by Xan Gregg. See: http://www.forthgo.com/chessbox/,\n");
@@ -182,70 +272,15 @@ public abstract class EngineAgent extends Agent {
                 frame.outputArea.append("http://kirr.homeunix.org/chess/engines/Jim%20Ablett/JCHESS/\n");
                 frame.outputArea.append("http://computer-chess.org/doku.php?id=computer_chess:wiki:download:engine_download_list\n");
                 this.runEngineIO("java -jar ./ce/Jchess-1.0.jar"); 
-                break; 
-            case "Javalin": 
-                frame.outputArea.append("Javalin v1.3.1, create by Mănica Vlad Bogdan\nhttps://github.com/bugyvlad/javalin\n");
-                this.runEngineIO("java -jar ./ce/javalin_v1.3.1.jar"); 
                 break;
             case "jChecs": 
                 frame.outputArea.append("jChecs v0.1.0.1, create by David Cotton\nhttp://jchecs.free.fr/\nhttp://jchecs.sourceforge.net/\n");
                 this.runEngineIO("java -jar ./ce/jchecs_v0.1.0.1.jar "+aktion.jchecsEngineTip); 
                 //System.out.println("java -jar ./lib/jchecs_v0.1.0.1.jar "+aktion.jchecsEngineTip);
-                break;
-            case "Kasparov": 
-                frame.outputArea.append("Kasparov Chess v1.0.0, create by Eric Liu\nhttps://github.com/eliucs/kasparov\n");
-                this.runEngineIO("java -jar ./ce/KasparovChess-1.0.0.jar");
-                break;                 
-            case "KennyClassIQ": 
-                frame.outputArea.append("http://kennyclassiq.sourceforge.net/\nhttps://github.com/artfuldev/KennyClassIQ/\n");
-                this.runEngineIO("java -jar ./ce/KennyClassIQ.jar"); 
-                break;                  
-            case "KingsOut": 
-                frame.outputArea.append("KingsOut v0.2.42, create by Bernd Nuernberger\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/KINGSOUT/\n");
-                this.runEngineIO("java -jar ./ce/kingsout.jar"); 
-                break; 
-            case "Krudo": 
-                frame.outputArea.append("Krudo v0.14b\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/KRUDO/\nhttp://www.g-sei.org/krudo/\n");
-                this.runEngineIO("java -jar ./ce/Krudo.jar"); 
-                break; 
-            case "Magnum": 
-                frame.outputArea.append("Magnum v4.0, create by Eric Stock\nhttps://code.google.com/archive/p/magnumchess/downloads\n");
-                this.runEngineIO("java -jar ./ce/MagnumChess.jar");
-                break; 
-            case "Mediocre": 
-                frame.outputArea.append("Mediocre v0.5, create by Jonatan Pettersson\nhttp://mediocrechess.blogspot.no/\nhttp://mediocrechess.sourceforge.net/\n");
-                this.runEngineIO("java -jar ./ce/mediocre_v0.5.jar");
-                break;                
-            case "OliThink": 
-                frame.outputArea.append("OliThink v5.3.2, create by Oliver Brausch\n");
-                frame.outputArea.append("http://kirr.homeunix.org/chess/engines/Jim%20Ablett/OLITHINK/\n");
-                this.runEngineIO("java -jar ./ce/OliThink532.jar"); 
-                break; 
-            case "Presbyter": 
-                frame.outputArea.append("Presbyter v1.3.0, create by Jefferson Wilson\n");
-                frame.outputArea.append("https://github.com/jwilson82/presbyter\n");
-                this.runEngineIO("java -jar ./ce/presbyter-1.3.0.jar"); 
                 break; 
             case "Phoenix": 
                 frame.outputArea.append("Phoenix-Cuckoo v1.13a9, create by Rahul A R\nhttps://github.com/rahular/phoenix\n");
                 this.runEngineIO("java -jar ./ce/github_rahular_phoenix.jar txt"); 
-                break;   
-            case "Pulse": 
-                frame.outputArea.append("Pulse v1.6.1, created by Phokham Nonava\nhttps://github.com/fluxroot/pulse/releases/\nhttp://www.fluxchess.com/pulse/download/\n");
-                this.runEngineIO("java -jar ./ce/pulse-1.6.1-java.jar"); 
-                break;                  
-            case "Rival": 
-                frame.outputArea.append("Rival build 0094, written by Russell Newman and Chris Moreton\nhttps://github.com/Netsensia/rival-chess-android-engine\nhttp://www.rivalchess.com/downloads/\n");
-                this.runEngineIO("java -jar ./ce/Rival-0094.jar"); 
-                break;
-            case "Rumney": 
-                frame.outputArea.append("Rumney Chess v0.2.1\nhttps://github.com/Zaloum/\n");
-                this.runEngineIO("java -jar ./ce/github_Zaloum_RumneyChess.jar"); 
-                break;                 
-            case "Talvmenni": 
-                frame.outputArea.append("Talvmenni v0.0.1\nhttp://talvmenni.sourceforge.net\n");
-                frame.outputArea.append("http://kirr.homeunix.org/chess/engines/Jim%20Ablett/TALVMENNI/\n");
-                this.runEngineIO("java -jar ./ce/talvmenni.jar"); 
                 break;                 
             case "Tiffanys": 
                 frame.outputArea.append("Tiffanys v0.5, create by Bernhard von Gunten\nhttp://tiffanys.sourceforge.net\n");
@@ -255,15 +290,30 @@ public abstract class EngineAgent extends Agent {
                 frame.outputArea.append("Tri-OS CS4210's Java xboard Chess Engine\nsee please: http://chess.dubmun.com/\n");
                 this.runEngineIO("java -jar ./ce/Tri-OS_CS4210.jar -d 5");
                         //+aktion.Depth); 
-                break;                
-            case "Unidexter": 
-                frame.outputArea.append("Unidexter v0.0.1, create by Michael Aherne\nhttp://computer-chess.org/lib/exe/fetch.php?media=computer_chess:wiki:download:unidexter-f5fb866-pn.jar\nhttps://github.com/micaherne/unidexter/\n");
-                this.runEngineIO("java -jar ./ce/unidexter-f5fb866-pn.jar"); 
-                break; 
-            case "Ziggy": 
-                frame.outputArea.append("Ziggy v0.7, create by Hrafn Eiríksson\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/ZIGGY/\nhttps://github.com/krummi/ChessEngine/\n");
-                this.runEngineIO("java -jar ./ce/ziggy.jar"); 
-                break;                
+                break;
+            default:
+            	String engine_ = this.goEngine;
+			Field f1 = null;
+			try {
+				f1 = this.getClass().getField(engine_);
+            	String s1= "";
+            	//this.getClass().getF
+                frame.outputArea.append((String) f1.get(s1));
+			} catch (NoSuchFieldException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+                this.runEngineIO("java -jar ./ce/"+this.goEngine+".jar");
+            	break;
 //case "Luzhin": this.engineIO = 
 //new EngineIO("java -cp ./lib/*:luzhin.jar luzhin.WinBoardLuzhin"); break;             
         }
