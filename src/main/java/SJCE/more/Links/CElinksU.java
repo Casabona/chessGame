@@ -38,7 +38,9 @@ public class CElinksU extends javax.swing.JDialog {
     public int getReturnStatus() {
         return returnStatus;
     }
-
+/**
+ * initalise les bouttons
+ */
     private void initButton() {
     	 jButton11 = new javax.swing.JButton();
          jToolBar6 = new javax.swing.JToolBar();
@@ -85,12 +87,18 @@ public class CElinksU extends javax.swing.JDialog {
 
     	
     }
+    /**
+     * initalise la position des boutton de la JtoolBar4
+     * @param button
+     */
     private void initButtonJtoolBar4(javax.swing.JButton button) {
     	button.setFocusable(false);
     	button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
     	button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
     }
-    
+    /**
+     * defini le texte de chaque bouton indiquant le rating
+     */
     private void initRating() {
     	jButton55.setText(" Rating = 2323");
     	  jButton1.setText(" Rating = 1750");
@@ -115,6 +123,10 @@ public class CElinksU extends javax.swing.JDialog {
     	  
     	  
     }
+    
+    /**
+     * initalise la JtoolBar4
+     */
     private void initJtoolBar4() {
     	initRating();
         jToolBar4.setFloatable(false);
@@ -196,6 +208,11 @@ public class CElinksU extends javax.swing.JDialog {
         initButtonJtoolBar4(jButton72);
         jToolBar4.add(jButton72);
     }
+    
+    /**
+     * initalise la position des bouttons de la JtoolBar1
+     * @param button
+     */
     private void initButtonJtoolBar1(javax.swing.JButton button) {
     	button.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
     	button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -206,7 +223,9 @@ public class CElinksU extends javax.swing.JDialog {
              }
          });
     }
-    
+    /**
+     * initialise les liens des boutons 
+     */
     private void initLinks() {
     	   jButton32.setText("<html><a href=\"http://bagaturchess.sourceforge.net/\">Bagatur v1.4c = http://bagaturchess.sourceforge.net/</a></html>");
     	   jButton36.setText("<html><a href=\"https://code.google.com/p/calculonx/\">Calculon v0.4.2 = https://code.google.com/p/calculonx/</a></html>");

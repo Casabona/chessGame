@@ -38,6 +38,10 @@ public class CElinksX extends javax.swing.JDialog {
     public int getReturnStatus() {
         return returnStatus;
     }
+    
+    /**
+     * initalise les bouttons
+     */
 private void initButton() {
 	 jButton11 = new javax.swing.JButton();
      jToolBar3 = new javax.swing.JToolBar();
@@ -86,6 +90,10 @@ private void initButton() {
 
 }
 
+/**
+ * initalise la position des boutons de la JtoolBar5
+ * @param button a positionner
+ */
 private void initButtonToolBar5(javax.swing.JButton button) {
 	button.setFocusable(false);
 	button.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -98,6 +106,9 @@ private void initButtonToolBar5(javax.swing.JButton button) {
 	    });
 }
 
+/**
+ * initalise les liens des boutons
+ */
 private void initLinks() {
 	 jButton18.setText("<html><a href=\"http://kirr.homeunix.org/chess/engines/Jim%20Ablett/ALF/\">Alf v1.09 = http://kirr.homeunix.org/chess/engines/Jim%20Ablett/ALF/</a></html>");
 	  jButton19.setText("<html><a href=\"http://computer-chess.org/doku.php?id=computer_chess:wiki:download:engine_download_list\">Arabian Knight v1.55 = http://computer-chess.org/</a></html>");
@@ -121,6 +132,10 @@ private void initLinks() {
 	  
 
 }
+
+/**
+ * initalise la JtoolBAr5
+ */
 private void initJtoolBar5() {
 	initLinks();
     jToolBar5.setFloatable(false);
@@ -214,7 +229,9 @@ private void initJbuttonJtoolBar2(javax.swing.JButton button) {
 	button.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 }
 
-
+/**
+ * initalise le text des boutons indiquant le rating
+ */
 private void initRating() {
 	 jButton36.setText(" Rating = 2190");
 	 jButton37.setText(" Rating = ");
@@ -238,6 +255,10 @@ private void initRating() {
 	   jButton55.setText(" Rating = ");
 	   
 }
+
+/**
+ * initalise la JtoolBar2
+ */
 private void initJtoolBar2() {
 	initRating();
     jToolBar2.setFloatable(false);
@@ -324,6 +345,7 @@ private void initJtoolBar2() {
     initJbuttonJtoolBar2(jButton55);
     jToolBar2.add(jButton55);
 }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
