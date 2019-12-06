@@ -307,169 +307,41 @@ public class Actions {
             blackPlayerCE = ce;
             comboBPlayerCE.setSelectedItem(ce);
         }
-        switch (ce) {
-            case "Human":
+        //switch (ce) {
+            if(ce == "Human"){
                 if (colorCE.equals("white")) {
                     setIconAndTipCE("ce/logo/user-white.png", colorCE, "human");
                 } else {
                     setIconAndTipCE("ce/logo/user-black.png", colorCE, "human");
-                }
-                break;
-            case "Chess22k":
-                setIconAndTipCE("ce/logo/22k-well_100x50.png", colorCE, "uci");
-                break;
-            case "Alf":
-                setIconAndTipCE("ce/logo/alf_100x50.gif", colorCE, "xboard");
-                break;
-            case "Animats":
-                setIconAndTipCE("ce/logo/animatschess_100x50.gif", colorCE, "xboard");
+                }}
+                
+            else if (ce == "Chess22k" || ce == "Bagatur" || ce == "Calculon" || ce == "Carballo" || ce == "Cuckoo" || ce == "Detroid" || ce == "Eden" || ce == "Flux" || ce == "Kasparov" || ce == "Koedem" || ce == "Krudo" || ce == "Magnum" || ce == "Mediocre" || ce == "Presbyter" || ce == "Phoenix" || ce == "Pulse" || ce == "Rival" || ce == "Rumney" || ce == "Unidexter" || ce == "Ziggy") {
+                setIconAndTipCE("ce/logo/" + ce + ".png", colorCE, "uci");}
+                
+            else if (ce == "Alf" || ce == "ArabianKnight" || ce == "BremboCE" || ce == "FairyPrincess" || ce == "Frittle" || ce == "FrankWalter" || ce == "KennyClassIQ" || ce == "KingsOut" || ce == "OliThink" || ce == "Tri-OS") {
+                setIconAndTipCE("ce/logo/" + ce + ".png", colorCE, "xboard");}
+                
+            else if (ce == "Animats" || ce == "CaveChess" || ce == "CupCake" || ce == "ChessBotX" || ce == "DeepBrutePos" || ce == "Gladiator" || ce == "Jchess" || ce == "Javalin" || ce == "Talvmenni" || ce == "Tiffanys") {
+                setIconAndTipCE("ce/logo/" + ce + ".png", colorCE, "xboard");
                 frame.bUndoLast.setEnabled(false);
-                frame.mUndoLast.setEnabled(false);
-                break;
-            case "ArabianKnight":
-                setIconAndTipCE("ce/logo/arabian_knight_100x50.gif", colorCE, "xboard");
-                break;
-            case "Bagatur":
-                setIconAndTipCE("ce/logo/bagatur_100x50.png", colorCE, "uci");
-                break;
-            case "BremboCE":
-                setIconAndTipCE("ce/logo/brembo-well_100x50.png", colorCE, "xboard");
-                break;
-            case "Calculon":
-                setIconAndTipCE("ce/logo/calculon-black_100x50.png", colorCE, "uci");
-                break;
-            case "Carballo":
-                setIconAndTipCE("ce/logo/carballo_100x50.png", colorCE, "uci");
-                break;
-            case "CaveChess":
-                setIconAndTipCE("ce/logo/cave_100x50.png", colorCE, "xboard");
-                frame.bUndoLast.setEnabled(false);
-                frame.mUndoLast.setEnabled(false);
-                break;
-            case "CupCake":
-                setIconAndTipCE("ce/logo/cupcake_100x50.gif", colorCE, "xboard");
-                frame.bUndoLast.setEnabled(false);
-                frame.mUndoLast.setEnabled(false);
-                break;
-            case "Cuckoo":
-                setIconAndTipCE("ce/logo/cuckoochess_100x50.gif", colorCE, "uci");
-                break;
-            case "ChessBotX":
-                setIconAndTipCE("ce/logo/ChessBotX 3.png", colorCE, "xboard");
-                frame.bUndoLast.setEnabled(false);
-                frame.mUndoLast.setEnabled(false);
-                break;
-            case "DeepBrutePos":
-                setIconAndTipCE("ce/logo/pos_100x50.gif", colorCE, "xboard");
-                frame.bUndoLast.setEnabled(false);
-                frame.mUndoLast.setEnabled(false);
-                break;
-            case "Detroid":
-                setIconAndTipCE("ce/logo/detroid-well_100x50.png", colorCE, "uci");
-                break;
-            case "Eden":
-                setIconAndTipCE("ce/logo/Eden2_100x50.gif", colorCE, "uci");
-                break;
-            case "FairyPrincess":
-                setIconAndTipCE("ce/logo/fp_100x50.png", colorCE, "xboard");
-                break;
-            case "Fischerle":
-                setIconAndTipCE("ce/logo/fischerle_100x50.png", colorCE, "uci");
-                JOptionPane.showMessageDialog(frame, "Fischerle create by Dr. Roland Stuckardt - http://www.stuckardt.de/\nSJCE use Fischerle version 0.9.70 SE 32 bit\nDocuments about Fischerle and licence see please\nin folder: /ce/Fischerle/");
-                break;
-            case "Flux":
-                setIconAndTipCE("ce/logo/fluxII_100x50.gif", colorCE, "uci");
-                break;
-            case "Frittle":
-                setIconAndTipCE("ce/logo/frittle_100x50.gif", colorCE, "xboard");
-                break;
-            case "FrankWalter":
-                setIconAndTipCE("ce/logo/frank-walter_100x50.gif", colorCE, "xboard");
-                break;
-            case "Gladiator":
-                setIconAndTipCE("ce/logo/gladiator7_100x50.jpg", colorCE, "xboard");
-                frame.bUndoLast.setEnabled(false);
-                frame.mUndoLast.setEnabled(false);
-                break;
-            case "GNU Chess":
-                setIconAndTipCE("ce/logo/gnu-chess_100x50.png", colorCE, "xboard");
-                break;
-            case "Jchess":
-                setIconAndTipCE("ce/logo/jchess_100x50.gif", colorCE, "xboard");
-                frame.bUndoLast.setEnabled(false);
-                frame.mUndoLast.setEnabled(false);
-                break;
-            case "Javalin":
-                setIconAndTipCE("ce/logo/javalin-native_100x50.png", colorCE, "xboard");
-                frame.bUndoLast.setEnabled(false);
-                frame.mUndoLast.setEnabled(false);
-                break;
-            case "jChecs":
-                setIconAndTipCE("ce/logo/jchecs-native_100x50.png", colorCE, "xboard");
-                aktion.gojChecsSelectCE();
-                //frame.bUndoLast.setEnabled(false); frame.mUndoLast.setEnabled(false);
-                break;
-            case "Kasparov":
-                setIconAndTipCE("ce/logo/kasparov-chess_100x50.png", colorCE, "uci");
-                break;
-            case "KennyClassIQ":
-                setIconAndTipCE("ce/logo/KennyClassIQ_100x50.png", colorCE, "xboard");
-                break;
-            case "KingsOut":
-                setIconAndTipCE("ce/logo/kingsout_100x50_2.gif", colorCE, "xboard");
-                break;
-            case "Koedem":
-                setIconAndTipCE("ce/logo/koedem_100x50.png", colorCE, "uci");
-                break;
-            case "Krudo":
-                setIconAndTipCE("ce/logo/krudo.png", colorCE, "uci");
-                break;
-            case "Magnum":
-                setIconAndTipCE("ce/logo/magnum_100x50.gif", colorCE, "uci");
-                break;
-            case "Mediocre":
-                setIconAndTipCE("ce/logo/mediocre_100x50.gif", colorCE, "uci");
-                break;
-            case "OliThink":
-                setIconAndTipCE("ce/logo/olithink-java_100x50.gif", colorCE, "xboard");
-                break;
-            case "Presbyter":
-                setIconAndTipCE("ce/logo/presbyter_100x50.png", colorCE, "uci");
-                break;
-            case "Phoenix":
-                setIconAndTipCE("ce/logo/phoenix-well_100x27.png", colorCE, "uci");
-                break;
-            case "Pulse":
-                setIconAndTipCE("ce/logo/pulse_100x50.png", colorCE, "uci");
-                break;
-            case "Rival":
-                setIconAndTipCE("ce/logo/RivalUCI_100x50.gif", colorCE, "uci");
-                //JOptionPane.showMessageDialog(frame,"Pay attention: Rival have a 1 bug: \nwhen loses - he does 2 identical moves,\nand the last move already does after a mat state,\nfor this reason from a board the 1 piece can be gone, \nbut in general - it is well engine");
-                break;
-            case "Rumney":
-                setIconAndTipCE("ce/logo/rumney_100x29.png", colorCE, "uci");
-                break;
-            case "Talvmenni":
-                setIconAndTipCE("ce/logo/talvmenni_100x50.gif", colorCE, "xboard");
-                frame.bUndoLast.setEnabled(false);
-                frame.mUndoLast.setEnabled(false);
-                break;
-            case "Tiffanys":
-                setIconAndTipCE("ce/logo/Tiffanys 2.png", colorCE, "xboard");
-                frame.bUndoLast.setEnabled(false);
-                frame.mUndoLast.setEnabled(false);
-                break;
-            case "Tri-OS":
-                setIconAndTipCE("ce/logo/tri-os_100x50.png", colorCE, "xboard");
-                //JOptionPane.showMessageDialog(frame,"Pay attention: \nTri-OS don't support en-passant !\ntherefore engine tournament with Tri-OS may be interrupted");
-                break;
-            case "Unidexter":
-                setIconAndTipCE("ce/logo/unidexter_100x50.png", colorCE, "uci");
-                break;
-            case "Ziggy":
-                setIconAndTipCE("ce/logo/ziggy_100x50.gif", colorCE, "uci");
-                break;
-        }
+                frame.mUndoLast.setEnabled(false);}
+
+            else if (ce == "Fischerle") {
+                setIconAndTipCE("ce/logo/Fischerle.png", colorCE, "uci");
+                JOptionPane.showMessageDialog(frame, "Fischerle create by Dr. Roland Stuckardt - http://www.stuckardt.de/\nSJCE use Fischerle version 0.9.70 SE 32 bit\nDocuments about Fischerle and licence see please\nin folder: /ce/Fischerle/");}
+
+            else if (ce == "jChecs") {
+                setIconAndTipCE("ce/logo/jChecs.png", colorCE, "xboard");
+                aktion.gojChecsSelectCE();}
+                
+            else if (ce == "GNU Chess") {
+                setIconAndTipCE("ce/logo/gnu-chess_100x50.png", colorCE, "xboard");}
+
+
+
+
+
+        //}
     }
 
     public static void CopyToClipBoard(String cps) {

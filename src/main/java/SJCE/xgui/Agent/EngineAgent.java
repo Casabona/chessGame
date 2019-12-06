@@ -139,23 +139,7 @@ public abstract class EngineAgent extends Agent {
 				e.printStackTrace();
 			}
         }
-        //switch (this.goEngine) {
-            /*              
-        	case "Tiffanys": 
-        		//frame.outputArea.append("Tiffanys v0.5, create by Bernhard von Gunten\nhttp://tiffanys.sourceforge.net\n");
-        		this.runEngineIO("java -jar ./ce/Tiffanys.jar xboard"); 
-        		break;              
-            case "Animats": 
-            	//frame.outputArea.append("Animats revision 23, create by Stuart Allen\nhttp://animatschess.sourceforge.net/\n");                
-                this.runEngineIO("java -jar ./ce/AnimatsCE.jar xboard");
-                break;
-            case "ArabianKnight":
-            	//frame.outputArea.append("ArabianKnight v1.55, create by Marcin Gardyjan\nhttp://computer-chess.org/doku.php?id=computer_chess:wiki:download:engine_download_list\nhttp://kirr.homeunix.org/chess/engines/Jim%20Ablett/ARABIAN%20KNIGHT/\n");
-                runEngineIO("java -jar ./ce/ArabianKnight.jar xboard"); 
-                break; 
-            //case ("Tiffanys" || "Animats" || "ArabianKnight"):
-            	//this.runEngineIO("java -jar ./ce/"+this.goEngine+".jar");
-        		*/
+
             if (this.goEngine == "Tiffanys" || this.goEngine == "Animats" || this.goEngine == "ArabianKnight") {
             	this.runEngineIO("java -jar ./ce/"+this.goEngine+".jar xboard");}
             else if (this.goEngine == "Cuckoo" || this.goEngine == "Phoenix" ) {  
