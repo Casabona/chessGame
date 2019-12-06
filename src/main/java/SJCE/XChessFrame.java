@@ -386,7 +386,9 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
             break;            
         }
     } 
-    
+    /**
+     * charge le theme du board
+     */
     public void loadBoardTheme() {
         for (int i=1; i<3; i++)
         {
@@ -408,12 +410,16 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
             //}
         }
     }
-    
+    /**
+     * permet de changer le theme du board
+     */
     public void changeBoardTheme() {
         BoardThemeSelect bts = new BoardThemeSelect(frame,true);
         bts.setVisible(true);
     }
-    
+    /**
+     * initialise les variables visuel qui gere le temps
+     */
    private void initVariableMtime() {
 	   mTime = new javax.swing.JMenu();
        mTime05 = new javax.swing.JRadioButtonMenuItem();
@@ -505,7 +511,9 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
         
           initClockButton();
     }
-    
+    /**
+     * initialise les boutons de la clock
+     */
     private void initClockButton() {
     	
     	  bcomboTime.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "5", "10", "15", "20", "25", "30" }));
@@ -527,6 +535,9 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
             }
         });	
     }
+    /**
+     * initalise les variables de profondeur
+     */
     private void initVariableDepth(){
  	   mEngineDepth = new javax.swing.JMenu();
        mDepth2 = new javax.swing.JRadioButtonMenuItem();
@@ -543,7 +554,7 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
     }
     
     /**
-     * fenetre intisalisant la  profondeur
+     * fenetre intisalisant les boutons de la  profondeur
      */
     private void initDepth() {
     	
@@ -615,7 +626,9 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
            
            
     }
-    
+    /**
+     * initlaise les variables du cadre de la fenetre
+     */
     private void initVariableWire() {
     	   verticalSplit = new javax.swing.JSplitPane();
            scrollOutputArea = new javax.swing.JScrollPane();
@@ -626,6 +639,10 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
            borderPanel = new javax.swing.JPanel();
     	
     }
+    
+    /**
+     * initialise le cadre de la fenetre
+     */
     private void initWire() {
     	
     	initVariableWire();
@@ -705,7 +722,9 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
 
     	
     }
-    
+    /**
+     * initalise le visuel de l'engine
+     */
     private void initEngine() {
     	  mSelectCEwhite = new javax.swing.JMenuItem();
           mSelectCEblack = new javax.swing.JMenuItem();
@@ -769,7 +788,9 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
           mEngineConfig.add(mEngineMode);
     	
     }
-    
+    /**
+     * initalise les variables du board
+     */
     private void initBoardVariable() {
     	 jToolBar2 = new javax.swing.JToolBar();
          jToolBar1 = new javax.swing.JToolBar();
@@ -785,6 +806,10 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
          jToolBar3 = new javax.swing.JToolBar();
          
     }
+    /**
+     * initalis la position du bouton
+     * @param button a positionner
+     */
     private void initButton(javax.swing.JButton button) {
     	button.setFocusable(false);
     	button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -793,6 +818,10 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
             
     	
     }
+    
+    /**
+     * initaliseles boutons du theme du board
+     */
     private void initBoardTheme() {
     	  bChangeSkin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/skin_color_chooser-24.png"))); // NOI18N
           bChangeSkin.setToolTipText("Change Skin");
@@ -813,6 +842,10 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
           });
     	
     }
+    
+    /**
+     * initalise les boutons de la JtoolBar1
+     */
     private void initButtonJtoolBar1() {
     	initBoardTheme();
          bUndoLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SJCE/img/24x24/undo-red-24.png"))); // NOI18N
@@ -856,6 +889,9 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
              }
          });
     }
+    /**
+     * initalise la JtoolBar1
+     */
     private void initJtoolBar1() {
         jToolBar1.setFloatable(false);
         
@@ -904,7 +940,9 @@ public class XChessFrame extends JFrame implements IChessContext, IMainFrameCons
       
         jToolBar1.add(bAbout);
     }
-    
+    /**
+     * initalis les boutons de la Jtoolbar3
+     */
    private void  initJtoolBar3Button(){
         jToolBar3.setFloatable(false);
 
