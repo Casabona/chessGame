@@ -46,21 +46,19 @@ public class EngineAgentExt extends EngineAgent {
             if (goEngine == "Alf" || goEngine == "ArabianKnight" || goEngine == "DeepBrutePos" || goEngine == "Frittle" || goEngine == "FrankWalter" || goEngine == "Javalin" || goEngine == "KingsOut" || goEngine == "KennyClassIQ" || goEngine == "OliThink" || goEngine == "Talvmenni") {
                     writeLine(aktion.Mode);
                     writeLine("sd " + aktion.Depth);
-                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
-                    writeLine("post");}
+                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");}
                     
             else if (goEngine == "CupCake") {
                     writeLine(aktion.Mode);
                     writeLine("sd " + aktion.Depth);
                     writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
-                    writeLine("post");
+                    //writeLine("post");
                     writeLine("new");}
                     
             else if (goEngine == "BremboCE") {
                     //writeLine(aktion.Mode); - not support
                     writeLine("sd " + aktion.Depth);
-                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
-                    writeLine("post");}
+                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");}
             else if (goEngine == "CaveChess") {
                     //writeLine(aktion.Mode);
                     writeLine("sd " + aktion.Depth);
@@ -79,19 +77,17 @@ public class EngineAgentExt extends EngineAgent {
             else if (goEngine == "Gladiator") {
                     writeLine(aktion.Mode);
                     writeLine("sd " + aktion.Depth);
-                    //writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");  // Gladiator error returned              
-                    writeLine("post");}         
+                    //writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");  // Gladiator error returned
+                    }         
             else if (goEngine == "GNU Chess") {
                     writeLine(aktion.Mode);
                     writeLine("depth " + aktion.Depth);
                     writeLine("time "+60*aktion.Time);
-                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");
-                    writeLine("post");}
+                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");}
             else if (goEngine == "Jchess") {
                     // NOT SUPPORT writeLine(aktion.Mode);
                     // NOT SUPPORT writeLine("sd " + aktion.Depth);
-                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
-                    writeLine("post");}
+                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");}
             else if (goEngine == "jChecs") {
                     writeLine(aktion.Mode); 
                     writeLine("sd " + aktion.Depth);}
@@ -101,8 +97,11 @@ public class EngineAgentExt extends EngineAgent {
             else if (goEngine == "Tri-OS") {
                     //writeLine(aktion.Mode); // don't support
                     //writeLine("sd " + aktion.Depth);
-                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
-                    writeLine("post");}   
+                    writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");}
+            if (goEngine != "Tiffanys" && goEngine != "FairyPrincess" && goEngine != "CaveChess" && goEngine != "jChecs") {                
+                writeLine("post");
+            	
+            }
         }
         if (this.ceTip.equals("uci")) 
          {
