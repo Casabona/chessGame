@@ -43,13 +43,15 @@ public class EngineAgentExt extends EngineAgent {
             if (goEngine.equals("Animats")||goEngine.equals("FrankWalter")||goEngine.equals("KennyClassIQ"))
                 writeLine("protover 2");            
             writeLine("new");
+            if (goEngine != "BremboCE" && goEngine != "CaveChess"&& goEngine != "FairyPrincess" && goEngine != "Jchess" && goEngine != "Tri-OS") {
+                writeLine(aktion.Mode);}
             if (goEngine == "Alf" || goEngine == "ArabianKnight" || goEngine == "DeepBrutePos" || goEngine == "Frittle" || goEngine == "FrankWalter" || goEngine == "Javalin" || goEngine == "KingsOut" || goEngine == "KennyClassIQ" || goEngine == "OliThink" || goEngine == "Talvmenni") {
-                    writeLine(aktion.Mode);
+                    //	writeLine(aktion.Mode);
                     writeLine("sd " + aktion.Depth);
                     writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");}
                     
             else if (goEngine == "CupCake") {
-                    writeLine(aktion.Mode);
+                    //	writeLine(aktion.Mode);
                     writeLine("sd " + aktion.Depth);
                     writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");                
                     //writeLine("post");
@@ -75,12 +77,12 @@ public class EngineAgentExt extends EngineAgent {
                     //writeLine("post");
             }  
             else if (goEngine == "Gladiator") {
-                    writeLine(aktion.Mode);
+            		//	writeLine(aktion.Mode);
                     writeLine("sd " + aktion.Depth);
                     //writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");  // Gladiator error returned
                     }         
             else if (goEngine == "GNU Chess") {
-                    writeLine(aktion.Mode);
+            		//	writeLine(aktion.Mode);
                     writeLine("depth " + aktion.Depth);
                     writeLine("time "+60*aktion.Time);
                     writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");}
@@ -89,11 +91,12 @@ public class EngineAgentExt extends EngineAgent {
                     // NOT SUPPORT writeLine("sd " + aktion.Depth);
                     writeLine("level "+60*aktion.Time+" "+aktion.Time+" 0");}
             else if (goEngine == "jChecs") {
-                    writeLine(aktion.Mode); 
+            		//	writeLine(aktion.Mode); 
                     writeLine("sd " + aktion.Depth);}
             else if (goEngine == "Tiffanys") {
                     //writeLine("new");
-                    writeLine(aktion.Mode);}
+            		//	writeLine(aktion.Mode);
+            	}
             else if (goEngine == "Tri-OS") {
                     //writeLine(aktion.Mode); // don't support
                     //writeLine("sd " + aktion.Depth);
