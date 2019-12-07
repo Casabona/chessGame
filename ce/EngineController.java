@@ -59,231 +59,42 @@ public class EngineController extends ProtocolController implements
 
       if (receiver != null)
       {
-         if ("xboard".equals(command))
-         {
-            receiver.xboard();
-         }
-         else if ("new".equals(command))
-         {
-            receiver.New();
-         }
-         else if (command.startsWith("variant"))
-         {
-            commandScanner.next();
-            String variant = commandScanner.next();
-            if (variant != null && variant.trim() != "")
-               receiver.variant(variant);
-         }
-         else if ("quit".equals(command))
-         {
-            receiver.quit();
-            // TODO ver como implementar el comando quit
-         }
-         else if ("random".equals(command))
-         {
-            receiver.random();
-         }
-         else if ("force".equals(command))
-         {
-            receiver.force();
-         }
-         else if ("go".equals(command))
-         {
-            receiver.go();
-         }
-         else if("playother".equals(command))
-         {
-            receiver.playother();
-         }
-         else if ("white".equals(command))
-         {
-            receiver.white();
-         }
-         else if ("black".equals(command))
-         {
-            receiver.black();
-         }
-         else if (command.startsWith("level"))
-         {
-            commandScanner.next();
-            String numMoves = commandScanner.next();
-            String baseTime = commandScanner.next();
-            String incrementTime = commandScanner.next();
-
-            receiver.level(numMoves, baseTime, incrementTime);
-         }
-         else if (command.startsWith("st"))
-         {
-            commandScanner.next();
-            String time = commandScanner.next();
-
-            receiver.st(time);
-         }
-         else if (command.startsWith("sd"))
-         {
-            commandScanner.next();
-            String deep = commandScanner.next();
-
-            receiver.sd(deep);
-         }
-         else if (command.startsWith("time"))
-         {
-            commandScanner.next();
-            String time = commandScanner.next();
-
-            receiver.time(time);
-         }
-         else if (command.startsWith("otim"))
-         {
-            commandScanner.next();
-            String tiempo = commandScanner.next();
-
-            receiver.otim(tiempo);
-         }
-         else if ("?".equals(command))
-         {
-            receiver.moveNow();
-         }
-         else if ("draw".equals(command))
-         {
-            receiver.draw();
-         }
-         else if("ping".equals(command))
-         {
-            commandScanner.next();
-            String n = commandScanner.next();
-            
-            receiver.ping(n);
-         }
-         else if (command.startsWith("result"))
-         {
-            commandScanner.next();
-
-            String result = commandScanner.next();
-
-            commandScanner.useDelimiter("");
-            String comment = ""; //commandScanner.next();
-
-            receiver.result(result, comment);
-         }
-         else if ("edit".equals(command))
-         {
-            receiver.edit();
-         }
-         else if ("hint".equals(command))
-         {
-            receiver.hint();
-         }
-         else if ("bk".equals(command))
-         {
-            receiver.bk();
-         }
-         else if ("undo".equals(command))
-         {
-            receiver.undo();
-         }
-         else if ("remove".equals(command))
-         {
-            receiver.remove();
-         }
-         else if ("hard".equals(command))
-         {
-            receiver.hard();
-         }
-         else if ("easy".equals(command))
-         {
-            receiver.easy();
-         }
-         else if ("post".equals(command))
-         {
-            receiver.post();
-         }
-         else if ("nopost".equals(command))
-         {
-            receiver.nopost();
-         }
-         else if ("analyze".equals(command))
-         {
-            receiver.analyze();
-         }
-         else if (command.startsWith("name"))
-         {
-            commandScanner.next();
-
-            commandScanner.useDelimiter("");
-
-            String name = commandScanner.next();
-
-            receiver.name(name);
-         }
-         else if ("rating".equals(command))
-         {
-            receiver.rating();
-         }
-         else if(command.startsWith("ics"))
-         {
-            commandScanner.next();
-            
-            String hostname = commandScanner.next();
-            receiver.ics(hostname);
-         }
-         else if ("computer".equals(command))
-         {
-            receiver.computer();
-         }
-         else if("pause".equals(command))
-         {
-            receiver.pause();
-         }
-         else if("resume".equals(command))
-         {
-            receiver.resume();
-         }
-         else if(command.startsWith("protover"))
-         {
-            commandScanner.next();
-            
-            String version = commandScanner.next();
-            receiver.protover(version);
-         }
-         else if(command.startsWith("accepted"))
-         {
-            commandScanner.next();
-            
-            String feature = commandScanner.next();
-            receiver.accepted(feature);
-         }
-         else if(command.startsWith("rejected"))
-         {
-            commandScanner.next();
-            
-            String feature = commandScanner.next();
-            receiver.protover(feature);
-         }
-         else if(command.startsWith("setboard"))
-         {
-            commandScanner.next();
-            
-            String fen = commandScanner.nextLine().trim();
-            receiver.setboard(fen);
-         }
-         else if(command.startsWith("usermove"))
-         {
-            commandScanner.next();
-            
-            Movement move = Notation.parseMove(commandScanner.next());
-            receiver.usermove(move);
-         }
-         else
-         {
-            // Si no se ha reconocido ninguno de los comandos se intenta
-            // recoger un movimiento
-            Movement move = Notation.parseMove(command);
-
-            receiver.usermove(move);
-         }
-      }
-   }
+         if ("xboard".equals(command) || "analyze".equals(command) || "new".equals(command) || "quit".equals(command) || "random".equals(command) || "force".equals(command) || "go".equals(command) || "playother".equals(command) || "white".equals(command) || "black".equals(command) || "draw".equals(command) || "edit".equals(command) || "hint".equals(command) || "bk".equals(command) || "undo".equals(command) || "remove".equals(command) || "hard".equals(command) || "easy".equals(command) || "post".equals(command) || "nopost".equals(command) || "computer".equals(command) || "pause".equals(command) || "resume".equals(command) || "rating".equals(command))
+         {receiver.getClass().getMethod(command);}
+         
+         else if (command.startsWith("variant")){commandScanner.next();String variant = commandScanner.next();if (variant != null && variant.trim() != "") {receiver.variant(variant);}}
+         
+         else if (command.startsWith("level")){commandScanner.next();String numMoves = commandScanner.next();String baseTime = commandScanner.next();String incrementTime = commandScanner.next();receiver.level(numMoves, baseTime, incrementTime);}
+         
+         else if (command.startsWith("st")){commandScanner.next();String temp_ = commandScanner.next();receiver.st(temp_);}
+         
+         else if (command.startsWith("time")){commandScanner.next();String temp_ = commandScanner.next();receiver.time(temp_);}
+         
+         else if (command.startsWith("sd")){commandScanner.next();String temp_ = commandScanner.next();receiver.sd(temp_);}
+         
+         else if (command.startsWith("otim")){commandScanner.next();String temp_ = commandScanner.next();receiver.otim(temp_);}
+         
+         else if(command.startsWith("ics")){commandScanner.next();String temp_ = commandScanner.next();receiver.ics(temp_);}
+         
+         else if(command.startsWith("protover")){commandScanner.next();String temp_ = commandScanner.next();receiver.protover(temp_);}
+         
+         else if(command.startsWith("accepted")){commandScanner.next();String temp_ = commandScanner.next();receiver.accepted(temp_);}
+         
+         else if(command.startsWith("rejected")){commandScanner.next();String temp_ = commandScanner.next();receiver.protover(temp_);}
+         
+         else if(command.startsWith("usermove")){commandScanner.next();Movement move = Notation.parseMove(commandScanner.next());receiver.usermove(move);}
+         
+         else if("ping".equals(command)){commandScanner.next();String n = commandScanner.next();receiver.ping(n);}
+         
+         else if ("?".equals(command)){receiver.moveNow(); }
+         
+         else if (command.startsWith("result")){commandScanner.next();String result = commandScanner.next();commandScanner.useDelimiter("");String comment = "";receiver.result(result, comment);}
+         
+         else if (command.startsWith("name")){commandScanner.next();commandScanner.useDelimiter("");String name = commandScanner.next();receiver.name(name);}
+         
+         else if(command.startsWith("setboard")){commandScanner.next();String fen = commandScanner.nextLine().trim();receiver.setboard(fen);}
+         
+         else{Movement move = Notation.parseMove(command);receiver.usermove(move);}}}
 
    
    @Override
